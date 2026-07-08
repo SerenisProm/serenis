@@ -1,0 +1,20 @@
+backend:
+  name: git-gateway
+  branch: main # Assurez-vous que votre branche principale s'appelle main
+
+media_folder: "images" # S'il upload directement, sinon utiliser des liens Cloudinary
+public_folder: "/images"
+
+collections:
+  - name: "projets"
+    label: "Projets Réalisés"
+    folder: "data/projets" # Le CMS créera des fichiers ici
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Identifiant (sans espace)", name: "id", widget: "string"}
+      - {label: "Titre du projet", name: "title", widget: "string"}
+      - {label: "Ville", name: "location", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Prestations (séparées par des virgules)", name: "features", widget: "list"}
+      - {label: "Lien de l'image (Cloudinary)", name: "image", widget: "string"}
