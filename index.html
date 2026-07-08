@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="fr" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sérénis Développement | Promotion Immobilière d'Excellence</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            500: '#334155',
+                            900: '#0f172a',
+                            gold: '#c5a059',
+                            darkGold: '#a88444',
+                            champagne: '#fbf8f3'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .fade-in { animation: fadeIn 0.4s ease-in-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hide { display: none !important; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .loader {
+            border: 2px solid #e2e8f0; border-top: 2px solid #c5a059; border-radius: 50%;
+            width: 20px; height: 20px; animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="font-sans bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 antialiased selection:bg-brand-gold selection:text-white flex flex-col min-h-screen">
+
+    <div id="db-status-banner" class="bg-amber-500/10 border-b border-amber-500/20 text-amber-800 dark:text-amber-300 text-xs py-2 px-4 text-center sticky top-0 z-[60] backdrop-blur-md hidden">
+        <div class="max-w-7xl mx-auto flex items-center justify-center gap-2">
+            <i class="fa-solid fa-triangle-exclamation text-amber-500"></i>
+            <span><strong>Mode Local d'Urgence :</strong> Impossible d'accéder au serveur cloud (Permissions Firestore insuffisantes). Vos modifications sont sauvegardées localement dans votre navigateur.</span>
+            <button onclick="document.getElementById('db-status-banner').classList.add('hide')" class="underline ml-2 hover:text-amber-600 dark:hover:text-amber-200">Ignorer</button>
+        </div>
+    </div>
+
+    <header id="main-header" class="fixed w-full top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 cursor-pointer flex flex-col" onclick="window.navigate('home')">
+                    <h1 class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+                        SÉRÉNIS <span class="text-brand-gold font-normal italic">Développement</span>
+                    </h1>
+                    <span class="font-sans text-[9px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-semibold -mt-1">Thierry Dumas &bull; Promotion</span>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <button onclick="window.navigate('home')" class="text-sm font-medium hover:text-brand-gold dark:hover:text-brand-gold transition-colors">Accueil</button>
+                    <button onclick="window.navigate('projects')" class="text-sm font-medium bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-5 py-2.5 rounded hover:bg-brand-gold dark:hover:bg-brand-gold dark:hover:text-white transition-all shadow-sm">
+                        <i class="fa-regular fa-building mr-2"></i>Réalisations
+                    </button>
+                    <button onclick="window.scrollToContact()" class="text-sm font-medium hover:text-brand-gold dark:hover:text-brand-gold transition-colors">Contact</button>
+                    <button onclick="window.toggleTheme()" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" aria-label="Changer de thème">
+                        <i id="theme-icon" class="fa-solid fa-moon text-slate-600 dark:text-slate-300"></i>
+                    </button>
+                </nav>
+
+                <div class="md:hidden flex items-center space-x-2">
+                    <button onclick="window.toggleTheme()" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Changer de thème">
+                        <i id="theme-icon-mobile" class="fa-solid fa-moon text-slate-600 dark:text-slate-300"></i>
+                    </button>
+                    <button onclick="window.navigate('projects')" class="text-xs font-semibold bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-3 py-2 rounded">
+                        Réalisations
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20 flex-grow">
+
+        <div id="view-home" class="fade-in">
+            <!-- Hero section -->
+            <section class="relative h-[65vh] flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1920&q=80" alt="Architecture d'Exception" class="w-full h-full object-cover" />
+                    <div class="absolute inset-0 bg-slate-950/40 dark:bg-slate-950/70"></div>
+                </div>
+                <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-6">
+                    <span class="text-brand-gold font-semibold tracking-widest uppercase mb-3 text-xs sm:text-sm block">Promoteur Immobilier Régional</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                        L'art de concevoir <br class="hidden sm:block"/>des espaces d'exception.
+                    </h2>
+                    <p class="font-sans text-slate-200 text-base sm:text-lg font-light mb-8 max-w-2xl mx-auto">
+                        Depuis plus de 20 ans, Thierry Dumas et ses équipes imaginent, modèlent et réalisent des projets résidentiels haut de gamme, des résidences hôtelières de standing et des locaux d'activité.
+                    </p>
+                    <button onclick="window.navigate('projects')" class="bg-brand-gold hover:bg-brand-darkGold text-white px-8 py-3.5 rounded font-medium transition-colors shadow-lg">
+                        Découvrir nos projets précédents
+                    </button>
+                </div>
+            </section>
+
+            <!-- Leader Word section -->
+            <section class="py-16 px-4 max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7">
+                        <span class="font-sans text-brand-gold font-semibold uppercase tracking-wider text-xs block mb-2">Thierry Dumas &bull; Fondateur</span>
+                        <h3 class="font-serif text-3xl sm:text-4xl font-bold mb-6 text-slate-900 dark:text-white">Le mot du dirigeant</h3>
+                        <div class="font-sans space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed text-base">
+                            <p>
+                                Dirigée par <strong>Thierry Dumas</strong>, Sérénis Développement s'est imposée comme une signature d'excellence en région Occitanie, en côte d'Azur et en stations de haute montagne. Notre crédo : le respect rigoureux du cahier des charges, la qualité noble des matériaux et l'intégration paysagère harmonieuse.
+                            </p>
+                            <p>
+                                Notre savoir-faire s'articule autour de trois pôles majeurs de compétence de la promotion moderne :
+                            </p>
+                        </div>
+                        <ul class="mt-6 space-y-3 text-slate-600 dark:text-slate-300">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-gold mr-3 text-sm"></i> Résidences de Standing de moyenne et grande taille</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-gold mr-3 text-sm"></i> Résidences de Tourisme Classées (Mer & Montagne)</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-gold mr-3 text-sm"></i> Espaces de bureaux, santé, commerces intégrés</li>
+                        </ul>
+                    </div>
+                    <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" alt="Villa Contemporaine" class="rounded shadow-md w-full h-44 object-cover">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="Intérieur d'architecte" class="rounded shadow-md w-full h-44 object-cover mt-6">
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-16 bg-brand-champagne dark:bg-slate-900/40 border-y border-slate-200/50 dark:border-slate-800/50">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="text-center mb-10">
+                        <span class="font-sans text-brand-gold font-semibold uppercase tracking-wider text-xs block mb-1">Dernière Réalisation</span>
+                        <h3 class="font-serif text-3xl font-bold text-slate-900 dark:text-white">Le Clos Saint Joseph</h3>
+                        <p class="font-sans text-slate-500 text-sm mt-1">Vendargues &bull; Résidentiel haut de gamme</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-md border border-slate-200/40 dark:border-slate-800/40">
+                        <div class="h-80 sm:h-[400px]">
+                            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" alt="Le Clos Saint Joseph" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-8 sm:p-12">
+                            <span class="font-sans bg-brand-gold/10 text-brand-gold font-semibold text-xs px-3 py-1 rounded-full uppercase mb-4 inline-block">Projet Vedette</span>
+                            <h4 class="text-xl font-bold mb-3 font-serif">Une intimité moderne au coeur de la ville</h4>
+                            <p class="font-sans text-slate-600 dark:text-slate-300 leading-relaxed mb-6 text-sm">
+                                Située à proximité immédiate du centre-ville historique de Vendargues, cette élégante résidence sur deux niveaux seulement offre 20 appartements de standing du T2 au T4.
+                            </p>
+                            <div class="font-sans grid grid-cols-2 gap-4 text-xs font-medium text-slate-500 dark:text-slate-400 mb-8">
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-parking text-brand-gold"></i> Sous-sol sécurisé</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-tree text-brand-gold"></i> Espaces arborés</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-brand-gold"></i> Clôture sécurisée</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-percent text-brand-gold"></i> Éligible Loi Pinel</div>
+                            </div>
+                            <button onclick="window.selectAndNavigateProject('Résidence Le Clos Saint Joseph')" class="text-sm font-semibold text-slate-900 dark:text-white border-b-2 border-brand-gold pb-1 hover:text-brand-gold transition-colors">
+                                Consulter les fiches techniques <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="view-projects" class="hide fade-in bg-slate-50 dark:bg-slate-950 min-h-screen py-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-10 text-center max-w-xl mx-auto">
+                    <span class="font-sans text-brand-gold font-semibold tracking-wider text-xs uppercase block mb-1">Notre Portfolio</span>
+                    <h2 class="font-serif text-3xl font-bold text-slate-900 dark:text-white">Présentation des Réalisations</h2>
+                    <p class="font-sans text-slate-500 dark:text-slate-400 text-sm mt-2">Cliquez sur un projet ci-dessous pour afficher ses fiches techniques, prestations, photos et caractéristiques de structure.</p>
+                </div>
+                
+                <!-- Category Buttons / Filters / Horizontal list -->
+                <div id="projects-selector-wrapper" class="mb-8">
+                    <div id="projects-selector" class="flex gap-2 overflow-x-auto pb-4 scrollbar-hide -mx-4 px-4 justify-start sm:justify-center">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <div id="loading-projects" class="flex justify-center items-center py-20 hide">
+                    <div class="loader"></div>
+                    <span class="ml-3 text-brand-gold text-sm font-medium">Chargement des fiches techniques...</span>
+                </div>
+
+                <!-- Detail View Component -->
+                <div id="project-detail" class="bg-white dark:bg-slate-900 rounded-xl shadow-md border border-slate-200/50 dark:border-slate-800/50 overflow-hidden transition-all duration-300 opacity-0 max-w-5xl mx-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-12">
+                        <!-- Left Side: Image Carousel / Main view -->
+                        <div class="lg:col-span-7 h-72 sm:h-96 lg:h-[480px] relative">
+                            <img id="detail-image" src="" alt="Projet" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6">
+                                <span id="detail-location-badge" class="bg-brand-gold text-white font-semibold text-[10px] px-2.5 py-1 rounded tracking-widest uppercase inline-block mb-2">Montpellier</span>
+                                <h3 id="detail-title" class="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight"></h3>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Side: Details Form / Content sheet -->
+                        <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between bg-white dark:bg-slate-900">
+                            <div>
+                                <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4 mb-4">
+                                    <span class="font-sans text-xs uppercase tracking-wider text-slate-400 font-semibold"><i class="fa-solid fa-map-pin mr-1"></i> Fiche d'identité</span>
+                                    <span id="detail-category-badge" class="font-sans text-xs text-brand-gold font-medium">Appartements & Commerces</span>
+                                </div>
+                                <p id="detail-desc" class="font-sans text-slate-600 dark:text-slate-300 leading-relaxed text-sm mb-6"></p>
+                                
+                                <h4 class="font-sans text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider mb-4 border-l-2 border-brand-gold pl-2">Prestations & Équipements</h4>
+                                <ul id="detail-features" class="font-sans space-y-2.5 text-xs text-slate-600 dark:text-slate-300">
+                                    <!-- Populated by JS -->
+                                </ul>
+                            </div>
+                            
+                            <!-- Contact footer in sidebar detail -->
+                            <div class="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="p-1.5 rounded bg-brand-gold/10 text-brand-gold text-xs"><i class="fa-solid fa-headset"></i></div>
+                                    <span class="text-xs text-slate-500">Un projet similaire ?</span>
+                                </div>
+                                <button onclick="window.scrollToContact()" class="text-xs font-bold text-brand-gold hover:text-brand-darkGold transition-all">Consulter Thierry Dumas</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-admin-login" class="hide fade-in bg-slate-50 dark:bg-slate-950 min-h-screen flex items-center justify-center py-20 px-4">
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-xl shadow-lg border border-slate-200/50 dark:border-slate-800/50 max-w-md w-full">
+                <div class="text-center mb-6">
+                    <div class="w-12 h-12 bg-brand-gold/10 text-brand-gold rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <h2 class="font-serif text-2xl font-bold text-slate-900 dark:text-white">Espace d'Administration</h2>
+                    <p class="text-xs text-slate-400 mt-2">Authentification requise pour l'édition et l'ajout de fiches techniques.</p>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Code d'accès administrateur</label>
+                        <input type="password" id="admin-password" placeholder="Saisir le mot de passe" class="w-full px-4 py-3 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-brand-gold">
+                        <p id="login-error" class="text-red-500 text-xs mt-2 hidden"><i class="fa-solid fa-circle-exclamation mr-1"></i> Code d'accès invalide. Essai refusé.</p>
+                    </div>
+                    <button onclick="window.attemptLogin()" class="w-full bg-slate-900 dark:bg-brand-gold text-white font-medium py-3 rounded hover:bg-brand-gold dark:hover:bg-brand-darkGold transition-colors text-sm">
+                        Se connecter
+                    </button>
+                    <button onclick="window.navigate('home')" class="w-full text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs mt-2">
+                        Annuler et retourner au site
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-admin-dashboard" class="hide fade-in bg-slate-100 dark:bg-slate-950 min-h-screen py-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 class="font-serif text-3xl font-bold text-slate-900 dark:text-white">Console d'Édition</h2>
+                            <span id="db-indicator-badge" class="bg-emerald-500/10 text-emerald-500 font-semibold text-[9px] px-2 py-0.5 rounded tracking-wider uppercase">Mode Local (Actif)</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1">Créez, éditez ou supprimez les fiches techniques des programmes immobiliers de votre père.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="window.openProjectForm()" class="bg-brand-gold hover:bg-brand-darkGold text-white px-4 py-2.5 rounded font-medium shadow-sm text-xs transition-colors">
+                            <i class="fa-solid fa-plus mr-1.5"></i>Nouveau Programme
+                        </button>
+                        <button onclick="window.logoutAdmin()" class="bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-red-500 hover:text-white px-4 py-2.5 rounded font-medium text-xs transition-all">
+                            Déconnexion
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick info rules help box -->
+                <div class="bg-amber-500/5 border border-amber-500/20 rounded-xl p-5 mb-8 flex gap-4 items-start">
+                    <div class="p-2 bg-amber-500/10 text-amber-500 rounded text-sm shrink-0"><i class="fa-solid fa-circle-question"></i></div>
+                    <div class="text-xs">
+                        <h4 class="font-semibold text-slate-900 dark:text-white mb-1">Avis de configuration de base de données (Firebase/Firestore)</h4>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Pour éliminer définitivement l'erreur "Missing or insufficient permissions" en mode production, rendez-vous dans la console Firebase et remplacez les **Règles de sécurité Firestore** par le modèle ouvert suivant :
+                        </p>
+                        <pre class="bg-slate-900 text-slate-300 p-3 rounded mt-2 font-mono overflow-x-auto text-[10px] whitespace-pre">rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}</pre>
+                    </div>
+                </div>
+
+                <!-- Grid list of projects in database -->
+                <div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200/50 dark:border-slate-800/50 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-slate-900 text-white uppercase tracking-wider text-[10px]">
+                                    <th class="p-4 font-medium">Aperçu</th>
+                                    <th class="p-4 font-medium">Titre du Programme</th>
+                                    <th class="p-4 font-medium">Localisation &amp; Catégorie</th>
+                                    <th class="p-4 font-medium text-right">Actions techniques</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-projects-list" class="divide-y divide-slate-100 dark:divide-slate-800">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="admin-modal" class="fixed inset-0 z-[100] bg-slate-950/85 backdrop-blur-sm hidden flex items-center justify-center p-4">
+            <div class="bg-white dark:bg-slate-900 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-800">
+                <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center sticky top-0 bg-white dark:bg-slate-900 z-10">
+                    <h3 id="modal-title" class="text-lg font-bold font-serif text-slate-900 dark:text-white"></h3>
+                    <button onclick="window.closeProjectForm()" class="text-slate-400 hover:text-red-500 text-xl leading-none">&times;</button>
+                </div>
+                <div class="p-6">
+                    <form id="project-form" class="space-y-4" onsubmit="window.saveProject(event)">
+                        <input type="hidden" id="form-id">
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Nom du programme *</label>
+                                <input type="text" id="form-title" required class="w-full p-2.5 text-xs rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 dark:text-white">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Ville &amp; Région *</label>
+                                <input type="text" id="form-location" required class="w-full p-2.5 text-xs rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 dark:text-white" placeholder="Ex: Montpellier">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Type de bien (Catégorie)</label>
+                                <input type="text" id="form-category" placeholder="Ex: Résidence de Tourisme Classée 3 étoiles" class="w-full p-2.5 text-xs rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 dark:text-white">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Lien d'image (Hébergement externe) *</label>
+                                <input type="url" id="form-image" required placeholder="https://..." class="w-full p-2.5 text-xs rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 dark:text-white">
+                                <p class="text-[10px] text-slate-400 mt-1">Insérez l'URL directe d'une photo de votre compte ImgBB ou Postimages.</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Texte descriptif du programme *</label>
+                            <textarea id="form-desc" required rows="3" class="w-full p-2.5 text-xs rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 dark:text-white" placeholder="Présentation, localisation exacte, proximité commerces..."></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Prestations techniques &amp; Équipements</label>
+                            <textarea id="form-features" rows="4" placeholder="Une prestation par ligne..." class="w-full p-2.5 text-xs rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 dark:text-white"></textarea>
+                            <p class="text-[10px] text-slate-400 mt-1">Exemple : Piscine en copropriété. Allez simplement à la ligne pour chaque nouveau point.</p>
+                        </div>
+
+                        <div class="pt-4 flex justify-end gap-2 border-t border-slate-100 dark:border-slate-800">
+                            <button type="button" onclick="window.closeProjectForm()" class="px-4 py-2 rounded text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Annuler</button>
+                            <button type="submit" class="bg-brand-gold hover:bg-brand-darkGold text-white px-5 py-2 rounded text-xs font-semibold transition-colors">Enregistrer la fiche</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="contact-section" class="bg-slate-900 text-white pt-16 pb-8 border-t-2 border-brand-gold mt-auto dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <h2 class="font-serif text-xl font-bold mb-4">SÉRÉNIS <span class="text-brand-gold italic font-normal">Développement</span></h2>
+                    <p class="font-sans text-slate-400 text-xs leading-relaxed mb-6">
+                        Opérations de co-promotion et promotion immobilière territoriale de standing. Conception de programmes intégrés en Occitanie et résidences hôtelières mer &amp; montagne.
+                    </p>
+                    <div class="font-sans text-[9px] text-slate-500 uppercase tracking-widest font-bold mb-1">Siège social</div>
+                    <p class="font-sans text-slate-400 text-xs font-mono">SASU SERENIS DEVELOPPEMENT</p>
+                </div>
+                <div>
+                    <h3 class="font-sans text-sm font-semibold mb-6 uppercase tracking-wider border-b border-slate-800 pb-2 inline-block">Coordonnées</h3>
+                    <ul class="font-sans space-y-4 text-xs">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-user text-brand-gold mt-0.5 mr-4 w-4"></i>
+                            <div>
+                                <span class="block text-slate-400 text-[9px] uppercase tracking-wider mb-0.5">Direction générale</span>
+                                <span class="font-medium">Thierry Dumas</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-phone text-brand-gold mt-0.5 mr-4 w-4"></i>
+                            <div>
+                                <span class="block text-slate-400 text-[9px] uppercase tracking-wider mb-0.5">Ligne Directe</span>
+                                <a href="tel:+33679971790" class="hover:text-brand-gold transition-colors font-medium font-mono">06 79 97 17 90</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-envelope text-brand-gold mt-0.5 mr-4 w-4"></i>
+                            <div>
+                                <span class="block text-slate-400 text-[9px] uppercase tracking-wider mb-0.5">Courriel professionnel</span>
+                                <a href="mailto:contact@serenis-promotion.com" class="hover:text-brand-gold transition-colors font-medium">contact@serenis-promotion.com</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-sans text-sm font-semibold mb-6 uppercase tracking-wider border-b border-slate-800 pb-2 inline-block">Navigation du site</h3>
+                    <ul class="font-sans space-y-3 text-xs">
+                        <li><button onclick="window.navigate('home')" class="text-slate-400 hover:text-white transition-colors flex items-center"><i class="fa-solid fa-angle-right text-brand-gold text-[9px] mr-2"></i> Présentation principale</button></li>
+                        <li><button onclick="window.navigate('projects')" class="text-slate-400 hover:text-white transition-colors flex items-center"><i class="fa-solid fa-angle-right text-brand-gold text-[9px] mr-2"></i> Réalisations du PowerPoint</button></li>
+                        <li><button onclick="window.scrollToTop()" class="text-slate-400 hover:text-white transition-colors flex items-center"><i class="fa-solid fa-arrow-up text-brand-gold text-[9px] mr-2"></i> Remonter en haut</button></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="font-sans border-t border-slate-800/80 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-xs">
+                <p>&copy; <span id="year"></span> Sérénis Développement &bull; Thierry Dumas. Tous droits réservés.</p>
+                <button onclick="window.navigate('admin-login')" class="mt-4 md:mt-0 text-slate-600 hover:text-brand-gold transition-colors text-[10px] uppercase tracking-widest font-semibold flex items-center gap-1.5"><i class="fa-solid fa-key"></i> Accès Admin</button>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, onSnapshot, doc, setDoc, deleteDoc, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+        let db, auth;
+        let projectsData = [];
+        let currentActiveProjectId = null;
+        let databaseMode = 'cloud'; // Default mode, fallback dynamically to 'local' on rule blockages
+        const APP_ID = typeof __app_id !== 'undefined' ? __app_id : 'serenis-dev-app';
+
+        // High-fidelity program data from PowerPoint (Vendu & Réalisé par Thierry Dumas / Sérénis)
+        const DEFAULT_SEED_DATA = [
+            {
+                id: "res-le-clos-st-joseph",
+                title: "Résidence Le Clos Saint Joseph",
+                location: "Vendargues",
+                category: "Appartements",
+                desc: "Résidence contemporaine à échelle humaine située à proximité immédiate du centre de Vendargues. L'ensemble propose 20 appartements de standing répartis sur seulement 2 niveaux dans un écrin calme et préservé.",
+                features: ["20 appartements du T2 au T4", "Parking sécurisé en sous-sol", "Terrasse d'agrément et cellier individuel", "Idéal pour défiscalisation Loi Pinel"],
+                image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1000&q=80"
+            },
+            {
+                id: "res-l-ecu",
+                title: "Résidence L'Écu",
+                location: "Montpellier",
+                category: "Appartements & Commerces",
+                desc: "Complexe architectural majeur à proximité de l’hôtel de police et de la gare Saint Roch. Alliant d'élégantes lignes épurées et des volumes fonctionnels.",
+                features: ["74 appartements du studio au T6", "Piscine privative sur le toit terrasse", "1 663 m2 de surfaces commerciales", "1 030 m2 de bureaux tertiaires", "Pôle de santé / Centre médical intégré"],
+                image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80"
+            },
+            {
+                id: "res-europea",
+                title: "Résidence Europea",
+                location: "Montpellier",
+                category: "Appartements, Bureaux & Commerces",
+                desc: "Un ensemble immobilier mixte hautement stratégique à proximité de la gare Saint Roch et du centre-ville, conçu avec un haut niveau de finitions.",
+                features: ["36 appartements spacieux du T2 au T4", "Maisons de ville intégrées type T4 Duplex", "Bureaux et résidences d'affaires intégrés", "Garages privatifs fermés en sous-sol", "Parkings extérieurs paysagers"],
+                image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80"
+            },
+            {
+                id: "res-les-consuls-de-mer",
+                title: "Résidence Les Consuls de Mer",
+                location: "Montpellier",
+                category: "Résidence de Tourisme Classée",
+                desc: "Résidence de tourisme classée 3 étoiles située idéalement face à l'Hôtel de Ville de Montpellier et à proximité des universités.",
+                features: ["118 appartements tout équipés du studio au T2", "Grand Jacuzzi et Espace balnéothérapie", "Piscine en copropriété sur le toit", "Garages en sous-sol sur plusieurs niveaux", "Salles de réunions et espaces d'affaires"],
+                image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80"
+            },
+            {
+                id: "res-les-terraces-de-l-ecu",
+                title: "Résidence Les Terrasses de L'Écu",
+                location: "Montpellier",
+                category: "Appartements de Standing",
+                desc: "Prestigieux programme résidentiel implanté à proximité immédiate du lycée Jules Ferry et du splendide parc public de la Colline.",
+                features: ["84 logements haut de gamme", "Appartements duplex du T2 au T5", "Grande piscine collective sécurisée", "Garages en rez-de-chaussée", "Espaces de stationnement extérieurs"],
+                image: "https://images.unsplash.com/photo-1542361345-89e58247f2d5?auto=format&fit=crop&w=1000&q=80"
+            },
+            {
+                id: "res-le-magistere",
+                title: "Résidence Le Magistère",
+                location: "Montpellier",
+                category: "Appartements & Commerces",
+                desc: "Complexe moderne desservi directement par le tramway à proximité de l'Hôtel de Ville de Montpellier.",
+                features: ["71 appartements duplex du studio au T3", "Garages privatifs sécurisés en sous-sol", "Commerces de proximité en pied d'immeuble", "Salle de sport réservée aux résidents", "Salle de réunion de copropriété"],
+                image: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=1000&q=80"
+            },
+            {
+                id: "res-le-chalet-des-ecrins",
+                title: "Le Chalet des Écrins",
+                location: "Orcières Merlette (05)",
+                category: "Résidence de Montagne Classée",
+                desc: "Splendide résidence touristique classée 3 étoiles au coeur de la station de sports d'hiver d'Orcières Merlette, à proximité immédiate des remontées mécaniques.",
+                features: ["72 appartements confortables du T2 au T3 Duplex", "Espace d'accueil de type chalet de montagne", "Salon lounge spacieux avec grande cheminée de pierre", "Sauna, Jacuzzi et salle de musculation", "Casiers à skis privatifs chauffés"],
+                image: "https://images.unsplash.com/photo-1548777123-e216912df7d8?auto=format&fit=crop&w=1000&q=80"
+            }
+        ];
+
+        try {
+            const firebaseConfig = typeof __firebase_config !== 'undefined' 
+                ? JSON.parse(__firebase_config) 
+                : { projectId: "serenis-dev-app" }; // Default sandboxed project
+
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+
+            // Attempt login then listen on collection
+            signInAnonymously(auth).then(() => {
+                initFirestoreConnection();
+            }).catch(e => {
+                console.warn("Firestore Auth inaccessible, basculement LocalStorage immédiat.");
+                activateLocalStorageFallback();
+            });
+        } catch(e) {
+            console.warn("Firebase non injecté dans ce contexte, utilisation du LocalStorage.");
+            activateLocalStorageFallback();
+        }
+
+        function initFirestoreConnection() {
+            document.getElementById('loading-projects').classList.remove('hide');
+            const projectsRef = collection(db, 'artifacts', APP_ID, 'public', 'data', 'projects');
+
+            // Catching network-level error triggers inside onSnapshot to prevent crashing
+            onSnapshot(projectsRef, (snapshot) => {
+                databaseMode = 'cloud';
+                document.getElementById('db-status-banner').classList.add('hide');
+                document.getElementById('db-indicator-badge').textContent = "Base de données Cloud active";
+                document.getElementById('db-indicator-badge').className = "bg-emerald-500/10 text-emerald-500 font-semibold text-[9px] px-2 py-0.5 rounded tracking-wider uppercase";
+
+                if (snapshot.empty) {
+                    seedCloudDatabase(projectsRef);
+                    return;
+                }
+
+                projectsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                syncDatabaseContent();
+            }, (error) => {
+                console.error("Firestore error triggered. Re-routing projects to LocalStorage system.", error);
+                activateLocalStorageFallback();
+            });
+        }
+
+        async function seedCloudDatabase(ref) {
+            for (const item of DEFAULT_SEED_DATA) {
+                try {
+                    await setDoc(doc(ref, item.id), item);
+                } catch(e) {
+                    console.error("Erreur de peuplement initial :", e);
+                }
+            }
+        }
+
+        function activateLocalStorageFallback() {
+            databaseMode = 'local';
+            
+            // Render warning header banner
+            document.getElementById('db-status-banner').classList.remove('hide');
+            document.getElementById('db-indicator-badge').textContent = "Mode Local de Secours (Actif)";
+            document.getElementById('db-indicator-badge').className = "bg-amber-500/10 text-amber-500 font-semibold text-[9px] px-2 py-0.5 rounded tracking-wider uppercase";
+
+            const localStore = localStorage.getItem('serenis_projects_data');
+            if (localStore) {
+                try {
+                    projectsData = JSON.parse(localStore);
+                } catch (e) {
+                    projectsData = [...DEFAULT_SEED_DATA];
+                }
+            } else {
+                projectsData = [...DEFAULT_SEED_DATA];
+                localStorage.setItem('serenis_projects_data', JSON.stringify(projectsData));
+            }
+            syncDatabaseContent();
+        }
+
+        function syncDatabaseContent() {
+            document.getElementById('loading-projects').classList.add('hide');
+            
+            renderProjectsListSelector();
+            renderAdminProjectsTable();
+
+            // Set default project view to first project in lists
+            if (projectsData.length > 0) {
+                if (!currentActiveProjectId || !projectsData.find(p => p.id === currentActiveProjectId)) {
+                    window.selectProject(projectsData[0].id);
+                }
+            }
+        }
+
+        const html = document.documentElement;
+        window.toggleTheme = () => {
+            const isDark = html.classList.toggle('dark');
+            localStorage.theme = isDark ? 'dark' : 'light';
+            document.querySelectorAll('.fa-moon, .fa-sun').forEach(icon => {
+                icon.className = isDark ? 'fa-solid fa-sun text-yellow-400' : 'fa-solid fa-moon text-slate-600 dark:text-slate-300';
+            });
+        };
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            document.querySelectorAll('.fa-moon, .fa-sun').forEach(icon => {
+                icon.className = 'fa-solid fa-sun text-yellow-400';
+            });
+        }
+
+        window.navigate = (viewName) => {
+            ['home', 'projects', 'admin-login', 'admin-dashboard'].forEach(v => {
+                document.getElementById(`view-${v}`).classList.add('hide');
+            });
+            document.getElementById(`view-${viewName}`).classList.remove('hide');
+            
+            // Adjust header display on administrator modes
+            const header = document.getElementById('main-header');
+            if(viewName.includes('admin')) {
+                header.classList.add('hide');
+            } else {
+                header.classList.remove('hide');
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        window.scrollToContact = () => document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' });
+        window.scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        function renderProjectsListSelector() {
+            const wrapper = document.getElementById('projects-selector');
+            wrapper.innerHTML = '';
+
+            projectsData.forEach(p => {
+                const isActive = p.id === currentActiveProjectId;
+                const button = document.createElement('button');
+                
+                button.className = `px-5 py-2.5 rounded-full text-xs font-semibold shrink-0 transition-all ${
+                    isActive 
+                        ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-sm border border-transparent' 
+                        : 'bg-white text-slate-600 dark:bg-slate-900 dark:text-slate-300 border border-slate-200/50 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
+                }`;
+                button.textContent = p.title;
+                button.onclick = () => window.selectProject(p.id);
+                wrapper.appendChild(button);
+            });
+        }
+
+        window.selectProject = (id) => {
+            currentActiveProjectId = id;
+            renderProjectsListSelector();
+            
+            const targetProject = projectsData.find(p => p.id === id);
+            if (!targetProject) return;
+
+            const detailContainer = document.getElementById('project-detail');
+            detailContainer.classList.remove('opacity-100');
+            detailContainer.classList.add('opacity-0');
+
+            setTimeout(() => {
+                document.getElementById('detail-image').src = targetProject.image || 'https://placehold.co/1000x600/e2e8f0/475569?text=Image+Non+Disponible';
+                document.getElementById('detail-location-badge').textContent = targetProject.location || 'Montpellier';
+                document.getElementById('detail-title').textContent = targetProject.title;
+                document.getElementById('detail-desc').textContent = targetProject.desc || '';
+                document.getElementById('detail-category-badge').textContent = targetProject.category || 'Appartements';
+
+                const featuresList = document.getElementById('detail-features');
+                featuresList.innerHTML = '';
+                const features = targetProject.features || [];
+                
+                features.forEach(f => {
+                    const li = document.createElement('li');
+                    li.className = 'flex items-center gap-2 text-slate-600 dark:text-slate-300';
+                    li.innerHTML = `<i class="fa-solid fa-circle-check text-brand-gold"></i> <span>${f}</span>`;
+                    featuresList.appendChild(li);
+                });
+
+                detailContainer.classList.remove('opacity-0');
+                detailContainer.classList.add('opacity-100');
+            }, 200);
+        };
+
+        // Utility to bridge landing clicks with SPA navigation
+        window.selectAndNavigateProject = (projectName) => {
+            const p = projectsData.find(x => x.title.toLowerCase().includes(projectName.toLowerCase()));
+            if(p) {
+                currentActiveProjectId = p.id;
+            }
+            window.navigate('projects');
+        };
+
+        const SECRET_PASSPHRASE = "admin2026";
+        window.attemptLogin = () => {
+            const pwd = document.getElementById('admin-password').value;
+            const errorElement = document.getElementById('login-error');
+            
+            if (pwd === SECRET_PASSPHRASE) {
+                errorElement.classList.add('hidden');
+                document.getElementById('admin-password').value = '';
+                window.navigate('admin-dashboard');
+            } else {
+                errorElement.classList.remove('hidden');
+            }
+        };
+
+        window.logoutAdmin = () => {
+            window.navigate('home');
+        };
+
+        function renderAdminProjectsTable() {
+            const tbody = document.getElementById('admin-projects-list');
+            tbody.innerHTML = '';
+
+            projectsData.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors";
+                tr.innerHTML = `
+                    <td class="p-4 border-b border-slate-100 dark:border-slate-800">
+                        <img src="${p.image}" alt="${p.title}" class="w-12 h-12 object-cover rounded shadow-xs">
+                    </td>
+                    <td class="p-4 border-b border-slate-100 dark:border-slate-800 font-semibold text-slate-900 dark:text-white">
+                        ${p.title}
+                    </td>
+                    <td class="p-4 border-b border-slate-100 dark:border-slate-800 text-slate-400">
+                        ${p.location} &bull; ${p.category}
+                    </td>
+                    <td class="p-4 border-b border-slate-100 dark:border-slate-800 text-right">
+                        <button onclick="window.editProject('${p.id}')" class="text-xs bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold py-1 px-2.5 rounded transition-all mr-1.5"><i class="fa-regular fa-pen-to-square mr-1"></i>Modifier</button>
+                        <button onclick="window.deleteProject('${p.id}')" class="text-xs bg-red-50 hover:bg-red-500 hover:text-white dark:bg-red-500/10 dark:hover:bg-red-500 text-red-500 font-semibold py-1 px-2.5 rounded transition-all"><i class="fa-regular fa-trash-can mr-1"></i>Supprimer</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        window.openProjectForm = (id = null) => {
+            const modal = document.getElementById('admin-modal');
+            const form = document.getElementById('project-form');
+            form.reset();
+
+            if (id) {
+                const p = projectsData.find(x => x.id === id);
+                document.getElementById('modal-title').textContent = "Modifier la fiche de programme";
+                document.getElementById('form-id').value = p.id;
+                document.getElementById('form-title').value = p.title;
+                document.getElementById('form-location').value = p.location;
+                document.getElementById('form-category').value = p.category || '';
+                document.getElementById('form-image').value = p.image || '';
+                document.getElementById('form-desc').value = p.desc || '';
+                document.getElementById('form-features').value = (p.features || []).join('\n');
+            } else {
+                document.getElementById('modal-title').textContent = "Ajouter un nouveau programme";
+                document.getElementById('form-id').value = '';
+            }
+
+            modal.classList.remove('hidden');
+        };
+
+        window.closeProjectForm = () => {
+            document.getElementById('admin-modal').classList.add('hidden');
+        };
+
+        window.editProject = (id) => window.openProjectForm(id);
+
+        window.deleteProject = async (id) => {
+            const isConfirmed = confirm("Voulez-vous vraiment retirer définitivement ce programme de la liste ?");
+            if (!isConfirmed) return;
+
+            if (databaseMode === 'cloud') {
+                try {
+                    const projectsRef = collection(db, 'artifacts', APP_ID, 'public', 'data', 'projects');
+                    await deleteDoc(doc(projectsRef, id));
+                } catch(e) {
+                    console.error("Cloud delete failure, falling back to local deletion.", e);
+                    executeLocalDeletion(id);
+                }
+            } else {
+                executeLocalDeletion(id);
+            }
+        };
+
+        function executeLocalDeletion(id) {
+            projectsData = projectsData.filter(p => p.id !== id);
+            localStorage.setItem('serenis_projects_data', JSON.stringify(projectsData));
+            syncDatabaseContent();
+        }
+
+        window.saveProject = async (e) => {
+            e.preventDefault();
+
+            const idInput = document.getElementById('form-id').value;
+            const featuresTextarea = document.getElementById('form-features').value;
+            const featuresParsed = featuresTextarea.split('\n').map(x => x.trim()).filter(x => x.length > 0);
+
+            const recordId = idInput || 'res-' + Math.random().toString(36).substr(2, 9);
+            const submissionPayload = {
+                id: recordId,
+                title: document.getElementById('form-title').value,
+                location: document.getElementById('form-location').value,
+                category: document.getElementById('form-category').value,
+                image: document.getElementById('form-image').value,
+                desc: document.getElementById('form-desc').value,
+                features: featuresParsed
+            };
+
+            if (databaseMode === 'cloud') {
+                try {
+                    const projectsRef = collection(db, 'artifacts', APP_ID, 'public', 'data', 'projects');
+                    await setDoc(doc(projectsRef, recordId), submissionPayload, { merge: true });
+                    window.closeProjectForm();
+                } catch(err) {
+                    console.error("Cloud write failed, saving locally instead.", err);
+                    executeLocalSave(recordId, submissionPayload);
+                }
+            } else {
+                executeLocalSave(recordId, submissionPayload);
+            }
+        };
+
+        function executeLocalSave(id, payload) {
+            const existingIndex = projectsData.findIndex(p => p.id === id);
+            if (existingIndex > -1) {
+                projectsData[existingIndex] = payload;
+            } else {
+                projectsData.push(payload);
+            }
+            localStorage.setItem('serenis_projects_data', JSON.stringify(projectsData));
+            window.closeProjectForm();
+            syncDatabaseContent();
+        }
+
+    </script>
+</body>
+</html>
