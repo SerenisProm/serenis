@@ -12,7 +12,6 @@
     <div class="page-transition-overlay"></div>
 
     <header class="glassmorphism">
-        <!-- Logo cliquable qui ramène à l'accueil -->
         <a href="index.html" class="logo">Sérénis Développement</a>
         <nav>
             <ul>
@@ -21,7 +20,7 @@
                 <li class="dropdown">
                     <a href="realisations.html" class="nav-link">Réalisations ▾</a>
                     <ul class="dropdown-content" id="nav-projects-list">
-                        <!-- Généré dynamiquement en JS -->
+                        <!-- Généré dynamiquement par le script -->
                     </ul>
                 </li>
                 <li><a href="#contact" class="btn-contact magnetic-btn">Contact</a></li>
@@ -30,97 +29,129 @@
         </nav>
     </header>
 
-    <!-- Animated Mesh Gradient en fond de Hero -->
-    <section class="hero-mesh">
-        <div class="hero-content">
-            <!-- Kinetic Typography -->
-            <h1 class="kinetic-text">
-                <span>Créateur</span>
-                <span>d'espaces</span>
-                <span>de vie d'exception</span>
-            </h1>
-            <p class="scroll-reveal">Sérénis Développement façonne l'immobilier de demain : des résidences haut de gamme pensées pour votre confort et intégrées durablement dans leur environnement.</p>
-
-            <a href="#contact" class="btn-primary magnetic-btn ripple-target">Demander une étude</a>
-        </div>
-    </section>
-
-    <!-- Infinite Marquee / Bandeau défilant infini -->
-    <div class="marquee-container">
-        <div class="marquee-content">
-            <span>PROMOTION IMMOBILIÈRE DE PRESTIGE • </span>
-            <span>CONSTRUCTION DURABLE • </span>
-            <span>ARCHITECTURE ÉPURÉE • </span>
-            <span>MATÉRIAUX NOBLES • </span>
-            <span>ENGAGEMENT QUALITÉ • </span>
-        </div>
-        <div class="marquee-content" aria-hidden="true">
-            <span>PROMOTION IMMOBILIÈRE DE PRESTIGE • </span>
-            <span>CONSTRUCTION DURABLE • </span>
-            <span>ARCHITECTURE ÉPURÉE • </span>
-            <span>MATÉRIAUX NOBLES • </span>
-            <span>ENGAGEMENT QUALITÉ • </span>
-        </div>
-    </div>
-
-    <!-- Section À Propos enrichie (Bento Grid) -->
-    <section id="a-propos" class="about-section">
-        <h2 class="section-title scroll-reveal">À propos de Sérénis Développement</h2>
-        
-        <!-- Bento Grid Highlight -->
-        <div class="bento-grid">
-            <div class="bento-item bento-large bento-highlight">
-                <h3>Notre Philosophie</h3>
-                <p>Fondée par Thierry Dumas, Sérénis Développement est une entreprise de promotion immobilière à taille humaine basée dans l’Hérault. Nous croyons que bâtir, c'est concevoir des lieux de vie qui traversent le temps avec élégance et durabilité. Nous privilégions la qualité à la quantité en sélectionnant des emplacements rares pour créer des projets d’exception.</p>
+    <main>
+        <!-- Section Hero avec Dégradé Animé -->
+        <section class="hero-mesh">
+            <div class="hero-content">
+                <h1 class="kinetic-text">
+                    <span>Créateur</span>
+                    <span>d'espaces</span>
+                    <span>de vie d'exception</span>
+                </h1>
+                <p class="scroll-reveal">Sérénis Développement façonne l'immobilier de demain : des résidences haut de gamme pensées pour votre confort et intégrées durablement dans leur environnement.[cite: 1]</p>
+                <a href="#contact" class="btn-primary magnetic-btn ripple-target">Demander une étude</a>
             </div>
-            <div class="bento-item">
-                <h3>Éco-Conception</h3>
-                <p>Chaque résidence intègre des normes énergétiques rigoureuses pour allier esthétique moderne et performance écologique durable.</p>
+        </section>
+
+        <!-- Bandeau défilant infini (Infinite Marquee) -->
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span>PROMOTION IMMOBILIÈRE DE PRESTIGE • </span>
+                <span>CONSTRUCTION DURABLE • </span>
+                <span>ARCHITECTURE ÉPURÉE • </span>
+                <span>MATÉRIAUX NOBLES • </span>
+                <span>ENGAGEMENT QUALITÉ • </span>
             </div>
-            <div class="bento-item">
-                <h3>Expertise Locale</h3>
-                <p>Une maîtrise parfaite du territoire héraultais garantissant une valorisation patrimoniale optimale de vos investissements immobiliers.</p>
-            </div>
-            <div class="bento-item bento-medium">
-                <h3>Prestations Premium</h3>
-                <p>Des agencements optimisés, de grandes terrasses baignées de lumière, des parkings sécurisés en sous-sol et des finitions soignées signées par nos partenaires artisans.</p>
+            <div class="marquee-content" aria-hidden="true">
+                <span>PROMOTION IMMOBILIÈRE DE PRESTIGE • </span>
+                <span>CONSTRUCTION DURABLE • </span>
+                <span>ARCHITECTURE ÉPURÉE • </span>
+                <span>MATÉRIAUX NOBLES • </span>
+                <span>ENGAGEMENT QUALITÉ • </span>
             </div>
         </div>
-    </section>
 
-    <!-- Sticky Stacking Cards Section -->
-    <section class="stacking-section">
-        <h2 class="section-title scroll-reveal">Nos Piliers Fondateurs</h2>
-        <div class="stacking-container">
-            <div class="stack-card card-1">
-                <h3>01. Rigueur & Qualité</h3>
-                <p>De la sélection rigoureuse des terrains constructibles à la livraison clé en main, nous n'acceptons aucun compromis sur la solidité et les finitions de nos bâtiments.</p>
-            </div>
-            <div class="stack-card card-2">
-                <h3>02. Écoute Client</h3>
-                <p>Nous vous accompagnons à chaque étape de votre acquisition pour personnaliser votre futur appartement et l'adapter parfaitement à vos besoins.</p>
-            </div>
-            <div class="stack-card card-3">
-                <h3>03. Accompagnement Local</h3>
-                <p>Ancrés au cœur de la région de Montpellier, nous travaillons en circuit court avec des architectes et des entreprises locales de confiance.</p>
-            </div>
-        </div>
-    </section>
+        <!-- À Propos en Bento Grid avec portrait -->
+        <section id="a-propos" class="about-section">
+            <h2 class="section-title scroll-reveal">À propos de Sérénis Développement</h2>
+            <div class="bento-grid">
+                <div class="bento-item bento-large bento-highlight">
+                    <h3>Notre Philosophie</h3>
+                    <p>Fondée par Thierry Dumas, Sérénis Développement est une entreprise de promotion immobilière à taille humaine basée dans l’Hérault[cite: 1]. Nous croyons que bâtir, c'est concevoir des lieux de vie qui traversent le temps avec élégance et durabilité[cite: 1]. Nous privilégions la qualité à la quantité en sélectionnant des emplacements rares pour créer des projets d’exception[cite: 1].</p>
+                </div>
+                
+                <!-- Place réservée pour la photo de portrait de Thierry Dumas -->
+                <div class="bento-item bento-portrait scroll-reveal">
+                    <div class="portrait-container">
+                        <img src="thierry-dumas.webp" alt="Thierry Dumas - Directeur de Sérénis Développement" class="portrait-img">
+                        <div class="portrait-overlay">
+                            <h4>Thierry Dumas</h4>
+                            <p>Directeur Fondateur</p>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- Section Contact -->
-    <section id="contact" class="contact-section">
-        <h2 class="scroll-reveal">Prendre Contact</h2>
-        <p class="contact-lead">Thierry Dumas | Tél : 06 79 97 17 90 | Email : contact@serenis-promotion.com</p>
-        
-        <form action="#" method="POST" class="contact-form glassmorphism">
-            <input type="text" name="nom" placeholder="Votre nom complet" required>
-            <input type="email" name="email" placeholder="Adresse email" required>
-            <input type="tel" name="telephone" placeholder="Numéro de téléphone">
-            <!-- Textarea réglable verticalement uniquement -->
-            <textarea name="message" rows="5" placeholder="Votre message ou détails de votre projet" required></textarea>
-            <button type="submit" class="btn-primary magnetic-btn ripple-target">Envoyer le message</button>
-        </form>
-    </section>
+                <div class="bento-item">
+                    <h3>Éco-Conception</h3>
+                    <p>Chaque résidence intègre des normes énergétiques rigoureuses pour allier esthétique moderne et performance écologique durable.</p>
+                </div>
+                <div class="bento-item">
+                    <h3>Expertise Héraultaise</h3>
+                    <p>Une maîtrise parfaite du territoire héraultais garantissant une valorisation patrimoniale optimale de vos investissements immobiliers.[cite: 1]</p>
+                </div>
+                <div class="bento-item">
+                    <h3>Prestations Premium</h3>
+                    <p>Des agencements optimisés, de grandes terrasses baignées de lumière, des parkings sécurisés en sous-sol et des finitions soignées signées par nos partenaires artisans.[cite: 1]</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sticky Stacking Cards Section -->
+        <section class="stacking-section">
+            <h2 class="section-title scroll-reveal">Nos Piliers Fondateurs</h2>
+            <div class="stacking-container">
+                <div class="stack-card card-1">
+                    <h3>01. Rigueur & Qualité</h3>
+                    <p>De la sélection rigoureuse des terrains constructibles à la livraison clé en main, nous n'acceptons aucun compromis sur la solidité et les finitions de nos bâtiments.[cite: 1]</p>
+                </div>
+                <div class="stack-card card-2">
+                    <h3>02. Écoute Client</h3>
+                    <p>We vous accompagnons à chaque étape de votre acquisition pour personnaliser votre futur appartement et l'adapter parfaitement à vos besoins.</p>
+                </div>
+                <div class="stack-card card-3">
+                    <h3>03. Accompagnement Local</h3>
+                    <p>Ancrés au cœur de la région de Montpellier, nous travaillons en circuit court avec des architectes et des entreprises locales de confiance.[cite: 1]</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Contact avec les cartes d'informations minimalistes -->
+        <section id="contact" class="contact-section">
+            <h2 class="scroll-reveal">Prendre Contact</h2>
+            
+            <div class="contact-grid-container scroll-reveal">
+                <div class="contact-info-card">
+                    <svg class="contact-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                    </svg>
+                    <h3>Direction</h3>
+                    <p>Thierry Dumas</p>
+                </div>
+                <div class="contact-info-card">
+                    <svg class="contact-icon" viewBox="0 0 24 24">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                    <h3>Téléphone</h3>
+                    <p><a href="tel:0679971790">06 79 97 17 90</a></p>
+                </div>
+                <div class="contact-info-card">
+                    <svg class="contact-icon" viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    <h3>Email</h3>
+                    <p><a href="mailto:contact@serenis-promotion.com">contact@serenis-promotion.com</a></p>
+                </div>
+            </div>
+            
+            <form action="#" method="POST" class="contact-form glassmorphism scroll-reveal">
+                <input type="text" name="nom" placeholder="Votre nom complet" required>
+                <input type="email" name="email" placeholder="Adresse email" required>
+                <input type="tel" name="telephone" placeholder="Numéro de téléphone">
+                <textarea name="message" rows="5" placeholder="Votre message ou détails de votre projet" required></textarea>
+                <button type="submit" class="btn-primary magnetic-btn ripple-target">Envoyer le message</button>
+            </form>
+        </section>
+    </main>
 
     <footer>
         <div class="footer-links">
