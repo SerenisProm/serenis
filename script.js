@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. Remplissage du Menu Déroulant (Fonctionne sur toutes les pages) ---
+    // --- 3. Remplissage du Menu Déroulant ---
     const navList = document.getElementById('nav-projects-list');
     if (navList && typeof projectsData !== 'undefined') {
         projectsData.forEach(proj => {
@@ -38,10 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
             navList.appendChild(li);
         });
     }
-
-    // --- Variables Globales d'Images pour la Lightbox ---
-    let activeImagesList = [];
-    let activeImageIdx = 0;
 
     // --- 4. Onglets & Carrousel d'images intégré (Page Réalisations) ---
     const tabsContainer = document.getElementById('project-tabs');
@@ -54,12 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const activeBtn = document.getElementById(`tab-${project.id}`);
             if(activeBtn) activeBtn.classList.add('active');
 
+            // Index de l'image courante pour ce projet
             let currentImgIndex = 0;
             const images = project.images;
-            activeImagesList = images; // Synchronise pour la Lightbox
-            activeImageIdx = 0;
 
-            // Chargement de transition (Skeleton)
+            // Affichage avec Skeleton Loading temporaire
             detailsContainer.classList.add('skeleton');
             
             setTimeout(() => {
@@ -67,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 detailsContainer.innerHTML = `
                     <div class="carousel-container">
                         <button class="carousel-nav prev-btn" aria-label="Photo précédente">❮</button>
-                        <img id="carousel-img" src="${images[0]}" alt="Photo de ${project.title}" style="cursor: zoom-in;">
+                        <img id="carousel-img" src="${images[0]}" alt="Photo de ${project.title}">
                         <button class="carousel-nav next-btn" aria-label="Photo suivante">❯</button>
                         <div class="carousel-dots">
                             ${images.map((_, idx) => `<span class="dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></span>`).join('')}
@@ -78,22 +73,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h4 style="color: var(--accent-color); margin-bottom: 1rem;">${project.location}</h4>
                         <p style="margin-bottom: 1.5rem; opacity: 0.85;">${project.description}</p>
                         <h5 style="margin-bottom: 0.5rem; font-weight:600;">Caractéristiques & Prestations :</h5>
-                        <ul style="list-style: square; padding-left: 20px; opacity: 0.8; margin-bottom: 2rem;">
+                        <ul style="list-style: square; padding-left: 20px; opacity: 0.8;">
                             ${project.features.map(f => `<li>${f}</li>`).join('')}
                         </ul>
-                        <!-- Bouton d'action liant à la page d'accueil (section contact) -->
-                        <a href="index.html#contact" class="btn-primary learn-more-btn magnetic-btn ripple-target" style="display: inline-block;">En savoir plus / Obtenir une brochure</a>
                     </div>
                 `;
 
-                // Logique de navigation du Carrousel
+                // Logique dynamique de mise à jour du Carrousel
                 const carouselImg = detailsContainer.querySelector('#carousel-img');
                 const dots = detailsContainer.querySelectorAll('.dot');
 
                 const updateCarousel = (index) => {
                     currentImgIndex = index;
-                    activeImageIdx = index; // Maintient synchro pour la Lightbox
-                    carouselImg.style.opacity = 0;
+                    carouselImg.style.opacity = 0; // Transition de fondu
                     
                     setTimeout(() => {
                         carouselImg.src = images[currentImgIndex];
@@ -105,24 +97,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 };
 
+                // Écouteurs d'événements pour la navigation
                 const nextBtn = detailsContainer.querySelector('.next-btn');
                 const prevBtn = detailsContainer.querySelector('.prev-btn');
 
-                nextBtn.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Évite d'ouvrir la lightbox en cliquant sur la flèche
+                nextBtn.addEventListener('click', () => {
                     let nextIndex = (currentImgIndex + 1) % images.length;
                     updateCarousel(nextIndex);
                 });
 
-                prevBtn.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Évite d'ouvrir la lightbox en cliquant sur la flèche
+                prevBtn.addEventListener('click', () => {
                     let prevIndex = (currentImgIndex - 1 + images.length) % images.length;
                     updateCarousel(prevIndex);
                 });
 
                 dots.forEach(dot => {
                     dot.addEventListener('click', (e) => {
-                        e.stopPropagation();
                         const targetIdx = parseInt(e.target.getAttribute('data-index'));
                         updateCarousel(targetIdx);
                     });
@@ -141,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tabsContainer.appendChild(btn);
         });
 
-        // Détection de l'ID via URL
+        // Détection de l'ID demandé dans l'URL
         const urlParams = new URLSearchParams(window.location.search);
         const requestedId = urlParams.get('id');
         const projectToShow = projectsData.find(p => p.id === requestedId) || projectsData[0];
@@ -151,75 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 5. Logique Interactive de la Lightbox ---
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxClose = document.querySelector('.lightbox-close');
-    const lightboxPrev = document.querySelector('.lightbox-prev');
-    const lightboxNext = document.querySelector('.lightbox-next');
-
-    const openLightbox = () => {
-        if (activeImagesList.length > 0 && lightbox && lightboxImg) {
-            lightboxImg.src = activeImagesList[activeImageIdx];
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Bloque le scroll
-        }
-    };
-
-    const closeLightbox = () => {
-        if (lightbox) {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = ''; // Rétablit le scroll
-        }
-    };
-
-    const navigateLightbox = (direction) => {
-        if (activeImagesList.length === 0) return;
-        if (direction === 'next') {
-            activeImageIdx = (activeImageIdx + 1) % activeImagesList.length;
-        } else {
-            activeImageIdx = (activeImageIdx - 1 + activeImagesList.length) % activeImagesList.length;
-        }
-        
-        if (lightboxImg) {
-            lightboxImg.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                lightboxImg.src = activeImagesList[activeImageIdx];
-                lightboxImg.style.transform = 'scale(1)';
-            }, 100);
-        }
-    };
-
-    // Déclencheur au clic sur l'image du carrousel
-    document.addEventListener('click', (e) => {
-        if (e.target && e.target.id === 'carousel-img') {
-            openLightbox();
-        }
-    });
-
-    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-    if (lightboxPrev) lightboxPrev.addEventListener('click', () => navigateLightbox('prev'));
-    if (lightboxNext) lightboxNext.addEventListener('click', () => navigateLightbox('next'));
-
-    // Fermeture de la lightbox en cliquant à l'extérieur de l'image
-    if (lightbox) {
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
-                closeLightbox();
-            }
-        });
-    }
-
-    // Support des touches clavier (Échap, Flèches)
-    document.addEventListener('keydown', (e) => {
-        if (lightbox && lightbox.classList.contains('active')) {
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowRight') navigateLightbox('next');
-            if (e.key === 'ArrowLeft') navigateLightbox('prev');
-        }
-    });
-
-    // --- 6. Effet 3D Tilt sur la Carte ---
+    // --- 5. Effet 3D Tilt sur la Carte de Présentation ---
     const tiltCards = document.querySelectorAll('.3d-tilt-card');
     tiltCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
@@ -236,45 +158,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 7. Effet Magnétique Global (Boutons tactiles) ---
-    document.addEventListener('mousemove', (e) => {
-        const btn = e.target.closest('.magnetic-btn');
-        if (btn) {
+    // --- 6. Effet Magnétique sur les Boutons ---
+    const magneticBtns = document.querySelectorAll('.magnetic-btn');
+    magneticBtns.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
             const rect = btn.getBoundingClientRect();
             const x = e.clientX - rect.left - (rect.width / 2);
             const y = e.clientY - rect.top - (rect.height / 2);
             btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-        }
-    });
-
-    document.addEventListener('mouseout', (e) => {
-        const btn = e.target.closest('.magnetic-btn');
-        if (btn) {
+        });
+        btn.addEventListener('mouseleave', () => {
             btn.style.transform = 'translate(0px, 0px)';
-        }
+        });
     });
 
-    // --- 8. Click Ripple Effect ---
+    // --- 7. Click Ripple (Effet d'onde tactile) ---
     document.addEventListener('click', (e) => {
-        const target = e.target.closest('.ripple-target');
-        if (target) {
+        if (e.target.classList.contains('ripple-target')) {
+            const btn = e.target;
             const circle = document.createElement('span');
-            const diameter = Math.max(target.clientWidth, target.clientHeight);
+            const diameter = Math.max(btn.clientWidth, btn.clientHeight);
             const radius = diameter / 2;
 
             circle.style.width = circle.style.height = `${diameter}px`;
-            circle.style.left = `${e.clientX - target.getBoundingClientRect().left - radius}px`;
-            circle.style.top = `${e.clientY - target.getBoundingClientRect().top - radius}px`;
+            circle.style.left = `${e.clientX - btn.getBoundingClientRect().left - radius}px`;
+            circle.style.top = `${e.clientY - btn.getBoundingClientRect().top - radius}px`;
             circle.classList.add('ripple');
 
-            const prevRipple = target.querySelector('.ripple');
+            const prevRipple = btn.querySelector('.ripple');
             if (prevRipple) prevRipple.remove();
 
-            target.appendChild(circle);
+            btn.appendChild(circle);
         }
     });
 
-    // --- 9. Scroll Reveal ---
+    // --- 8. Scroll Reveal ---
     const reveals = document.querySelectorAll('.scroll-reveal');
     const revealOnScroll = () => {
         reveals.forEach(el => {
