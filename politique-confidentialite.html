@@ -7,20 +7,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .legal-content { max-width: 800px; margin: 10rem auto 4rem auto; padding: 0 5%; }
-        .legal-content h1 { font-size: 2rem; margin-bottom: 2rem; }
-        .legal-content h2 { font-size: 1.3rem; margin: 2rem 0 1rem 0; color: var(--accent-color); }
-        .legal-content p { margin-bottom: 1rem; opacity: 0.85; font-size: 0.95rem; }
+        .legal-content { max-width: 900px; margin: 10rem auto 4rem auto; padding: 0 5%; }
+        .legal-content h1 { font-size: 2.2rem; margin-bottom: 2rem; font-weight: 600; text-align: center; }
+        .legal-content h2 { font-size: 1.4rem; margin: 2.5rem 0 1rem 0; color: var(--accent-color); font-weight: 600; }
+        .legal-content p { margin-bottom: 1.2rem; opacity: 0.85; font-size: 0.95rem; line-height: 1.7; }
+        .legal-content ul { margin-left: 20px; margin-bottom: 1.5rem; opacity: 0.85; font-size: 0.95rem; }
     </style>
 </head>
 <body>
+    <div class="page-transition-overlay"></div>
+
     <header class="glassmorphism">
         <a href="index.html" class="logo">Sérénis Développement</a>
         <nav>
             <ul>
                 <li><a href="index.html" class="nav-link">Accueil</a></li>
-                <li><a href="#a-propos" class="nav-link">À propos</a></li>
-                <li><a href="realisations.html" class="nav-link">Réalisations</a></li>
+                <li><a href="index.html#a-propos" class="nav-link">À propos</a></li>
+                <li class="dropdown">
+                    <a href="realisations.html" class="nav-link">Réalisations ▾</a>
+                    <ul class="dropdown-content" id="nav-projects-list">
+                        <!-- Liste dynamique -->
+                    </ul>
+                </li>
                 <li><a href="index.html#contact" class="btn-contact">Contact</a></li>
             </ul>
         </nav>
@@ -28,35 +36,41 @@
 
     <main class="legal-content">
         <h1>Politique de Confidentialité</h1>
-        <p>Dernière mise à jour : Juillet 2026</p>
         
-        <h2>1. Collecte des données personnelles</h2>
-        <p>Nous collectons les données que vous nous transmettez directement via le formulaire de contact disponible sur notre site :</p>
+        <h2>1. Traitement des données personnelles</h2>
+        <p>Sérénis Développement s’engage à ce que la collecte et le traitement de vos données, effectués à partir du site internet, soient conformes au règlement général sur la protection des données (RGPD) et à la loi Informatique et Libertés.</p>
+        <p>Chaque formulaire limite la collecte des données personnelles au strict nécessaire (minimisation des données) et indique notamment :</p>
         <ul>
-            <li>Votre nom</li>
-            <li>Votre adresse de courrier électronique</li>
-            <li>Votre numéro de téléphone</li>
-            <li>Le contenu de votre message</li>
+            <li>Quels sont les objectifs du recueil de ces données (finalités).</li>
+            <li>Si ces données sont obligatoires ou facultatives pour la gestion de votre demande.</li>
+            <li>Vos droits Informatique et Libertés et la façon de les exercer auprès de Sérénis Développement.</li>
         </ul>
 
-        <h2>2. Utilisation des données</h2>
-        <p>Les données que nous recueillons sont utilisées exclusivement pour :</p>
+        <h2>2. Formulaire de contact</h2>
+        <p>Les informations recueillies sur le formulaire de contact (nom, adresse email, téléphone, message) sont enregistrées dans un fichier informatisé par Sérénis Développement pour faciliter l'accompagnement et l'échange commercial autour de votre projet de vie ou d'acquisition immobilière.[cite: 1]</p>
+        <p>Elles sont conservées pendant une durée maximale de 3 ans et sont destinées exclusivement aux services internes de Sérénis Développement.[cite: 1] En aucun cas ces données ne seront cédées ou vendues à des entités tierces sans votre consentement express préalable.</p>
+
+        <h2>3. Vos Droits</h2>
+        <p>Conformément aux dispositions légales du RGPD, vous disposez des droits suivants concernant vos données à caractère personnel :</p>
         <ul>
-            <li>Répondre à vos demandes d'informations concernant nos programmes immobiliers.</li>
-            <li>Vous recontacter par téléphone ou par email dans le cadre d'un projet d'acquisition ou de vente.</li>
+            <li>Droit d'accès et d'information concernant vos données conservées.</li>
+            <li>Droit de rectification et de mise à jour de vos données.</li>
+            <li>Droit d'opposition et de suppression (droit à l'oubli).</li>
+            <li>Droit à la limitation du traitement.</li>
         </ul>
-
-        <p>Ces données ne sont jamais vendues, louées ni transmises à des tiers sans votre consentement préalable.</p>
-
-        <h2>3. Conservation des données</h2>
-        <p>Vos données personnelles sont conservées de manière sécurisée pour la durée nécessaire au traitement de votre demande commerciale, ou pour une durée maximale de 3 ans après notre dernier contact.</p>
-
-        <h2>4. Vos droits (RGPD)</h2>
-        <p>Conformément à la réglementation européenne sur la protection des données (RGPD), vous disposez d’un droit d’accès, de rectification, de portabilité et de suppression de vos données personnelles. Vous pouvez exercer ces droits à tout moment en nous contactant par email à l'adresse suivante : <strong>contact@serenis-promotion.com</strong>.</p>
+        <p>Pour exercer ces droits ou pour toute question sur le traitement de vos données dans ce dispositif, vous pouvez envoyer un courriel à l'adresse suivante : <strong>contact@serenis-promotion.com</strong>.</p>
     </main>
 
     <footer>
+        <div class="footer-links">
+            <a href="politique-confidentialite.html">Politique de confidentialité</a>
+            <a href="mentions-legales.html">Mentions Légales</a>
+            <a href="index.html#contact">Nous contacter</a>
+        </div>
         <p>&copy; 2026 Sérénis Développement. Tous droits réservés.</p>
     </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
