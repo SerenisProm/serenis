@@ -14,7 +14,6 @@
     image: "https://votre-stockage-photo.com/nom-de-la-photo.webp" // URL de votre image compressée
 }
 */
-
 const projectsData = [
     {
         id: "clos-saint-joseph",
@@ -27,7 +26,12 @@ const projectsData = [
             "Climatisation réversible intégrée",
             "Accès sécurisé par badges magnétiques"
         ],
-        image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80"
+        // Tableau d'images pour le carrousel
+        images: [
+            "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
+        ]
     },
     {
         id: "les-consuls",
@@ -40,7 +44,11 @@ const projectsData = [
             "Locaux commerciaux et bureaux au rez-de-chaussée",
             "Idéalement connecté aux réseaux de tramways"
         ],
-        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+        images: [
+            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80"
+        ]
     },
     {
         id: "le-magistere",
@@ -53,6 +61,10 @@ const projectsData = [
             "Salle de fitness réservée aux résidents",
             "Hall d'accueil en marbre et design contemporain"
         ],
-        image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80"
+        images: [
+            "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80"
+        ]
     }
 ];

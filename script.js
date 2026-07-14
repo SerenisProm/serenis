@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. Remplissage du Menu Déroulant (data.js) ---
+    // --- 3. Remplissage du Menu Déroulant ---
     const navList = document.getElementById('nav-projects-list');
     if (navList && typeof projectsData !== 'undefined') {
         projectsData.forEach(proj => {
@@ -39,22 +39,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 4. Onglets & 3D Tilt Card (Page Réalisations) ---
+    // --- 4. Onglets & Carrousel d'images intégré (Page Réalisations) ---
     const tabsContainer = document.getElementById('project-tabs');
     const detailsContainer = document.getElementById('project-details');
 
     if (tabsContainer && detailsContainer && typeof projectsData !== 'undefined') {
+        
         const showProject = (project) => {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             const activeBtn = document.getElementById(`tab-${project.id}`);
             if(activeBtn) activeBtn.classList.add('active');
 
-            // Affichage avec Skeleton Loading simulé pendant 500ms
+            // Index de l'image courante pour ce projet
+            let currentImgIndex = 0;
+            const images = project.images;
+
+            // Affichage avec Skeleton Loading temporaire
             detailsContainer.classList.add('skeleton');
+            
             setTimeout(() => {
                 detailsContainer.classList.remove('skeleton');
                 detailsContainer.innerHTML = `
-                    <img src="${project.image}" alt="Photo de ${project.title}">
+                    <div class="carousel-container">
+                        <button class="carousel-nav prev-btn" aria-label="Photo précédente">❮</button>
+                        <img id="carousel-img" src="${images[0]}" alt="Photo de ${project.title}">
+                        <button class="carousel-nav next-btn" aria-label="Photo suivante">❯</button>
+                        <div class="carousel-dots">
+                            ${images.map((_, idx) => `<span class="dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></span>`).join('')}
+                        </div>
+                    </div>
                     <div style="transform: translateZ(10px)">
                         <h2>${project.title}</h2>
                         <h4 style="color: var(--accent-color); margin-bottom: 1rem;">${project.location}</h4>
@@ -65,9 +78,50 @@ document.addEventListener('DOMContentLoaded', () => {
                         </ul>
                     </div>
                 `;
-            }, 500);
+
+                // Logique dynamique de mise à jour du Carrousel
+                const carouselImg = detailsContainer.querySelector('#carousel-img');
+                const dots = detailsContainer.querySelectorAll('.dot');
+
+                const updateCarousel = (index) => {
+                    currentImgIndex = index;
+                    carouselImg.style.opacity = 0; // Transition de fondu
+                    
+                    setTimeout(() => {
+                        carouselImg.src = images[currentImgIndex];
+                        carouselImg.style.opacity = 1;
+                    }, 150);
+
+                    dots.forEach((dot, dIdx) => {
+                        dot.classList.toggle('active', dIdx === currentImgIndex);
+                    });
+                };
+
+                // Écouteurs d'événements pour la navigation
+                const nextBtn = detailsContainer.querySelector('.next-btn');
+                const prevBtn = detailsContainer.querySelector('.prev-btn');
+
+                nextBtn.addEventListener('click', () => {
+                    let nextIndex = (currentImgIndex + 1) % images.length;
+                    updateCarousel(nextIndex);
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    let prevIndex = (currentImgIndex - 1 + images.length) % images.length;
+                    updateCarousel(prevIndex);
+                });
+
+                dots.forEach(dot => {
+                    dot.addEventListener('click', (e) => {
+                        const targetIdx = parseInt(e.target.getAttribute('data-index'));
+                        updateCarousel(targetIdx);
+                    });
+                });
+
+            }, 400);
         };
 
+        // Génération des onglets
         projectsData.forEach(proj => {
             const btn = document.createElement('button');
             btn.className = 'tab-btn';
@@ -77,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tabsContainer.appendChild(btn);
         });
 
+        // Détection de l'ID demandé dans l'URL
         const urlParams = new URLSearchParams(window.location.search);
         const requestedId = urlParams.get('id');
         const projectToShow = projectsData.find(p => p.id === requestedId) || projectsData[0];
@@ -86,15 +141,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 5. Effet 3D Tilt sur les Cartes ---
+    // --- 5. Effet 3D Tilt sur la Carte de Présentation ---
     const tiltCards = document.querySelectorAll('.3d-tilt-card');
     tiltCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left - (rect.width / 2);
             const y = e.clientY - rect.top - (rect.height / 2);
-            const rotateX = -(y / (rect.height / 2)) * 8; // Sensibilité X
-            const rotateY = (x / (rect.width / 2)) * 8;   // Sensibilité Y
+            const rotateX = -(y / (rect.height / 2)) * 5;
+            const rotateY = (x / (rect.width / 2)) * 5;
             
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         });
@@ -110,14 +165,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const rect = btn.getBoundingClientRect();
             const x = e.clientX - rect.left - (rect.width / 2);
             const y = e.clientY - rect.top - (rect.height / 2);
-            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
         });
         btn.addEventListener('mouseleave', () => {
             btn.style.transform = 'translate(0px, 0px)';
         });
     });
 
-    // --- 7. Click Ripple (Effet d'onde circulaire) ---
+    // --- 7. Click Ripple (Effet d'onde tactile) ---
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('ripple-target')) {
             const btn = e.target;
@@ -137,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- 8. Scroll Reveal (Animation au scroll) ---
+    // --- 8. Scroll Reveal ---
     const reveals = document.querySelectorAll('.scroll-reveal');
     const revealOnScroll = () => {
         reveals.forEach(el => {
@@ -149,5 +204,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll(); // Initialiser dès le premier affichage
+    revealOnScroll();
 });
