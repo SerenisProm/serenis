@@ -8,59 +8,123 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="logo">Sérénis Développement</div>
+    <!-- Morphing Page Transition Overlay -->
+    <div class="page-transition-overlay"></div>
+
+    <header class="glassmorphism">
+        <!-- Logo cliquable qui ramène à l'accueil -->
+        <a href="index.html" class="logo">Sérénis Développement</a>
         <nav>
             <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="#a-propos">À propos</a></li>
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="#a-propos" class="nav-link">À propos</a></li>
                 <li class="dropdown">
-                    <a href="realisations.html">Réalisations ▾</a>
+                    <a href="realisations.html" class="nav-link">Réalisations ▾</a>
                     <ul class="dropdown-content" id="nav-projects-list">
-                        <!-- Généré en JS -->
+                        <!-- Généré dynamiquement en JS -->
                     </ul>
                 </li>
-                <li><a href="#contact" class="btn-contact">Contact</a></li>
-                <li><button id="theme-toggle" aria-label="Changer de thème">🌓</button></li>
+                <li><a href="#contact" class="btn-contact magnetic-btn">Contact</a></li>
+                <li><button id="theme-toggle" class="magnetic-btn" aria-label="Changer de thème">🌓</button></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <section class="hero" id="a-propos">
-            <h1>Créateur d'espaces de vie</h1>
-            <p>Sérénis Développement vous accompagne dans vos projets immobiliers de prestige avec une expertise reconnue et un engagement qualité.</p>
-        </section>
+    <!-- Animated Mesh Gradient en fond de Hero -->
+    <section class="hero-mesh">
+        <div class="hero-content">
+            <!-- Kinetic Typography -->
+            <h1 class="kinetic-text">
+                <span>Créateur</span>
+                <span>d'espaces</span>
+                <span>de vie d'exception</span>
+            </h1>
+            <p class="scroll-reveal">Sérénis Développement façonne l'immobilier de demain : des résidences haut de gamme pensées pour votre confort et intégrées durablement dans leur environnement.[cite: 1]</p>
+            <a href="#contact" class="btn-primary magnetic-btn ripple-target">Demander une étude</a>
+        </div>
+    </section>
 
-        <section class="latest-project">
-            <h2>Notre dernier projet</h2>
-            <div class="project-card large">
-                <div class="project-info">
-                    <h3>Résidence Le Clos Saint Joseph - Vendargues</h3>
-                    <p>20 appartements du T2 au T4 sur 2 étages. Parking sécurisé en sous-sol, terrasse et cellier dans chaque appartement. Opération éligible loi Pinel.</p>
-                    <a href="realisations.html" class="btn-outline">Voir toutes nos réalisations</a>
-                </div>
+    <!-- Infinite Marquee / Bandeau défilant infini -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <span>PROMOTION IMMOBILIÈRE DE PRESTIGE • </span>
+            <span>CONSTRUCTION DURABLE • </span>
+            <span>ARCHITECTURE ÉPURÉE • </span>
+            <span>MATÉRIAUX NOBLES • </span>
+            <span>ENGAGEMENT QUALITÉ • </span>
+        </div>
+        <div class="marquee-content" aria-hidden="true">
+            <span>PROMOTION IMMOBILIÈRE DE PRESTIGE • </span>
+            <span>CONSTRUCTION DURABLE • </span>
+            <span>ARCHITECTURE ÉPURÉE • </span>
+            <span>MATÉRIAUX NOBLES • </span>
+            <span>ENGAGEMENT QUALITÉ • </span>
+        </div>
+    </div>
+
+    <!-- Section À Propos enrichie (Bento Grid) -->
+    <section id="a-propos" class="about-section">
+        <h2 class="section-title scroll-reveal">À propos de Sérénis Développement</h2>
+        
+        <!-- Bento Grid Highlight -->
+        <div class="bento-grid">
+            <div class="bento-item bento-large bento-highlight">
+                <h3>Notre Philosophie</h3>
+                <p>Fondée par Thierry Dumas, Sérénis Développement est une entreprise de promotion immobilière à taille humaine basée dans l’Hérault[cite: 1]. Nous croyons que bâtir, c'est concevoir des lieux de vie qui traversent le temps avec élégance et durabilité[cite: 1]. Nous privilégions la qualité à la quantité en sélectionnant des emplacements rares pour créer des projets d’exception[cite: 1].</p>
             </div>
-        </section>
+            <div class="bento-item">
+                <h3>Éco-Conception</h3>
+                <p>Chaque résidence intègre des normes énergétiques rigoureuses pour allier esthétique moderne et performance écologique durable.</p>
+            </div>
+            <div class="bento-item">
+                <h3>Expertise Locale</h3>
+                <p>Une maîtrise parfaite du territoire héraultais garantissant une valorisation patrimoniale optimale de vos investissements immobiliers.[cite: 1]</p>
+            </div>
+            <div class="bento-item bento-medium">
+                <h3>Prestations Premium</h3>
+                <p>Des agencements optimisés, de grandes terrasses baignées de lumière, des parkings sécurisés en sous-sol et des finitions soignées signées par nos partenaires artisans.[cite: 1]</p>
+            </div>
+        </div>
+    </section>
 
-        <section id="contact" class="contact-section">
-            <h2>Nous contacter</h2>
-            <p>Thierry Dumas | Tél : 06 79 97 17 90 | Email : contact@serenis-promotion.com</p>
-            <form action="#" method="POST" class="contact-form">
-                <input type="text" name="nom" placeholder="Votre nom" required>
-                <input type="email" name="email" placeholder="Votre adresse email" required>
-                <input type="tel" name="telephone" placeholder="Votre numéro de téléphone">
-                <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
-                <button type="submit" class="btn-primary">Envoyer</button>
-            </form>
-        </section>
-    </main>
+    <!-- Sticky Stacking Cards Section -->
+    <section class="stacking-section">
+        <h2 class="section-title scroll-reveal">Nos Piliers Fondateurs</h2>
+        <div class="stacking-container">
+            <div class="stack-card card-1">
+                <h3>01. Rigueur & Qualité</h3>
+                <p>De la sélection rigoureuse des terrains constructibles à la livraison clé en main, nous n'acceptons aucun compromis sur la solidité et les finitions de nos bâtiments.[cite: 1]</p>
+            </div>
+            <div class="stack-card card-2">
+                <h3>02. Écoute Client</h3>
+                <p>Nous vous accompagnons à chaque étape de votre acquisition pour personnaliser votre futur appartement et l'adapter parfaitement à vos besoins.</p>
+            </div>
+            <div class="stack-card card-3">
+                <h3>03. Accompagnement Local</h3>
+                <p>Ancrés au cœur de la région de Montpellier, nous travaillons en circuit court avec des architectes et des entreprises locales de confiance.[cite: 1]</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="contact-section">
+        <h2 class="scroll-reveal">Prendre Contact</h2>
+        <p class="contact-lead">Thierry Dumas | Tél : 06 79 97 17 90 | Email : contact@serenis-promotion.com</p>
+        
+        <form action="#" method="POST" class="contact-form glassmorphism">
+            <input type="text" name="nom" placeholder="Votre nom complet" required>
+            <input type="email" name="email" placeholder="Adresse email" required>
+            <input type="tel" name="telephone" placeholder="Numéro de téléphone">
+            <!-- Textarea réglable verticalement uniquement -->
+            <textarea name="message" rows="5" placeholder="Votre message ou détails de votre projet" required></textarea>
+            <button type="submit" class="btn-primary magnetic-btn ripple-target">Envoyer le message</button>
+        </form>
+    </section>
 
     <footer>
         <div class="footer-links">
-            <a href="#a-propos">À propos</a>
-            <a href="#">Politique de confidentialité</a>
-            <a href="#">Mentions Légales</a>
+            <a href="politique-confidentialite.html">Politique de confidentialité</a>
+            <a href="mentions-legales.html">Mentions Légales</a>
             <a href="#contact">Nous contacter</a>
         </div>
         <p>&copy; 2026 Sérénis Développement. Tous droits réservés.</p>

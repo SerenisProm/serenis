@@ -1,27 +1,58 @@
 // Base de données simulée. Netlify CMS pourra générer un fichier JSON qui remplacera ceci.
+
+/*
+{
+    id: "nom-du-projet-sans-espace",
+    title: "Nom de la résidence",
+    location: "Ville",
+    description: "Description commerciale du programme immobilier.",
+    features: [
+        "Prestation haut de gamme 1",
+        "Prestation haut de gamme 2",
+        "Prestation haut de gamme 3"
+    ],
+    image: "https://votre-stockage-photo.com/nom-de-la-photo.webp" // URL de votre image compressée
+}
+*/
+
 const projectsData = [
     {
         id: "clos-saint-joseph",
-        title: "Résidence Le Clos Saint Joseph",
-        location: "Vendargues",
-        description: "20 appartements du T2 au T4 sur 2 étages. Opération éligible loi Pinel.[cite: 1]",
-        features: ["Parking sécurisé en sous sol", "Terrasse et cellier dans chaque appartement"],
-        image: "https://via.placeholder.com/800x400?text=Image+Clos+Saint+Joseph" // URL Cloudinary ici
+        title: "Le Clos Saint Joseph",
+        location: "Vendargues (34)",
+        description: "Une superbe résidence intimiste de 20 appartements du T2 au T4 conçue sur seulement 2 étages. Alliant quiétude résidentielle et prestations haut de gamme avec un parking entièrement sécurisé en sous-sol, de spacieuses terrasses privatives et des celliers individuels.[cite: 1]",
+        features: [
+            "Éligibilité Loi Pinel (Défiscalisation)",
+            "Terrasse avec revêtement en bois noble",
+            "Climatisation réversible intégrée",
+            "Accès sécurisé par badges magnétiques"
+        ],
+        image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80"
     },
     {
         id: "les-consuls",
-        title: "Résidence Les Consuls de Mer",
-        location: "Montpellier",
-        description: "118 appartements du studio au T2 en Résidence de Tourisme classée 3 étoiles.[cite: 1]",
-        features: ["Commerces", "Bureaux", "Jacuzzi", "Piscine en copropriété"],
-        image: "https://via.placeholder.com/800x400?text=Image+Consuls+De+Mer" 
+        title: "Les Consuls de Mer",
+        location: "Montpellier (34)",
+        description: "Une réalisation moderne comptant 118 hébergements haut de gamme s'élevant sur les rives du Lez[cite: 1]. Conçu comme une résidence de tourisme classée 3 étoiles avec des finitions d'une élégance absolue pour une valeur patrimoniale intemporelle.[cite: 1]",
+        features: [
+            "Piscine de copropriété sur toit-terrasse",
+            "Espaces balnéo et jacuzzi extérieurs",
+            "Locaux commerciaux et bureaux au rez-de-chaussée",
+            "Idéalement connecté aux réseaux de tramways"
+        ],
+        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
     },
     {
         id: "le-magistere",
-        title: "Résidence Le Magistère",
-        location: "Montpellier",
-        description: "71 appartements en duplex du studio au T3. À proximité de l'hôtel de ville.[cite: 1]",
-        features: ["Commerces", "Garages en sous-sol", "Salle de sport", "Salle de réunion"],
-        image: "https://via.placeholder.com/800x400?text=Image+Le+Magistere"
+        title: "Le Magistère",
+        location: "Montpellier (34)",
+        description: "La rencontre unique entre une architecture moderne et un cœur de ville historique[cite: 1]. Programme résidentiel d'exception de 71 appartements en duplex, à deux pas de la place de l'Hôtel de Ville, offrant un art de vivre d'une rare élégance.[cite: 1]",
+        features: [
+            "Appartements d'exception en duplex",
+            "Garages boxés privatifs en sous-sol",
+            "Salle de fitness réservée aux résidents",
+            "Hall d'accueil en marbre et design contemporain"
+        ],
+        image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80"
     }
 ];

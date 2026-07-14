@@ -3,32 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Réalisations | Sérénis Développement</title>
+    <title>Nos Réalisations | Sérénis Développement</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="logo">Sérénis Développement</div>
+    <div class="page-transition-overlay"></div>
+
+    <header class="glassmorphism">
+        <a href="index.html" class="logo">Sérénis Développement</a>
         <nav>
             <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="index.html#a-propos">À propos</a></li>
-                <li><a href="realisations.html">Réalisations</a></li>
-                <li><a href="index.html#contact" class="btn-contact">Contact</a></li>
-                <li><button id="theme-toggle-page">🌓</button></li>
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="index.html#a-propos" class="nav-link">À propos</a></li>
+                <li><a href="realisations.html" class="nav-link">Réalisations</a></li>
+                <li><a href="index.html#contact" class="btn-contact magnetic-btn">Contact</a></li>
+                <li><button id="theme-toggle-page" class="magnetic-btn">🌓</button></li>
             </ul>
         </nav>
     </header>
 
     <main class="projects-page">
-        <h1>Nos Réalisations</h1>
+        <h1 class="scroll-reveal">Nos Réalisations Immobilières</h1>
+        
+        <!-- Tabs d'onglets pour filtrer ou sélectionner -->
         <div class="tabs" id="project-tabs">
-            <!-- Boutons générés en JS -->
+            <!-- Généré par JS -->
         </div>
         
-        <div id="project-details" class="project-details-container">
-            <p class="placeholder-text">Sélectionnez un projet ci-dessus pour voir les détails.</p>
+        <!-- Horizontal Scroll Pane pour faire défiler des photos/aperçus secondaires -->
+        <div class="horizontal-scroll-container">
+            <div class="scroll-track" id="horizontal-gallery">
+                <!-- Les cartes défilent de gauche à droite sur PC/mobile -->
+                <div class="gallery-card skeleton"></div>
+                <div class="gallery-card skeleton"></div>
+                <div class="gallery-card skeleton"></div>
+            </div>
+        </div>
+
+        <!-- Zone d'affichage du projet sélectionné -->
+        <div id="project-details" class="project-details-container glassmorphism 3d-tilt-card">
+            <!-- Inséré dynamiquement en JS -->
         </div>
     </main>
 
