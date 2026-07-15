@@ -10,7 +10,12 @@
  "Prestation haut de gamme 2",
  "Prestation haut de gamme 3"
  ],
- image: "https://votre-stockage-photo.com/nom-de-la-photo.webp" // URL de votre image compressée
+ [
+ image: "URL de votre image compressée"
+],
+[
+ moreInfoImage: "URL de votre image dans le à savoir plus" 
+]
 }
 */
 const projectsData = [
