@@ -48,7 +48,7 @@ body {
   animation: pageMorph 0.8s cubic-bezier(0.85, 0, 0.15, 1) forwards;
 }
 
-@keyframes pageMorph {
+@keyframes pageMorph {  
   0% { transform: scaleY(1); }
   100% { transform: scaleY(0); }
 }
@@ -78,12 +78,30 @@ header.glassmorphism {
   letter-spacing: 1px;
 }
 
-nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
-nav a.nav-link { text-decoration: none; color: var(--text-color); font-weight: 400; font-size: 0.9rem; transition: color 0.3s; }
-nav a.nav-link:hover { color: var(--accent-color); }
+nav ul { 
+  list-style: none; 
+  display: flex; 
+  gap: 2rem; 
+  align-items: center; 
+}
+
+nav a.nav-link { 
+  text-decoration: none; 
+  color: var(--text-color); 
+  font-weight: 400; 
+  font-size: 0.9rem; 
+  transition: color 0.3s; 
+}
+
+nav a.nav-link:hover { 
+  color: var(--accent-color); 
+}
 
 /* Menu Déroulant Épuré */
-.dropdown { position: relative; }
+.dropdown { 
+  position: relative; 
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -96,9 +114,23 @@ nav a.nav-link:hover { color: var(--accent-color); }
   border: 1px solid var(--border-color);
   overflow: hidden;
 }
-.dropdown-content a { padding: 14px 20px; display: block; text-decoration: none; color: var(--text-color); font-size: 0.85rem;}
-.dropdown-content a:hover { background: var(--secondary-bg); color: var(--accent-color); }
-.dropdown:hover .dropdown-content { display: block; }
+
+.dropdown-content a { 
+  padding: 14px 20px; 
+  display: block; 
+  text-decoration: none; 
+  color: var(--text-color); 
+  font-size: 0.85rem;
+} 
+
+.dropdown-content a:hover { 
+  background: var(--secondary-bg); 
+  color: var(--accent-color); 
+}
+
+.dropdown:hover .dropdown-content { 
+  display: block; 
+}
 
 /* Boutons Épurés (Moins bruts) */
 .btn-contact { 
@@ -109,6 +141,7 @@ nav a.nav-link:hover { color: var(--accent-color); }
   font-size: 0.85rem;
   transition: all 0.3s ease;
 }
+
 .btn-contact:hover {
   background: var(--primary-color);
   color: var(--bg-color) !important;
@@ -129,6 +162,7 @@ nav a.nav-link:hover { color: var(--accent-color); }
   display: inline-block;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .btn-primary:hover {
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
@@ -142,11 +176,17 @@ nav a.nav-link:hover { color: var(--accent-color); }
   animation: ripple-anim 0.6s linear;
   pointer-events: none;
 }
+
 @keyframes ripple-anim {
   to { transform: scale(4); opacity: 0; }
-}
+} 
 
-#theme-toggle, #theme-toggle-page { background: none; border: none; font-size: 1.2rem; cursor: pointer; }
+#theme-toggle, #theme-toggle-page { 
+  background: none; 
+  border: none; 
+  font-size: 1.2rem; 
+  cursor: pointer; 
+}
 
 /* Animated Mesh Gradient background section */
 .hero-mesh {
@@ -172,7 +212,10 @@ nav a.nav-link:hover { color: var(--accent-color); }
   100% { background-position: 0% 50%; }
 }
 
-.hero-content { max-width: 800px; z-index: 10; }
+.hero-content { 
+  max-width: 800px; 
+  z-index: 10; 
+}
 
 /* Kinetic Typography */
 .kinetic-text span {
@@ -189,18 +232,18 @@ nav a.nav-link:hover { color: var(--accent-color); }
   transform: translateY(30px);
   animation: kineticReveal 0.8s cubic-bezier(0.85, 0, 0.15, 1) forwards;
 }
+
 .kinetic-text span:nth-child(2) { animation-delay: 0.2s; }
 .kinetic-text span:nth-child(3) { animation-delay: 0.4s; }
 
 @keyframes kineticReveal {
   to { opacity: 1; transform: translateY(0); }
-}
+} 
 
-/* Modifié pour donner de l'espace avec le bouton en dessous */
-.hero-content p { 
-  margin: 2rem 0 4rem 0; 
-  font-size: 1.1rem; 
-  opacity: 0.8; 
+.hero-content p {
+  margin: 2rem 0 4rem 0;
+  font-size: 1.1rem;
+  opacity: 0.8;
 }
 
 /* Infinite Marquee */
@@ -215,19 +258,30 @@ nav a.nav-link:hover { color: var(--accent-color); }
   font-weight: 600;
   letter-spacing: 2px;
 }
+
 .marquee-content {
   display: flex;
   flex-shrink: 0;
   animation: marquee 25s linear infinite;
 }
+
 @keyframes marquee {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-100%); }
 }
 
 /* Bento Grid Highlight */
-.about-section { padding: 8rem 5%; }
-.section-title { font-size: 2.25rem; text-align: center; margin-bottom: 4rem; font-weight: 600; }
+.about-section { 
+  padding: 8rem 5%; 
+}
+
+.section-title { 
+  font-size: 2.25rem; 
+  text-align: center; 
+  margin-bottom: 4rem; 
+  font-weight: 600; 
+}
+
 .bento-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -235,6 +289,7 @@ nav a.nav-link:hover { color: var(--accent-color); }
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .bento-item {
   background: var(--secondary-bg);
   border: 1px solid var(--border-color);
@@ -246,15 +301,19 @@ nav a.nav-link:hover { color: var(--accent-color); }
   position: relative;
   overflow: hidden;
 }
+
 .bento-item:hover {
   transform: translateY(-5px);
   border-color: var(--accent-color);
 }
+
 .bento-large { grid-column: span 2; }
 .bento-medium { grid-column: span 2; }
+
 .bento-highlight {
   background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, var(--secondary-bg) 100%);
 }
+
 .bento-item h3 { margin-bottom: 1rem; font-size: 1.4rem; font-weight: 600; }
 .bento-item p { opacity: 0.8; font-size: 0.95rem; }
 
@@ -267,6 +326,7 @@ nav a.nav-link:hover { color: var(--accent-color); }
   margin-top: 6rem;
   text-align: center;
 }
+
 .founder-portrait-container {
   width: 160px;
   height: 160px;
@@ -277,28 +337,36 @@ nav a.nav-link:hover { color: var(--accent-color); }
   margin-bottom: 1.5rem;
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
 .founder-portrait-container:hover {
   transform: scale(1.08);
 }
+
 .founder-portrait {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .founder-name {
   font-size: 1.6rem;
   font-weight: 600;
   color: var(--primary-color);
   margin-bottom: 0.2rem;
 }
+
 .founder-title {
   font-size: 0.95rem;
   opacity: 0.7;
   font-weight: 400;
-}
+} 
 
 /* Sticky Stacking Cards */
-.stacking-section { padding: 6rem 5%; background: var(--secondary-bg); }
+.stacking-section { 
+  padding: 6rem 5%; 
+  background: var(--secondary-bg); 
+}
+
 .stacking-container {
   max-width: 800px;
   margin: 0 auto;
@@ -306,6 +374,7 @@ nav a.nav-link:hover { color: var(--accent-color); }
   flex-direction: column;
   gap: 40px;
 }
+
 .stack-card {
   position: sticky;
   top: 120px; /* Colle en descendant */
@@ -315,6 +384,7 @@ nav a.nav-link:hover { color: var(--accent-color); }
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.02);
 }
+
 .card-1 { transform: scale(0.98); }
 .card-2 { transform: scale(0.99); }
 .card-3 { transform: scale(1); }
@@ -339,13 +409,15 @@ nav a.nav-link:hover { color: var(--accent-color); }
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
 }
+
 .tabs::-webkit-scrollbar {
   height: 4px;
 }
+
 .tabs::-webkit-scrollbar-thumb {
   background: var(--border-color);
   border-radius: 10px;
-}
+} 
 
 @media (min-width: 768px) {
   .tabs {
@@ -366,6 +438,7 @@ nav a.nav-link:hover { color: var(--accent-color); }
   transition: all 0.3s ease;
   flex-shrink: 0;
 }
+
 .tab-btn:hover, .tab-btn.active {
   background: var(--primary-color);
   color: var(--bg-color);
@@ -378,6 +451,7 @@ nav a.nav-link:hover { color: var(--accent-color); }
   background-size: 200% 100%;
   animation: loadingSkeleton 1.5s infinite;
 }
+
 @keyframes loadingSkeleton {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
@@ -395,7 +469,7 @@ nav a.nav-link:hover { color: var(--accent-color); }
   border-radius: 24px;
   transform-style: preserve-3d;
   position: relative; /* Pour positionner le bouton En savoir plus absolute */
-}
+} 
 
 /* Bouton En Savoir Plus en bas à droite */
 .btn-more-info {
@@ -412,6 +486,7 @@ nav a.nav-link:hover { color: var(--accent-color); }
   cursor: pointer;
   transition: color 0.3s ease, transform 0.2s ease;
 }
+
 .btn-more-info:hover {
   color: var(--primary-color);
   transform: translateY(-2px);
@@ -428,9 +503,9 @@ nav a.nav-link:hover { color: var(--accent-color); }
 }
 
 /* Contact Form & Section */
-.contact-section { 
-  padding: 8rem 5%; 
-  text-align: center; 
+.contact-section {
+  padding: 8rem 5%;
+  text-align: center;
 }
 
 /* Cartes d'informations de contact Thierry Dumas */
@@ -441,6 +516,7 @@ nav a.nav-link:hover { color: var(--accent-color); }
   margin-bottom: 3rem;
   flex-wrap: wrap;
 }
+
 .contact-info-card {
   background: var(--secondary-bg);
   border: 1px solid var(--border-color);
@@ -463,6 +539,7 @@ nav a.nav-link:hover { color: var(--accent-color); }
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
 }
+
 .contact-info-card h4 {
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -470,6 +547,7 @@ nav a.nav-link:hover { color: var(--accent-color); }
   opacity: 0.5;
   margin-bottom: 0.4rem;
 }
+
 .contact-info-card a {
   font-size: 1.05rem;
   font-weight: 600;
@@ -477,6 +555,7 @@ nav a.nav-link:hover { color: var(--accent-color); }
   text-decoration: none;
   transition: color 0.3s ease;
 }
+
 .contact-info-card a:hover {
   color: var(--accent-color);
 }
@@ -498,7 +577,7 @@ nav a.nav-link:hover { color: var(--accent-color); }
   width: 100%;
   padding: 1rem 1.5rem;
   border-radius: 12px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-color);  
   background: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-main);
@@ -533,10 +612,31 @@ footer {
   border-top: 1px solid var(--border-color);
   margin-top: 6rem;
 }
-.footer-links { display: flex; justify-content: center; gap: 3rem; margin-bottom: 2rem; }
-.footer-links a { color: var(--text-color); text-decoration: none; font-size: 0.85rem; font-weight: 600; opacity: 0.7; }
-.footer-links a:hover { opacity: 1; color: var(--accent-color); }
-footer p { font-size: 0.8rem; opacity: 0.5; }
+
+.footer-links { 
+  display: flex; 
+  justify-content: center; 
+  gap: 3rem; 
+  margin-bottom: 2rem; 
+}
+
+.footer-links a { 
+  color: var(--text-color); 
+  text-decoration: none; 
+  font-size: 0.85rem; 
+  font-weight: 600; 
+  opacity: 0.7; 
+}
+
+.footer-links a:hover { 
+  opacity: 1; 
+  color: var(--accent-color); 
+}
+
+footer p { 
+  font-size: 0.8rem; 
+  opacity: 0.5; 
+}
 
 /* Scroll Reveal Animations */
 .scroll-reveal {
@@ -544,10 +644,11 @@ footer p { font-size: 0.8rem; opacity: 0.5; }
   transform: translateY(30px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
+
 .scroll-reveal.visible {
   opacity: 1;
   transform: translateY(0);
-}
+} 
 
 /* Conteneur global du carrousel */
 .carousel-container {
@@ -575,7 +676,7 @@ footer p { font-size: 0.8rem; opacity: 0.5; }
   transform: translateY(-50%);
   background: rgba(15, 23, 42, 0.4);
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px); 
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #ffffff;
   font-size: 1.25rem;
@@ -589,10 +690,12 @@ footer p { font-size: 0.8rem; opacity: 0.5; }
   z-index: 15;
   transition: background 0.3s ease, transform 0.2s ease;
 }
+
 .carousel-nav:hover {
   background: rgba(15, 23, 42, 0.85);
   transform: translateY(-50%) scale(1.08);
 }
+
 .prev-btn { left: 20px; }
 .next-btn { right: 20px; }
 
@@ -606,6 +709,7 @@ footer p { font-size: 0.8rem; opacity: 0.5; }
   gap: 8px;
   z-index: 15;
 }
+
 .dot {
   width: 10px;
   height: 10px;
@@ -614,6 +718,7 @@ footer p { font-size: 0.8rem; opacity: 0.5; }
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
 }
+
 .dot.active {
   background: #ffffff;
   transform: scale(1.3);
@@ -636,10 +741,12 @@ footer p { font-size: 0.8rem; opacity: 0.5; }
   opacity: 0;
   transition: opacity 0.3s ease;
 }
+
 .lightbox.active {
   display: flex;
   opacity: 1;
 }
+
 .lightbox-content {
   max-width: 85%;
   max-height: 80%;
@@ -647,14 +754,16 @@ footer p { font-size: 0.8rem; opacity: 0.5; }
   justify-content: center;
   align-items: center;
 }
+
 .lightbox-content img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 100%; 
   object-fit: contain;
   border-radius: 12px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   transition: opacity 0.2s ease-in-out;
 }
+
 .lightbox-close {
   position: absolute;
   top: 30px;
@@ -666,10 +775,12 @@ footer p { font-size: 0.8rem; opacity: 0.5; }
   transition: color 0.3s, transform 0.2s;
   user-select: none;
 }
+
 .lightbox-close:hover {
   color: var(--accent-color);
   transform: scale(1.1);
 }
+
 .lightbox-nav {
   position: absolute;
   top: 50%;
@@ -688,10 +799,12 @@ footer p { font-size: 0.8rem; opacity: 0.5; }
   transition: background 0.3s, transform 0.2s;
   z-index: 100000;
 }
+
 .lightbox-nav:hover {
   background: var(--accent-color);
   transform: translateY(-50%) scale(1.08);
 }
+
 .lightbox-prev { left: 40px; }
 .lightbox-next { right: 40px; }
 
