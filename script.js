@@ -215,8 +215,8 @@ document.addEventListener('DOMContentLoaded', () => {
     lightbox.classList.add('active');
   };
 
-  // 5. Effet 3D Tilt sur la Carte de Présentation
-  const tiltCards = document.querySelectorAll('.3d-tilt-card');
+  // 5. Effet 3D Tilt sur la Carte de Présentation (CORRIGÉ ICI !)
+  const tiltCards = document.querySelectorAll('.tilt-card-3d');
   tiltCards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
