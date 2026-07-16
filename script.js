@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (currentTheme === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
   }
-
+  
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
       let theme = document.documentElement.getAttribute('data-theme');
@@ -41,20 +41,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. Onglets, Carrousel & Zoom Lightbox (Page Réalisations)
   const tabsContainer = document.getElementById('project-tabs');
   const detailsContainer = document.getElementById('project-details');
-
+  
   if (tabsContainer && detailsContainer && typeof projectsData !== 'undefined') {
     const showProject = (project) => {
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
       const activeBtn = document.getElementById(`tab-${project.id}`);
       if (activeBtn) activeBtn.classList.add('active');
-
+      
       let currentImgIndex = 0;
       const images = project.images;
-
+      
       detailsContainer.classList.add('skeleton');
       setTimeout(() => {
         detailsContainer.classList.remove('skeleton');
-        
         detailsContainer.innerHTML = `
           <div class="carousel-container">
             <button class="carousel-nav prev-btn" aria-label="Photo précédente">&lt;</button>
@@ -78,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const carouselImg = detailsContainer.querySelector('#carousel-img');
         const dots = detailsContainer.querySelectorAll('.dot');
-
+        
         const updateCarousel = (index) => {
           currentImgIndex = index;
           carouselImg.style.opacity = 0;
@@ -122,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
             openLightbox([project.moreInfoImage], 0);
           });
         }
-
       }, 400);
     };
 
@@ -160,10 +158,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <button class="lightbox-nav lightbox-next">&gt;</button>
       `;
       document.body.appendChild(lightbox);
-
+      
       lightbox.querySelector('.lightbox-close').addEventListener('click', () => {
         lightbox.classList.remove('active');
       });
+      
       lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) lightbox.classList.remove('active');
       });
@@ -191,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 150);
     };
 
-    // Cache les flèches s'il n'y a qu'une seule photo (ex: "En savoir plus")
+    // Cache les flèches s'il n'y a qu'une seule photo
     if (imagesList.length <= 1) {
       prevBtn.style.display = 'none';
       nextBtn.style.display = 'none';
@@ -228,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
       card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
     card.addEventListener('mouseleave', () => {
-      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
     });
   });
 
@@ -264,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 8. Scroll Reveal
+  // 8. Scroll Reveal (La fonction magique !)
   const reveals = document.querySelectorAll('.scroll-reveal');
   const revealOnScroll = () => {
     reveals.forEach(el => {
@@ -276,5 +275,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
   window.addEventListener('scroll', revealOnScroll);
-  revealOnScroll();
+  revealOnScroll(); // Lancement immédiat au chargement de la page
 });
