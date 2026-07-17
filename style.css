@@ -821,3 +821,37 @@ footer p {
   .lightbox-prev { left: 15px; }
   .lightbox-next { right: 15px; }
 }
+
+/* ==========================================================================
+   DESIGN RESPONSIVE (POUR SMARTPHONES ET TABLETTES)
+   ========================================================================== */
+@media (max-width: 768px) {
+
+  /* 1. Ajustement du titre d'accueil trop large */
+  .hero-title, h1.main-title { 
+    font-size: 2.2rem !important; /* Réduit la taille de la police (ajuste selon tes besoins) */
+    line-height: 1.3;
+    padding: 0 20px; /* Évite que le texte ne colle aux bords de l'écran */
+    text-align: center;
+  }
+
+  /* 2. Ajustement de la barre supérieure (Header / Navbar) */
+  .navbar, header {
+    flex-direction: column; /* Aligne le logo et le menu verticalement plutôt qu'en ligne */
+    gap: 15px;
+    padding: 15px 10px !important;
+  }
+
+  /* Si tes liens de menu sont dans une liste */
+  .nav-links, .nav-menu {
+    display: flex;
+    flex-wrap: wrap; /* Permet aux liens de passer à la ligne proprement si besoin */
+    justify-content: center;
+    gap: 12px;
+    padding: 0;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem; /* Réduit légèrement la taille des liens sur mobile */
+  }
+}
