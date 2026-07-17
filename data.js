@@ -32,7 +32,7 @@ const projectsData = [
       "Accès sécurisé par badges magnétiques"
     ],
     images: [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
+      "https://github.com/user-attachments/assets/878bf2eb-1c01-419b-bd0d-4a20a8f3de08",
       "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
     ],
