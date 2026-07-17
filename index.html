@@ -15,34 +15,24 @@
 
   <!-- En-tête avec Menu Hamburger Mobile -->
   <header class="glassmorphism">
-    <a href="index.html" class="logo">Sérénis Développement</a>
-
-    <div class="header-controls">
-      <button id="theme-toggle">🌓</button>
-      <button class="hamburger-btn" aria-label="Ouvrir le menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-
-    <nav>
-      <ul>
-        <li><a href="index.html" class="nav-link">Accueil</a></li>
-        <!-- Correction : On cible index.html#about pour fonctionner partout -->
-        <li><a href="index.html#about" class="nav-link">À propos</a></li>
-        <li class="dropdown">
-          <!-- Correction : Le lien pointe directement vers ta page globale de réalisations -->
-          <a href="realisations.html" class="nav-link">Réalisations</a>
-          <ul id="nav-projects-list" class="dropdown-content">
-            <!-- Rempli dynamiquement par le JS -->
-          </ul>
-        </li>
-        <!-- Correction : Idem pour le contact -->
-        <li><a href="index.html#contact" class="btn-contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <a href="index.html" class="logo">Sérénis Développement</a>
+  <div class="header-controls">
+    <button id="theme-toggle">🌓</button>
+    <button class="hamburger-btn" aria-label="Ouvrir le menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="index.html" class="nav-link">Accueil</a></li>
+      <li><a href="index.html#about" class="nav-link">À propos</a></li>
+      <li><a href="realisations.html" class="nav-link">Réalisations</a></li>
+      <li><a href="index.html#contact" class="btn-contact magnetic-btn">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
   <!-- Animated Mesh Gradient en fond de Hero -->
   <section class="hero-mesh">
