@@ -276,4 +276,24 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   window.addEventListener('scroll', revealOnScroll);
   revealOnScroll(); // Lancement immédiat au chargement de la page
+
+  // 9. Menu Hamburger Mobile
+  const hamburgerBtn = document.querySelector('.hamburger-btn');
+  const navElement = document.querySelector('header.glassmorphism nav');
+  const navLinks = document.querySelectorAll('header.glassmorphism nav a');
+
+  if (hamburgerBtn && navElement) {
+    hamburgerBtn.addEventListener('click', () => {
+      hamburgerBtn.classList.toggle('open');
+      navElement.classList.toggle('open');
+    });
+
+    // Ferme automatiquement le menu quand on clique sur un lien (ex: À propos / Contact)
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburgerBtn.classList.remove('open');
+        navElement.classList.remove('open');
+      });
+    });
+  }
 });
