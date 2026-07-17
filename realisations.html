@@ -1,13 +1,35 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nos Réalisations | Sérénis Développement</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
+<header class="glassmorphism">
+    <a href="index.html" class="logo">Sérénis Développement</a>
+
+    <div class="header-controls">
+      <button id="theme-toggle">🌓</button>
+      <button class="hamburger-btn" aria-label="Ouvrir le menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html" class="nav-link">Accueil</a></li>
+        <!-- Correction : On cible index.html#about pour fonctionner partout -->
+        <li><a href="index.html#about" class="nav-link">À propos</a></li>
+        <li class="dropdown">
+          <!-- Correction : Le lien pointe directement vers ta page globale de réalisations -->
+          <a href="realisations.html" class="nav-link">Réalisations</a>
+          <ul id="nav-projects-list" class="dropdown-content">
+            <!-- Rempli dynamiquement par le JS -->
+          </ul>
+        </li>
+        <!-- Correction : Idem pour le contact -->
+        <li><a href="index.html#contact" class="btn-contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
 <body>
     <div class="page-transition-overlay"></div>
