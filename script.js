@@ -10,6 +10,33 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch (error) {
     console.error("Erreur lors du chargement des projets :", error);
   }
+
+  // À insérer dans ta logique de chargement de la page réalisations :
+  
+  // 1. On récupère l'identifiant (hash) situé dans l'URL (ex: #les-consuls)
+  const currentHash = window.location.hash.replace('#', '');
+  
+  // 2. On cherche si cet identifiant existe dans notre fichier JSON
+  let activeProject = projectsData.find(p => p.id === currentHash);
+  
+  // 3. SÉCURITÉ DEFAUT : Si l'utilisateur a juste cliqué sur "Réalisations" (pas de hash),
+  // ou si le hash est inconnu, on sélectionne d'office le PREMIER projet de la liste (index 0)
+  if (!activeProject && projectsData.length > 0) {
+    activeProject = projectsData[0]; 
+  }
+  
+  // 4. Tu lances ensuite tes fonctions d'affichages avec ce projet actif par défaut
+  if (activeProject) {
+    // Appelle ici ta fonction existante qui affiche les textes et le carrousel du projet
+    // Exemple : afficherDetailsProjet(activeProject);
+    
+    // Pense aussi à activer visuellement le bouton de l'onglet correspondant :
+    const targetTab = document.querySelector(`.tab-btn[data-id="${activeProject.id}"]`);
+    if (targetTab) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      targetTab.classList.add('active');
+    }
+  }
   
   // 1. Transition de Page Morphing
   const overlay = document.querySelector('.page-transition-overlay');
@@ -289,7 +316,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   window.addEventListener('scroll', revealOnScroll);
   revealOnScroll(); // Lancement immédiat au chargement de la page
 
-  // 9. Menu Hamburger Mobile
+  // 9. Menu Hamburger Mobile (Version corrigée avec micro-délai pour les ancres)
   const hamburgerBtn = document.querySelector('.hamburger-btn');
   const navElement = document.querySelector('header.glassmorphism nav');
   const navLinks = document.querySelectorAll('header.glassmorphism nav a');
@@ -300,11 +327,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       navElement.classList.toggle('open');
     });
 
-    // Ferme automatiquement le menu quand on clique sur un lien (ex: À propos / Contact)
     navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        hamburgerBtn.classList.remove('open');
-        navElement.classList.remove('open');
+      link.addEventListener('click', (e) => {
+        // On laisse 200ms au navigateur du téléphone pour initier le scroll ou le changement de page
+        setTimeout(() => {
+          hamburgerBtn.classList.remove('open');
+          navElement.classList.remove('open');
+        }, 200);
       });
     });
   }
