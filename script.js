@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
           successMessage.className = 'form-success-box';
           successMessage.innerHTML = `
             <h4>Message envoyé avec succès ! ✨</h4>
-            <p>Merci pour votre confiance. Nous prenons connaissance de votre message et revienons vers vous dans les plus brefs délais.</p>
+            <p>Merci pour votre confiance. Nous prenons connaissance de votre message et reviendrons vers vous dans les plus brefs délais.</p>
           `;
 
           // On insère le message tout en haut du formulaire
