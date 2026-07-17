@@ -1,4 +1,16 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  
+  let projectsData = [];
+
+  // On va chercher le fichier JSON généré par l'admin Netlify
+  try {
+    const response = await fetch('data/projects.json');
+    const data = await response.json();
+    projectsData = data.projectsList; // On remplit notre variable avec la liste des projets
+  } catch (error) {
+    console.error("Erreur lors du chargement des projets :", error);
+  }
+  
   // 1. Transition de Page Morphing
   const overlay = document.querySelector('.page-transition-overlay');
   if (overlay) {

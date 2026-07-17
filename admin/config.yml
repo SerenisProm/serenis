@@ -1,20 +1,48 @@
 backend:
   name: git-gateway
-  branch: main # Assurez-vous que votre branche principale s'appelle main
+  branch: main # Ta branche principale
 
-media_folder: "images" # S'il upload directement, sinon utiliser des liens Cloudinary
-public_folder: "/images"
+# Gestion automatique des images par glisser-déposer
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+slug:
+  clean_accents: true
+  upper_case: false
 
 collections:
-  - name: "projets"
-    label: "Projets Réalisés"
-    folder: "data/projets" # Le CMS créera des fichiers ici
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Identifiant (sans espace)", name: "id", widget: "string"}
-      - {label: "Titre du projet", name: "title", widget: "string"}
-      - {label: "Ville", name: "location", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Prestations (séparées par des virgules)", name: "features", widget: "list"}
-      - {label: "Lien de l'image (Cloudinary)", name: "image", widget: "string"}
+  - name: "configuration"
+    label: "⚙️ Gestion du Site"
+    delete: false # Empêche de supprimer le fichier par erreur
+    files:
+      - file: "data/projects.json"
+        label: "🏗️ Liste des Réalisations"
+        name: "projects"
+        fields:
+          - name: "projectsList"
+            label: "Vos Programmes Immobiliers"
+            label_singular: "un projet"
+            widget: "list"
+            summary: '{{fields.title}} - {{fields.location}}'
+            fields:
+              - {label: "🔗 Identifiant unique (ex: clos-saint-joseph)", name: "id", widget: "string", hint: "Sans espace ni accent. Sert pour les onglets du site."}
+              - {label: "🏢 Nom de la résidence", name: "title", widget: "string"}
+              - {label: "📍 Ville (ex: Montpellier (34))", name: "location", widget: "string"}
+              - {label: "📝 Description commerciale", name: "description", widget: "text"}
+              
+              # Les prestations sous forme de liste de bulles
+              - label: "✨ Prestations haut de gamme"
+                name: "features"
+                widget: "list"
+                summary: '{{fields.feature_item}}'
+                field: {label: "Nom de la prestation", name: "feature_item", widget: "string"}
+              
+              # Le carrousel de photos en glisser-déposer !
+              - label: "📸 Photos du Carrousel"
+                name: "images"
+                widget: "list"
+                summary: '{{fields.image_item}}'
+                field: {label: "Glissez une image ici", name: "image_item", widget: "image"}
+              
+              # L'image bonus facultative
+              - {label: "🖼️ Image 'En savoir plus' (Optionnelle)", name: "moreInfoImage", widget: "image", required: false}

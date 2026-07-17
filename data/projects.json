@@ -1,0 +1,78 @@
+// Base de données simulée. Netlify CMS pourra générer un fichier JSON qui remplacera ceci.
+/*
+{
+ id: "nom-du-projet-sans-espace",
+ title: "Nom de la résidence",
+ location: "Ville",
+ description: "Description commerciale du programme immobilier.",
+ features: [
+ "Prestation haut de gamme 1",
+ "Prestation haut de gamme 2",
+ "Prestation haut de gamme 3"
+ ],
+ [
+ image: "URL de votre image compressée"
+],
+[
+ moreInfoImage: "URL de votre image dans le à savoir plus" 
+]
+}
+*/
+// Base de données des réalisations de Sérénis Développement
+{
+  "projectsList": [
+    {
+      "id": "clos-saint-joseph",
+      "title": "Le Clos Saint Joseph",
+      "location": "Vendargues (34)",
+      "description": "Une superbe résidence intimiste de 20 appartements du T2 au T4 conçue sur seulement 2 étages. Alliant quiétude résidentielle et prestations haut de gamme avec un parking entièrement sécurisé en sous-sol, de spacieuses terrasses privatives et des celliers individuels.",
+      "features": [
+        "Éligibilité Loi Pinel (Défiscalisation)",
+        "Terrasse avec revêtement en bois noble",
+        "Climatisation réversible intégrée",
+        "Accès sécurisé par badges magnétiques"
+      ],
+      "images": [
+        "https://github.com/user-attachments/assets/878bf2eb-1c01-419b-bd0d-4a20a8f3de08",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "les-consuls",
+      "title": "Les Consuls de Mer",
+      "location": "Montpellier (34)",
+      "description": "Une réalisation moderne comptant 118 hébergements haut de gamme s'élevant sur les rives du Lez. Conçu comme une résidence de tourisme classée 3 étoiles avec des finitions d'une élégance absolue pour une valeur patrimoniale intemporelle.",
+      "features": [
+        "Piscine de copropriété sur toit-terrasse",
+        "Espaces balnéo et jacuzzi extérieurs",
+        "Locaux commerciaux et bureaux au rez-de-chaussée",
+        "Idéalement connecté aux réseaux de tramways"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80"
+      ]
+    },
+    {
+      "id": "le-magistere",
+      "title": "Le Magistère",
+      "location": "Montpellier (34)",
+      "description": "La rencontre unique entre une architecture moderne et un cœur de ville historique. Programme résidentiel d'exception de 71 appartements en duplex, à deux pas de la place de l'Hôtel de Ville, offering un art de vivre d'une rare élégance.",
+      "features": [
+        "Appartements d'exception en duplex",
+        "Garages boxés privatifs en sous-sol",
+        "Salle de fitness réservée aux résidents",
+        "Hall d'accueil en marbre et design contemporain"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
+    }
+  ]
+}
