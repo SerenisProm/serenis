@@ -296,8 +296,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-
-
   // 10. Gestion du Formulaire de Contact via API (Web3Forms)
   const contactForm = document.querySelector('.contact-form');
 
