@@ -855,3 +855,19 @@ footer p {
     font-size: 0.9rem; /* Réduit légèrement la taille des liens sur mobile */
   }
 }
+
+
+/* Ajustement de la taille des icônes de contact */
+.contact-icon-img {
+  width: 35px;        /* Modifie cette valeur (ex: 30px ou 40px) pour ajuster à ton goût */
+  height: auto;       /* Conserve les proportions parfaites du SVG */
+  object-fit: contain;
+}
+
+/* Optionnel : Aligner et espacer proprement le bloc de l'icône */
+.contact-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px; /* Crée un petit espace sous l'icône avant le texte "Téléphone" ou "Email" */
+}
