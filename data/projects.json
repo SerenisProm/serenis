@@ -1,24 +1,3 @@
-// Base de données simulée. Netlify CMS pourra générer un fichier JSON qui remplacera ceci.
-/*
-{
- id: "nom-du-projet-sans-espace",
- title: "Nom de la résidence",
- location: "Ville",
- description: "Description commerciale du programme immobilier.",
- features: [
- "Prestation haut de gamme 1",
- "Prestation haut de gamme 2",
- "Prestation haut de gamme 3"
- ],
- [
- image: "URL de votre image compressée"
-],
-[
- moreInfoImage: "URL de votre image dans le à savoir plus" 
-]
-}
-*/
-// Base de données des réalisations de Sérénis Développement
 {
   "projectsList": [
     {
