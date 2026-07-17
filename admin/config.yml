@@ -1,8 +1,8 @@
 backend:
   name: git-gateway
-  branch: main # Ta branche principale
+  branch: main
 
-# Gestion automatique des images par glisser-déposer
+# Dossier où seront stockées tes photos glissées dans l'admin
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
@@ -13,7 +13,7 @@ slug:
 collections:
   - name: "configuration"
     label: "⚙️ Gestion du Site"
-    delete: false # Empêche de supprimer le fichier par erreur
+    delete: false
     files:
       - file: "data/projects.json"
         label: "🏗️ Liste des Réalisations"
@@ -23,26 +23,31 @@ collections:
             label: "Vos Programmes Immobiliers"
             label_singular: "un projet"
             widget: "list"
-            summary: '{{fields.title}} - {{fields.location}}'
+            summary: '{{fields.title}} ({{fields.location}})'
             fields:
-              - {label: "🔗 Identifiant unique (ex: clos-saint-joseph)", name: "id", widget: "string", hint: "Sans espace ni accent. Sert pour les onglets du site."}
+              # 1. Identifiant
+              - {label: "🔗 Identifiant unique (ex: clos-saint-joseph)", name: "id", widget: "string", hint: "Sans espace ni accent. Permet de lier les onglets."}
+              
+              # 2. Nom
               - {label: "🏢 Nom de la résidence", name: "title", widget: "string"}
+              
+              # 3. Ville
               - {label: "📍 Ville (ex: Montpellier (34))", name: "location", widget: "string"}
+              
+              # 4. Description
               - {label: "📝 Description commerciale", name: "description", widget: "text"}
               
-              # Les prestations sous forme de liste de bulles
-              - label: "✨ Prestations haut de gamme"
+              # 5. Points clés (Features)
+              - label: "✨ Points clés (Features)"
                 name: "features"
                 widget: "list"
-                summary: '{{fields.feature_item}}'
-                field: {label: "Nom de la prestation", name: "feature_item", widget: "string"}
+                field: {label: "Élément à ajouter", widget: "string"}
               
-              # Le carrousel de photos en glisser-déposer !
-              - label: "📸 Photos du Carrousel"
+              # 6. Photos en tête (À glisser)
+              - label: "📸 Photos en tête (À glisser)"
                 name: "images"
                 widget: "list"
-                summary: '{{fields.image_item}}'
-                field: {label: "Glissez une image ici", name: "image_item", widget: "image"}
+                field: {label: "Glisser une image", widget: "image"}
               
-              # L'image bonus facultative
-              - {label: "🖼️ Image 'En savoir plus' (Optionnelle)", name: "moreInfoImage", widget: "image", required: false}
+              # 7. En savoir plus (Une photo à glisser)
+              - {label: "🖼️ En savoir plus (Une photo à glisser)", name: "moreInfoImage", widget: "image", required: false}
