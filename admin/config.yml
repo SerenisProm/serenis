@@ -37,17 +37,17 @@ collections:
               # 4. Description
               - {label: "📝 Description commerciale", name: "description", widget: "text"}
               
-              # 5. Points clés (Features)
+              # 5. Points clés (Features) -> CORRIGÉ : ajout de name: "item"
               - label: "✨ Points clés (Features)"
                 name: "features"
                 widget: "list"
-                field: {label: "Élément à ajouter", widget: "string"}
+                field: {label: "Élément à ajouter", name: "item", widget: "string"}
               
-              # 6. Photos en tête (À glisser)
+              # 6. Photos en tête (À glisser) -> CORRIGÉ : ajout de name: "url"
               - label: "📸 Photos en tête (À glisser)"
                 name: "images"
                 widget: "list"
-                field: {label: "Glisser une image", widget: "image"}
+                field: {label: "Glisser une image", name: "url", widget: "image"}
               
               # 7. En savoir plus (Une photo à glisser)
               - {label: "🖼️ En savoir plus (Une photo à glisser)", name: "moreInfoImage", widget: "image", required: false}
