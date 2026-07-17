@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Dark/Light Mode Morphing
   const themeToggle = document.getElementById('theme-toggle') || document.getElementById('theme-toggle-page');
   const currentTheme = localStorage.getItem('theme') || 'light';
-  
+
   if (currentTheme === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
   }
-  
+
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
       let theme = document.documentElement.getAttribute('data-theme');
@@ -41,16 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. Onglets, Carrousel & Zoom Lightbox (Page Réalisations)
   const tabsContainer = document.getElementById('project-tabs');
   const detailsContainer = document.getElementById('project-details');
-  
+
   if (tabsContainer && detailsContainer && typeof projectsData !== 'undefined') {
     const showProject = (project) => {
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
       const activeBtn = document.getElementById(`tab-${project.id}`);
       if (activeBtn) activeBtn.classList.add('active');
-      
+
       let currentImgIndex = 0;
       const images = project.images;
-      
+
       detailsContainer.classList.add('skeleton');
       setTimeout(() => {
         detailsContainer.classList.remove('skeleton');
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const carouselImg = detailsContainer.querySelector('#carousel-img');
         const dots = detailsContainer.querySelectorAll('.dot');
-        
+
         const updateCarousel = (index) => {
           currentImgIndex = index;
           carouselImg.style.opacity = 0;
@@ -158,11 +158,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <button class="lightbox-nav lightbox-next">&gt;</button>
       `;
       document.body.appendChild(lightbox);
-      
+
       lightbox.querySelector('.lightbox-close').addEventListener('click', () => {
         lightbox.classList.remove('active');
       });
-      
+
       lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) lightbox.classList.remove('active');
       });
@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
       circle.style.left = `${e.clientX - btn.getBoundingClientRect().left - radius}px`;
       circle.style.top = `${e.clientY - btn.getBoundingClientRect().top - radius}px`;
       circle.classList.add('ripple');
-      
+
       const prevRipple = btn.querySelector('.ripple');
       if (prevRipple) prevRipple.remove();
       btn.appendChild(circle);
@@ -294,6 +294,71 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburgerBtn.classList.remove('open');
         navElement.classList.remove('open');
       });
+    });
+  }
+
+
+  // 10. Gestion du Formulaire de Contact via API (Web3Forms)
+  const contactForm = document.querySelector('.contact-form');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Empêche le rechargement de la page et l'erreur 405
+
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn ? submitBtn.textContent : 'Envoyer';
+
+      // On passe le bouton en état de chargement
+      if (submitBtn) {
+        submitBtn.textContent = 'Envoi en cours...';
+        submitBtn.disabled = true;
+      }
+
+      // On récupère toutes les données du formulaire
+      const formData = new FormData(contactForm);
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          // 1. Réinitialisation du formulaire
+          contactForm.reset();
+
+          // 2. Création et affichage du message de confirmation
+          const successMessage = document.createElement('div');
+          successMessage.className = 'form-success-box';
+          successMessage.innerHTML = `
+            <h4>Message envoyé avec succès ! ✨</h4>
+            <p>Merci pour votre confiance. Nous prenons connaissance de votre message et revienons vers vous dans les plus brefs délais.</p>
+          `;
+
+          // On insère le message tout en haut du formulaire
+          contactForm.prepend(successMessage);
+
+          // 3. Optionnel : On fait disparaître le message automatiquement après 8 secondes
+          setTimeout(() => {
+            successMessage.style.opacity = '0';
+            setTimeout(() => successMessage.remove(), 500);
+          }, 8000);
+
+        } else {
+          alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
+        }
+      } catch (error) {
+        console.error("Erreur formulaire:", error);
+        alert("Impossible de joindre le serveur d'envoi. Vérifiez votre connexion.");
+      } finally {
+        // On remet le bouton à son état d'origine
+        if (submitBtn) {
+          submitBtn.textContent = originalBtnText;
+          submitBtn.disabled = false;
+        }
+      }
     });
   }
 });
