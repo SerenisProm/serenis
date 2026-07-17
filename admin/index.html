@@ -4,20 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sérénis Développement — Administration</title>
-  <!-- Import de la police du site -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="family">
   
-  <!-- Script Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- CORRECTION : Chargement propre de la police Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- AJOUT : Le widget indispensable pour s'authentifier avec Netlify -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  <!-- Style personnalisé pour adapter l'interface à la charte Sérénis -->
   <style>
-    /* Style de la page de connexion Netlify */
     body {
       font-family: 'Montserrat', sans-serif !important;
       background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f1f5f9 100%) !important;
     }
-    /* Bouton de connexion épuré */
     .nc-githubAuthenticationButton-button {
       background-color: #0f172a !important;
       border-radius: 30px !important;
@@ -28,11 +26,9 @@
     .nc-githubAuthenticationButton-button:hover {
       transform: translateY(-2px) !important;
     }
-    /* Masquer le volet de prévisualisation inutile à droite pour gagner de la place */
     .nc-entryEditor-previewPaneContainer {
       display: none !important;
     }
-    /* Élargir la zone de saisie pour un confort maximal */
     .nc-entryEditor-controlPaneContainer {
       width: 100% !important;
       max-width: 800px !important;
@@ -42,5 +38,7 @@
   </style>
 </head>
 <body>
+  <!-- CORRECTION : Ajout de "defer" pour attendre que le body soit créé avant de lancer le CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js" defer></script>
 </body>
 </html>
