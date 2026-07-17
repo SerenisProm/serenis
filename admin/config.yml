@@ -2,7 +2,6 @@ backend:
   name: git-gateway
   branch: main
 
-# Dossier où seront stockées tes photos glissées dans l'admin
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
@@ -16,38 +15,43 @@ collections:
     delete: false
     files:
       - file: "data/projects.json"
-        label: "🏗️ Liste des Réalisations"
+        label: "🏗️ Programmes Immobiliers"
         name: "projects"
         fields:
+          # SECTION 1 : RÉALISATIONS
           - name: "projectsList"
-            label: "Vos Programmes Immobiliers"
-            label_singular: "un projet"
+            label: "🏢 Nos Réalisations (Terminées)"
+            label_singular: "une réalisation"
             widget: "list"
             summary: '{{fields.title}} ({{fields.location}})'
             fields:
-              # 1. Identifiant
-              - {label: "🔗 Identifiant unique (ex: clos-saint-joseph)", name: "id", widget: "string", hint: "Sans espace ni accent. Permet de lier les onglets."}
-              
-              # 2. Nom
+              - {label: "🔗 Identifiant unique (ex: clos-saint-joseph)", name: "id", widget: "string"}
               - {label: "🏢 Nom de la résidence", name: "title", widget: "string"}
-              
-              # 3. Ville
-              - {label: "📍 Ville (ex: Montpellier (34))", name: "location", widget: "string"}
-              
-              # 4. Description
+              - {label: "📍 Ville", name: "location", widget: "string"}
               - {label: "📝 Description commerciale", name: "description", widget: "text"}
-              
-              # 5. Points clés (Features) -> CORRIGÉ : ajout de name: "item"
-              - label: "Points clés du projet"
+              - label: "✨ Points clés (Features)"
                 name: "features"
                 widget: "list"
-                field: {label: "Point à ajouter", name: "item", widget: "string"}
-              
-              # 6. Photos en tête (À glisser) -> CORRIGÉ : ajout de name: "url"
+                field: {label: "Élément", name: "item", widget: "string"}
               - label: "📸 Photos en tête (À glisser)"
                 name: "images"
                 widget: "list"
-                field: {label: "Ouvrir et glisser une ou plusieurs image(s)", name: "url", widget: "image"}
-              
-              # 7. En savoir plus (Une photo à glisser)
-              - {label: "🖼️ En savoir plus (Une photo à glisser)", name: "moreInfoImage", widget: "image", required: false}
+                field: {label: "Image", name: "url", widget: "image"}
+              - {label: "🖼️ En savoir plus (Une photo)", name: "moreInfoImage", widget: "image", required: false}
+
+          # SECTION 2 : PROJETS EN COURS
+          - name: "futureProjectsList"
+            label: "🚀 Nos Projets en Cours (Futurs)"
+            label_singular: "un projet en cours"
+            widget: "list"
+            summary: '{{fields.title}} ({{fields.location}})'
+            fields:
+              - {label: "🔗 Identifiant unique (ex: residence-avenir)", name: "id", widget: "string"}
+              - {label: "🏢 Nom du projet", name: "title", widget: "string"}
+              - {label: "📍 Ville", name: "location", widget: "string"}
+              - {label: "📝 Description commerciale", name: "description", widget: "text"}
+              - label: "✨ Points clés (Features)", name: "features", widget: "list"
+                field: {label: "Élément", name: "item", widget: "string"}
+              - label: "📸 Photos en tête (À glisser)", name: "images", widget: "list"
+                field: {label: "Image", name: "url", widget: "image"}
+              - {label: "🖼️ En savoir plus (Une photo)", name: "moreInfoImage", widget: "image", required: false}
