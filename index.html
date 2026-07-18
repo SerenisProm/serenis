@@ -27,7 +27,7 @@
   <nav>
     <ul>
       <li><a href="index.html" class="nav-link">Accueil</a></li>
-      <li><a href="index.html#about" class="nav-link">À propos</a></li>
+      <li><a href="index.html#a-propos" class="nav-link">À propos</a></li>
       <li><a href="realisations.html" class="nav-link">Réalisations</a></li>
       <li><a href="index.html#contact" class="btn-contact magnetic-btn">Contact</a></li>
     </ul>
@@ -131,48 +131,40 @@
 
   <!-- Section Contact -->
   <section id="contact" class="contact-section">
-    <h2 class="section-title scroll-reveal">Prendre Contact</h2>
-    <!-- Bloc infos de contact propre et épuré -->
-    <div class="contact-cards-container scroll-reveal">
-      <div class="contact-info-card">
-        <div class="contact-icon">
-          <img src="https://github.com/user-attachments/assets/f8851a3e-6d28-4f17-aba7-978126419c5c" alt="Téléphone"
-            class="contact-icon-img">
-        </div>
-        <h4>Téléphone</h4>
-        <a href="tel:0679971790">06 79 97 17 90</a>
+  <h2 class="section-title scroll-reveal">Prendre Contact</h2>
+
+  <div class="contact-cards-container scroll-reveal">
+    <div class="contact-info-card">
+      <div class="contact-icon">
+        <img src="https://github.com/user-attachments/assets/f8851a3e-6d28-4f17-aba7-978126419c5c" alt="Téléphone" class="contact-icon-img">
       </div>
-      <div class="contact-info-card">
-        <div class="contact-icon">
-          <img src="https://github.com/user-attachments/assets/2e6cdf56-a9e1-43f8-bc58-4e952ad95ab2" alt="Email"
-            class="contact-icon-img">
-        </div>
-        <h4>Email</h4>
-        <a href="mailto:contact@serenis-promotion.com">contact@serenis-promotion.com</a>
+      <h4>Téléphone</h4>
+      <a href="tel:0679971790">06 79 97 17 90</a>
+    </div>
+    <div class="contact-info-card">
+      <div class="contact-icon">
+        <img src="https://github.com/user-attachments/assets/2e6cdf56-a9e1-43f8-bc58-4e952ad95ab2" alt="Email" class="contact-icon-img">
       </div>
+      <h4>Email</h4>
+      <a href="mailto:contact@serenis-promotion.com">contact@serenis-promotion.com</a>
+    </div>
+  </div>
+
+  <!-- LE FORMULAIRE AVEC SON NOUVEAU TITRE INTÉGRÉ -->
+  <form class="contact-form">
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem; font-weight: 600;">Formulaire de contact</h3>
+      <p style="opacity: 0.75; font-size: 0.95rem;">Remplissez ce formulaire pour nous faire part de votre projet, nous vous répondrons dans les plus brefs délais.</p>
     </div>
 
-    <!-- Formulaire de contact -->
-    <form class="contact-form">
-      <!-- Ta clé d'accès secrète Web3Forms -->
-      <input type="hidden" name="access_key" value="2020aa52-3a1b-4962-8f56-07f884940b4d">
-
-      <!-- Champ Nom -->
-      <input type="text" name="name" placeholder="Votre nom complet" required>
-
-      <!-- Champ Email -->
-      <input type="email" name="email" placeholder="Votre adresse email" required>
-
-      <!-- NOUVEAU : Champ Téléphone -->
-      <input type="tel" name="phone" placeholder="Votre numéro de téléphone">
-
-      <!-- Champ Message -->
-      <textarea name="message" placeholder="Votre message" required></textarea>
-
-      <!-- Bouton d'envoi -->
-      <button type="submit" class="btn-primary">Envoyer</button>
-    </form>
-  </section>
+    <input type="hidden" name="access_key" value="2020aa52-3a1b-4962-8f56-07f884940b4d">
+    <input type="text" name="name" placeholder="Votre nom complet" required>
+    <input type="email" name="email" placeholder="Votre adresse email" required>
+    <input type="tel" name="phone" placeholder="Votre numéro de téléphone">
+    <textarea name="message" placeholder="Votre message" required></textarea>
+    <button type="submit" class="btn-primary">Envoyer le message</button>
+  </form>
+</section>
 
   <footer>
     <div class="footer-links">

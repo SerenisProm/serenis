@@ -1003,3 +1003,30 @@ footer p {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Ajustements spécifiques pour les écrans de téléphones */
+@media (max-width: 768px) {
+  .contact-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .contact-info-card {
+    width: 100% !important;
+    min-height: 160px; /* Force une hauteur identique pour les deux bulles */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 1.5rem !important;
+  }
+  
+  /* Permet au texte de l'adresse email de ne pas déborder si l'écran est très petit */
+  .contact-info-card a {
+    word-break: break-all; 
+    font-size: 0.95rem;
+  }
+}
