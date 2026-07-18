@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (activeBtn) activeBtn.classList.add('active');
 
       detailsContainer.classList.add('skeleton');
-
+      
       setTimeout(() => {
         detailsContainer.classList.remove('skeleton');
         let currentImgIndex = 0;
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       lightbox.querySelector('.lightbox-close').addEventListener('click', () => lightbox.classList.remove('active'));
       lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('active'); });
-
+      
       document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('active')) return;
         if (e.key === 'Escape') lightbox.classList.remove('active');
@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           successMessage.className = 'form-success-box';
           successMessage.innerHTML = `<h4>Message envoyé !</h4><p>Nous vous répondrons rapidement.</p>`;
           contactForm.prepend(successMessage);
-
+          
           setTimeout(() => {
             successMessage.style.opacity = '0';
             setTimeout(() => successMessage.remove(), 500);
