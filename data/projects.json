@@ -12,9 +12,8 @@
         "Accès sécurisé par badges magnétiques"
       ],
       "images": [
-        "https://github.com/user-attachments/assets/878bf2eb-1c01-419b-bd0d-4a20a8f3de08",
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
+        "https://github.com/user-attachments/assets/fc2dfddb-9a0f-4fe3-8d1b-c73fe7f08fdf",
+        "https://github.com/user-attachments/assets/430ad57b-e161-4cfe-9124-9b95155fe1e2"
       ],
       "moreInfoImage": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80"
     },
@@ -22,11 +21,11 @@
       "id": "les-consuls",
       "title": "Les Consuls de Mer",
       "location": "Montpellier (34)",
-      "description": "Une réalisation moderne comptant 118 hébergements haut de gamme s'élevant sur les rives du Lez. Conçu comme une résidence de tourisme classée 3 étoiles avec des finitions d'une élégance absolue pour une valeur patrimoniale intemporelle.",
+      "description": "Une réalisation moderne comptant 110 hébergements haut de gamme s'élevant sur les rives du Lez. Conçu comme une résidence de tourisme classée 3 étoiles avec des finitions d'une élégance absolue pour une valeur patrimoniale intemporelle.",
       "features": [
         "Piscine de copropriété sur toit-terrasse",
-        "Espaces balnéo et jacuzzi extérieurs",
-        "Locaux commerciaux et bureaux au rez-de-chaussée",
+        "Espaces balnéo, SPA et jacuzzi extérieurs",
+        "450m² de commerces et 420m² de salles de réunions au rez-de-chaussée",
         "Idéalement connecté aux réseaux de tramways"
       ],
       "images": [
@@ -40,12 +39,12 @@
       "id": "le-magistere",
       "title": "Le Magistère",
       "location": "Montpellier (34)",
-      "description": "La rencontre unique entre une architecture moderne et un cœur de ville historique. Programme résidentiel d'exception de 71 appartements en duplex, à deux pas de la place de l'Hôtel de Ville, offrant un art de vivre d'une rare élégance.",
+      "description": "La rencontre unique entre une architecture moderne et un cœur de ville historique. Programme résidentiel d'exception de 71 appartements du studio au T3, offrant un art de vivre d'une rare élégance avec surfaces commerciales intégrées.",
       "features": [
-        "Appartements d'exception en duplex",
+        "71 appartements du studio au T3",
+        "1010m² de locaux commerciaux au rez-de-chaussée",
         "Garages boxés privatifs en sous-sol",
-        "Salle de fitness réservée aux résidents",
-        "Hall d'accueil en marbre et design contemporain"
+        "Hall d'accueil au design contemporain et soigné"
       ],
       "images": [
         "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
@@ -53,6 +52,336 @@
         "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80"
       ],
       "moreInfoImage": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "ecu",
+      "title": "L'Écu",
+      "location": "Montpellier (34)",
+      "description": "Une réalisation architecturale contemporaine et élégante idéalement située au cœur de la métropole de Montpellier.",
+      "features": [
+        "Hall d'accueil design sécurisé",
+        "Architecture citadine moderne",
+        "Proximité immédiate des commodités et transports"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "europea",
+      "title": "Europea",
+      "location": "Montpellier (34)",
+      "description": "Un ensemble immobilier mixte d'envergure mariant logements de standing, bureaux et espaces commerciaux au cœur d'un quartier dynamique.",
+      "features": [
+        "36 logements du T2 au T4 Duplex",
+        "410m² de bureaux fonctionnels",
+        "156m² de locaux commerciaux en rez-de-chaussée"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "terrasses-de-l-ecu",
+      "title": "Les Terrasses de l'Écu",
+      "location": "Montpellier (34)",
+      "description": "Une prestigieuse résidence surélevée offrant de superbes perspectives urbaines et un confort de vie absolu à ses résidents.",
+      "features": [
+        "84 logements du T2 au T5 en Duplex",
+        "Piscine de copropriété exclusive",
+        "Grands balcons et terrasses privatives"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "clos-du-cedre",
+      "title": "Le Clos du Cèdre",
+      "location": "Montpellier (34)",
+      "description": "Une copropriété intimiste et verdoyante intégrée harmonieusement dans son environnement, préservant calme et sérénité.",
+      "features": [
+        "30 logements du Studio au T3",
+        "Espaces extérieurs arborés",
+        "Prestations intérieures soignées"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "terrasses-botaniques",
+      "title": "Les Terrasses Botaniques",
+      "location": "Montpellier (34)",
+      "description": "Une adresse résidentielle haut de gamme tournée vers la nature, proposant des appartements aux volumes généreux.",
+      "features": [
+        "56 logements du T2 au T6 en Duplex",
+        "Piscine privative au sein de la résidence",
+        "Architecture bioclimatique et terrasses ensoleillées"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "clos-de-richter",
+      "title": "Le Clos de Richter",
+      "location": "Montpellier (34)",
+      "description": "Une réalisation contemporaine de standing située dans le quartier universitaire et d'affaires très prisé de Richter.",
+      "features": [
+        "Architecture moderne aux lignes épurées",
+        "Logements lumineux avec larges terrasses",
+        "Emplacement stratégique et forte valeur patrimoniale"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "terrasses-du-golf",
+      "title": "Les Terrasses du Golf",
+      "location": "La Grande Motte (34)",
+      "description": "Une résidence d'exception idéalement implantée en lisière du célèbre golf de La Grande Motte, offrant un cadre de vie calme et verdoyant.",
+      "features": [
+        "Vue panoramique sur le golf",
+        "Architecture intégrée de style grand-mottois",
+        "Proximité immédiate des plages et des commerces"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "pinede-du-golf",
+      "title": "La Pinède du Golf",
+      "location": "La Grande Motte (34)",
+      "description": "Un havre de paix niché au cœur des pins maritimes, alliant confort résidentiel et douceur de vivre méditerranéenne.",
+      "features": [
+        "Cadre naturel boisé et protégé",
+        "Prestations intérieures haut de gamme",
+        "Grandes terrasses privatives sans vis-à-vis"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "dunes-d-or",
+      "title": "Les Dunes d'Or",
+      "location": "La Grande Motte (34)",
+      "description": "Une signature architecturale audacieuse en courbes parfaites, à deux pas du littoral, offrant une luminosité exceptionnelle.",
+      "features": [
+        "Architecture en résille courbe emblématique",
+        "Accès rapide aux plages de sable fin",
+        "Confort thermique et acoustique optimisé"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "chalet-des-ecrins",
+      "title": "Le Chalet des Écrins",
+      "location": "Orcières Merlette (05)",
+      "description": "Une magnifique résidence de montagne à l'esprit chalet traditionnel, offrant un accès privilégié aux pistes du domaine d'Orcières.",
+      "features": [
+        "Matériaux nobles (bois et pierre de montagne)",
+        "Emplacement idéal au pied des pistes",
+        "Casiers à skis individuels et parkings sécurisés"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "chalet-des-alpages",
+      "title": "Le Chalet des Alpages",
+      "location": "Valmeinier (73)",
+      "description": "L'alliance parfaite de l'authenticité alpine et du confort moderne au sein d'une station de ski familiale et dynamique.",
+      "features": [
+        "Départ et retour skis aux pieds",
+        "Vues imprenables sur les sommets de Maurienne",
+        "Espaces intérieurs chaleureux et optimisés"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "ecrins-du-mont-blanc",
+      "title": "Les Écrins du Mont Blanc",
+      "location": "Praz-Sur-Arly (74)",
+      "description": "Une adresse prestigieuse au cœur du village de Praz-sur-Arly, face au panorama grandiose du massif du Mont-Blanc.",
+      "features": [
+        "Vue panoramique sur le Mont-Blanc",
+        "Esprit village authentique et préservé",
+        "Prestations et finitions intérieures de grand standing"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "bormes-les-mimosas",
+      "title": "Les Terrasses Bormes Les Mimosas",
+      "location": "Bormes-Les-Mimosas (83)",
+      "description": "Surplombant l'un des plus beaux villages fleuris de France, cette résidence offre un panorama exceptionnel entre terre et mer.",
+      "features": [
+        "Terrasses ensoleillées avec vue dégagée",
+        "Proximité immédiate du vieux village médiéval",
+        "Environnement calme aux essences méditerranéennes"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "hauts-du-port",
+      "title": "Les Hauts du Port Carqueiranne",
+      "location": "Carqueiranne (83)",
+      "description": "Une résidence de standing idéalement située sur les hauteurs de Carqueiranne, offrant une vue imprenable sur le port et le littoral.",
+      "features": [
+        "Position dominante avec panorama mer",
+        "À quelques minutes à pied du port et des plages",
+        "Architecture contemporaine soignée"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "val-d-or-le-levandou",
+      "title": "Les Terrasses du Val d'Or le Levandou",
+      "location": "Le Levandou (83)",
+      "description": "Une adresse résidentielle de prestige au cœur du Lavandou, conçue pour maximiser l'ensoleillement et le confort au quotidien.",
+      "features": [
+        "Grandes terrasses à vivre",
+        "Prestations résidentielles haut de gamme",
+        "Proximité des plages de sable fin"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "le-meridien",
+      "title": "Le Méridien",
+      "location": "Vendargues (34)",
+      "description": "Un projet immobilier moderne et qualitatif parfaitement intégré dans le tissu urbain résidentiel de Vendargues.",
+      "features": [
+        "Ensemble de standing de 35 logements",
+        "Parkings privatifs sécurisés",
+        "Espaces de vie fonctionnels et lumineux"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "villa-vendargues",
+      "title": "Villa privée",
+      "location": "Vendargues (34)",
+      "description": "Une réalisation exclusive de villa individuelle contemporaine offrant des prestations haut de gamme entièrement personnalisées.",
+      "features": [
+        "Architecture sur mesure unique",
+        "Jardin privatif paysager",
+        "Matériaux de construction premium"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "residence-le-mer",
+      "title": "Résidence Le Mer",
+      "location": "Villeneuve-lès-Maguelone (34)",
+      "description": "Un ensemble résidentiel idéalement situé entre étangs et mer, combinant un cadre de vie paisible et l'accès direct aux commerces.",
+      "features": [
+        "30 logements du T2 au T4",
+        "1 local commercial en rez-de-chaussée",
+        "Proximité immédiate du littoral préservé"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "residence-le-parc",
+      "title": "Résidence Le Parc",
+      "location": "Saint-Georges-d'Orques (34)",
+      "description": "Une charmante copropriété à taille humaine implantée dans un environnement verdoyant et calme, aux portes de Montpellier.",
+      "features": [
+        "Résidence intimiste de 13 logements",
+        "Cadre de vie calme et résidentiel",
+        "Prestations de qualité adaptées au confort moderne"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "parc-2000",
+      "title": "Résidence Parc 2000",
+      "location": "Montpellier (34)",
+      "description": "Un ensemble immobilier d'affaires fonctionnel et stratégique, dédié aux activités professionnelles et tertiaires à Montpellier.",
+      "features": [
+        "Lots de bureaux modulables",
+        "455m² de surface de bureaux au total",
+        "Excellente accessibilité routière et transports"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "parc-7000",
+      "title": "Résidence Parc 7000",
+      "location": "Montpellier (34)",
+      "description": "Un pôle tertiaire contemporain offrant des espaces de travail lumineux et performants pour les entreprises.",
+      "features": [
+        "3 lots de bureaux de standing",
+        "675m² de surface de bureaux au total",
+        "Parkings et accès sécurisés"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
+    },
+    {
+      "id": "les-micocouliers",
+      "title": "Résidence Les Micocouliers",
+      "location": "Montpellier (34)",
+      "description": "Un lotissement exclusif de villas haut de gamme offrant un aménagement extérieur d'une rareté absolue en milieu urbain.",
+      "features": [
+        "10 Villas individuelles de type T4 en Duplex",
+        "3 piscines privatives au sein du domaine",
+        "Prestations intérieures luxueuses"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "moreInfoImage": ""
     }
   ],
   "futureProjectsList": [
