@@ -2,35 +2,28 @@ document.addEventListener('DOMContentLoaded', async () => {
   let projectsData = [];
   let futureProjectsData = [];
 
-  // Chargement asynchrone des données des projets (JSON)
   try {
     const response = await fetch('data/projects.json');
     const data = await response.json();
     projectsData = data.projectsList || [];
     futureProjectsData = data.futureProjectsList || [];
   } catch (error) {
-    console.error("Erreur lors du chargement des projets :", error);
+    console.error("Erreur projets:", error);
   }
 
-  // 1. Gestion de la transition de page (Morphing Overlay)
   const overlay = document.querySelector('.page-transition-overlay');
   if (overlay) {
-    setTimeout(() => {
-      overlay.style.pointerEvents = 'none';
-    }, 800);
+    setTimeout(() => { overlay.style.pointerEvents = 'none'; }, 800);
   }
 
-  // 2. Gestion Globale du Dark Mode
   const themeToggle = document.getElementById('theme-toggle');
-  const currentTheme = localStorage.getItem('theme') || 'light';
-
-  if (currentTheme === 'dark') {
+  if (localStorage.getItem('theme') === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
   }
 
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-      let isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
       if (isDark) {
         document.documentElement.removeAttribute('data-theme');
         localStorage.setItem('theme', 'light');
@@ -41,7 +34,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // 3. Moteur Dynamique des Onglets et des Galeries Photos
   const initProjectEngine = (dataList, tabsContainerId, detailsContainerId) => {
     const tabsContainer = document.getElementById(tabsContainerId);
     const detailsContainer = document.getElementById(detailsContainerId);
@@ -49,19 +41,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!tabsContainer || !detailsContainer || dataList.length === 0) return;
 
     const showProject = (project) => {
-      // Nettoyage des états actifs sur les boutons de la section concernée
       tabsContainer.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
       const activeBtn = document.getElementById(`tab-${project.id}`);
       if (activeBtn) activeBtn.classList.add('active');
 
-      let currentImgIndex = 0;
-      const images = project.images && project.images.length > 0 ? project.images : ['https://via.placeholder.com/1200x800?text=Aucun+visuel'];
-
-      // Effet visuel fluide de transition de contenu
       detailsContainer.classList.add('skeleton');
 
       setTimeout(() => {
         detailsContainer.classList.remove('skeleton');
+        let currentImgIndex = 0;
+        const images = project.images && project.images.length > 0 ? project.images : ['https://via.placeholder.com/1200x800?text=Aucun+visuel'];
+
         detailsContainer.innerHTML = `
           <div class="carousel-container">
             <button class="carousel-nav prev-btn" aria-label="Précédente">&lt;</button>
@@ -83,7 +73,6 @@ document.addEventListener('DOMContentLoaded', async () => {
           </div>
         `;
 
-        // Éléments internes du carrousel généré
         const carouselImg = detailsContainer.querySelector('#carousel-img');
         const dots = detailsContainer.querySelectorAll('.dot');
 
@@ -97,7 +86,6 @@ document.addEventListener('DOMContentLoaded', async () => {
           dots.forEach((dot, dIdx) => dot.classList.toggle('active', dIdx === currentImgIndex));
         };
 
-        // Navigation Suivant / Précédent
         detailsContainer.querySelector('.next-btn').addEventListener('click', (e) => {
           e.stopPropagation();
           updateCarousel((currentImgIndex + 1) % images.length);
@@ -114,12 +102,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           });
         });
 
-        // Ouverture de la Lightbox au clic sur l'image
-        carouselImg.addEventListener('click', () => {
-          openLightbox(images, currentImgIndex);
-        });
+        carouselImg.addEventListener('click', () => openLightbox(images, currentImgIndex));
 
-        // Bouton En Savoir Plus alternatif
         if (project.moreInfoImage) {
           detailsContainer.querySelector('#btn-more-info').addEventListener('click', () => {
             openLightbox([project.moreInfoImage], 0);
@@ -128,7 +112,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       }, 400);
     };
 
-    // Injection dynamique des onglets de sélection
     dataList.forEach(proj => {
       const btn = document.createElement('button');
       btn.className = 'tab-btn';
@@ -138,17 +121,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       tabsContainer.appendChild(btn);
     });
 
-    // Lecture du Hash URL éventuel pour l'accès direct
     const currentHash = window.location.hash.replace('#', '');
     const requestedProject = dataList.find(p => p.id === currentHash) || dataList[0];
     if (requestedProject) showProject(requestedProject);
   };
 
-  // Lancement des moteurs d'affichage
   initProjectEngine(projectsData, 'project-tabs', 'project-details');
   initProjectEngine(futureProjectsData, 'future-project-tabs', 'future-project-details');
 
-  // 4. Moteur Lightbox Ultra-Moderne (Plein Écran Zoom)
   const openLightbox = (imagesList, startIndex) => {
     let lightbox = document.getElementById('lightbox-modal');
     if (!lightbox) {
@@ -158,9 +138,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       lightbox.innerHTML = `
         <span class="lightbox-close">&times;</span>
         <button class="lightbox-nav lightbox-prev">&lt;</button>
-        <div class="lightbox-content">
-          <img id="lightbox-img" src="" alt="Zoom réalisation">
-        </div>
+        <div class="lightbox-content"><img id="lightbox-img" src="" alt="Zoom"></div>
         <button class="lightbox-nav lightbox-next">&gt;</button>
       `;
       document.body.appendChild(lightbox);
@@ -168,7 +146,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       lightbox.querySelector('.lightbox-close').addEventListener('click', () => lightbox.classList.remove('active'));
       lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('active'); });
 
-      // Contrôles au clavier (Échap / Flèches)
       document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('active')) return;
         if (e.key === 'Escape') lightbox.classList.remove('active');
@@ -206,9 +183,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     lightbox.classList.add('active');
   };
 
-  // 5. Effet Effet 3D Tilt sur les conteneurs
   const tiltCards = document.querySelectorAll('.tilt-card-3d');
   tiltCards.forEach(card => {
+    card.style.transition = 'transform 0.1s ease';
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left - (rect.width / 2);
@@ -222,10 +199,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // 6. Effet Magnétique Avancé pour les boutons Premium
   const magneticBtns = document.querySelectorAll('.magnetic-btn');
   magneticBtns.forEach(btn => {
-    card.style.transition = 'transform 0.1s ease'; // Fluidité accrue
+    btn.style.transition = 'transform 0.1s ease';
     btn.addEventListener('mousemove', (e) => {
       const rect = btn.getBoundingClientRect();
       const x = e.clientX - rect.left - (rect.width / 2);
@@ -237,7 +213,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // 7. Moteur d'apparition Progressive au Défilement (Scroll Reveal)
   const reveals = document.querySelectorAll('.scroll-reveal');
   const revealOnScroll = () => {
     reveals.forEach(el => {
@@ -251,7 +226,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   window.addEventListener('scroll', revealOnScroll);
   revealOnScroll();
 
-  // 8. Menu Hamburger Mobile Ergonomique
   const hamburgerBtn = document.querySelector('.hamburger-btn');
   const navElement = document.querySelector('header.glassmorphism nav');
   const navLinks = document.querySelectorAll('header.glassmorphism nav a');
@@ -272,7 +246,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // 9. Traitement Formulaire via API Web3Forms externe
   const contactForm = document.querySelector('.contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
@@ -294,7 +267,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           contactForm.reset();
           const successMessage = document.createElement('div');
           successMessage.className = 'form-success-box';
-          successMessage.innerHTML = `<h4>Message envoyé avec succès !</h4><p>Nous reviendrons vers vous rapidement.</p>`;
+          successMessage.innerHTML = `<h4>Message envoyé !</h4><p>Nous vous répondrons rapidement.</p>`;
           contactForm.prepend(successMessage);
 
           setTimeout(() => {
@@ -302,7 +275,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             setTimeout(() => successMessage.remove(), 500);
           }, 8000);
         } else {
-          alert("Une erreur est survenue lors de l'envoi.");
+          alert("Une erreur est survenue.");
         }
       } catch (error) {
         console.error("Erreur formulaire:", error);
