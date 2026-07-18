@@ -1,34 +1,67 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mentions Légales | Sérénis Développement</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .legal-content { max-width: 900px; margin: 10rem auto 4rem auto; padding: 0 5%; }
-        .legal-content h1 { font-size: 2.2rem; margin-bottom: 2rem; font-weight: 600; text-align: center; }
-        .legal-content h2 { font-size: 1.4rem; margin: 2.5rem 0 1rem 0; color: var(--accent-color); font-weight: 600; }
-        .legal-content p { margin-bottom: 1.2rem; opacity: 0.85; font-size: 0.95rem; line-height: 1.7; }
-        .legal-content ul { margin-left: 20px; margin-bottom: 1.5rem; opacity: 0.85; font-size: 0.95rem; }
+        .legal-content {
+            max-width: 900px;
+            margin: 10rem auto 4rem auto;
+            padding: 0 5%;
+        }
+
+        .legal-content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .legal-content h2 {
+            font-size: 1.4rem;
+            margin: 2.5rem 0 1rem 0;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .legal-content p {
+            margin-bottom: 1.2rem;
+            opacity: 0.85;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .legal-content ul {
+            margin-left: 20px;
+            margin-bottom: 1.5rem;
+            opacity: 0.85;
+            font-size: 0.95rem;
+        }
     </style>
 </head>
+
 <body>
     <div class="page-transition-overlay"></div>
 
     <header class="glassmorphism">
         <a href="index.html" class="logo">Sérénis Développement</a>
+        <div class="header-controls">
+            <button id="theme-toggle" aria-label="Changer de thème">🌓</button>
+            <button class="hamburger-btn" aria-label="Ouvrir le menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
         <nav>
             <ul>
                 <li><a href="index.html" class="nav-link">Accueil</a></li>
                 <li><a href="index.html#a-propos" class="nav-link">À propos</a></li>
-                <li class="dropdown">
-                    <a href="realisations.html" class="nav-link">Réalisations ▾</a>
-                    <ul class="dropdown-content" id="nav-projects-list">
-                        <!-- Liste dynamique -->
-                    </ul>
-                </li>
+                <li><a href="realisations.html" class="nav-link">Réalisations</a></li>
                 <li><a href="index.html#contact" class="btn-contact">Contact</a></li>
             </ul>
         </nav>
@@ -36,28 +69,37 @@
 
     <main class="legal-content">
         <h1>Mentions Légales</h1>
-        
         <h2>1. Présentation du site internet</h2>
-        <p>En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs du site internet de Sérénis Développement l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi :</p>
+        <p>En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il
+            est précisé aux utilisateurs du site internet de Sérénis Développement l'identité des différents
+            intervenants dans le cadre de sa réalisation et de son suivi :</p>
         <ul>
-            <li><strong>Propriétaire :</strong> SÉRÉNIS DÉVELOPPEMENT – Société par Actions Simplifiée (SAS) – Siège social : Montpellier (Hérault)[cite: 1]</li>
+            <li><strong>Propriétaire :</strong> SÉRÉNIS DÉVELOPPEMENT - Société par Actions Simplifiée (SAS) - Siège
+                social : Montpellier (Hérault)[cite: 1]</li>
             <li><strong>Créateur du site :</strong> Sérénis Développement</li>
-            <li><strong>Responsable de la publication :</strong> Thierry Dumas (contact@serenis-promotion.com)[cite: 1]</li>
+            <li><strong>Responsable de la publication :</strong> Thierry Dumas (contact@serenis-promotion.com)[cite: 1]
+            </li>
             <li><strong>Hébergeur :</strong> Netlify Inc. (440 2nd Street, Suite 100, San Francisco, CA 94107)</li>
         </ul>
 
-        <h2>2. Conditions générales d’utilisation du site</h2>
-        <p>L’utilisation du site implique l’acceptation pleine et entière des conditions générales d’utilisation ci-après décrites. Ces conditions d’utilisation sont susceptibles d’être modifiées ou complétées à tout moment, les utilisateurs du site sont donc invités à les consulter de manière régulière.</p>
+        <h2>2. Conditions générales d'utilisation du site</h2>
+        <p>L'utilisation du site implique l'acceptation pleine et entière des conditions générales d'utilisation
+            ci-après décrites. Ces conditions d'utilisation sont susceptibles d'être modifiées ou complétées à tout
+            moment.</p>
 
         <h2>3. Description des services fournis</h2>
-        <p>Le site internet a pour objet de fournir une information concernant l’ensemble des activités de la société, notamment la promotion et le développement de projets immobiliers[cite: 1]. Sérénis Développement s’efforce de fournir des informations aussi précises que possible. Toutefois, elle ne pourra être tenue responsable des omissions, des inexactitudes et des carences dans la mise à jour, qu’elles soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations.[cite: 1]</p>
+        <p>Le site internet a pour objet de fournir une information concernant l'ensemble des activités de la société,
+            notamment la promotion et le développement de projets immobiliers[cite: 1]. Sérénis Développement s'efforce
+            de fournir des informations aussi précises que possible[cite: 1].</p>
 
         <h2>4. Propriété intellectuelle</h2>
-        <p>Sérénis Développement est propriétaire des droits de propriété intellectuelle ou détient les droits d’usage sur tous les éléments accessibles sur le site internet, notamment les textes, images, graphismes, logos, vidéos, architecture, icônes et sons.[cite: 1]</p>
-        <p>Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de la direction de Sérénis Développement.[cite: 1]</p>
+        <p>Sérénis Développement est propriétaire des droits de propriété intellectuelle ou détient les droits d'usage
+            sur tous les éléments accessibles sur le site internet (textes, images, graphismes, logos, icônes)[cite: 1].
+            Toute reproduction ou représentation non autorisée est interdite[cite: 1].</p>
 
         <h2>5. Droit applicable</h2>
-        <p>Tout litige en relation avec l’utilisation du site est soumis au droit français. En dehors des cas où la loi ne le permet pas, il est fait attribution exclusive de juridiction aux tribunaux compétents de Montpellier.</p>
+        <p>Tout litige en relation avec l'utilisation du site est soumis au droit français. Il est fait attribution
+            exclusive de juridiction aux tribunaux compétents de Montpellier.</p>
     </main>
 
     <footer>
@@ -69,7 +111,7 @@
         <p>&copy; 2026 Sérénis Développement. Tous droits réservés.</p>
     </footer>
 
-    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

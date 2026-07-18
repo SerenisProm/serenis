@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let projectsData = [];
   let futureProjectsData = [];
 
-  // Chargement asynchrone des bases de données
+  // Chargement asynchrone des données des projets (JSON)
   try {
     const response = await fetch('data/projects.json');
     const data = await response.json();
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error("Erreur lors du chargement des projets :", error);
   }
 
-  // 1. Transition de Page Morphing
+  // 1. Gestion de la transition de page (Morphing Overlay)
   const overlay = document.querySelector('.page-transition-overlay');
   if (overlay) {
     setTimeout(() => {
@@ -20,16 +20,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, 800);
   }
 
-  // 2. Dark/Light Mode
-  const themeToggle = document.getElementById('theme-toggle') || document.getElementById('theme-toggle-page');
+  // 2. Gestion Globale du Dark Mode
+  const themeToggle = document.getElementById('theme-toggle');
   const currentTheme = localStorage.getItem('theme') || 'light';
+
   if (currentTheme === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
   }
+
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-      let theme = document.documentElement.getAttribute('data-theme');
-      if (theme === 'dark') {
+      let isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
         document.documentElement.removeAttribute('data-theme');
         localStorage.setItem('theme', 'light');
       } else {
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // 3. FONCTION UNIVERSELLE : ONGLETS, CARROUSEL & LIGHTBOX
+  // 3. Moteur Dynamique des Onglets et des Galeries Photos
   const initProjectEngine = (dataList, tabsContainerId, detailsContainerId) => {
     const tabsContainer = document.getElementById(tabsContainerId);
     const detailsContainer = document.getElementById(detailsContainerId);
@@ -47,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!tabsContainer || !detailsContainer || dataList.length === 0) return;
 
     const showProject = (project) => {
-      // Activer l'onglet visuel dans ce conteneur précis
+      // Nettoyage des états actifs sur les boutons de la section concernée
       tabsContainer.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
       const activeBtn = document.getElementById(`tab-${project.id}`);
       if (activeBtn) activeBtn.classList.add('active');
@@ -55,15 +57,16 @@ document.addEventListener('DOMContentLoaded', async () => {
       let currentImgIndex = 0;
       const images = project.images && project.images.length > 0 ? project.images : ['https://via.placeholder.com/1200x800?text=Aucun+visuel'];
 
+      // Effet visuel fluide de transition de contenu
       detailsContainer.classList.add('skeleton');
 
       setTimeout(() => {
         detailsContainer.classList.remove('skeleton');
         detailsContainer.innerHTML = `
           <div class="carousel-container">
-            <button class="carousel-nav prev-btn" aria-label="Photo précédente">&lt;</button>
+            <button class="carousel-nav prev-btn" aria-label="Précédente">&lt;</button>
             <img id="carousel-img" src="${images[0]}" alt="Photo de ${project.title}" style="cursor: pointer;">
-            <button class="carousel-nav next-btn" aria-label="Photo suivante">&gt;</button>
+            <button class="carousel-nav next-btn" aria-label="Suivante">&gt;</button>
             <div class="carousel-dots">
               ${images.map((_, idx) => `<span class="dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></span>`).join('')}
             </div>
@@ -74,12 +77,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">${project.description}</p>
             <h5 style="margin-bottom: 0.5rem; font-weight: 600;">Caractéristiques & Prestations :</h5>
             <ul style="list-style: square; padding-left: 20px; opacity: 0.8; margin-bottom: 2rem;">
-              ${project.features.map(f => `<li>${f}</li>`).join('')}
+              ${project.features.map(feat => `<li>${feat}</li>`).join('')}
             </ul>
             ${project.moreInfoImage ? `<button id="btn-more-info" class="btn-more-info">En savoir plus</button>` : ''}
           </div>
         `;
 
+        // Éléments internes du carrousel généré
         const carouselImg = detailsContainer.querySelector('#carousel-img');
         const dots = detailsContainer.querySelectorAll('.dot');
 
@@ -90,34 +94,32 @@ document.addEventListener('DOMContentLoaded', async () => {
             carouselImg.src = images[currentImgIndex];
             carouselImg.style.opacity = '1';
           }, 150);
-          dots.forEach((dot, dIdx) => {
-            dot.classList.toggle('active', dIdx === currentImgIndex);
-          });
+          dots.forEach((dot, dIdx) => dot.classList.toggle('active', dIdx === currentImgIndex));
         };
 
+        // Navigation Suivant / Précédent
         detailsContainer.querySelector('.next-btn').addEventListener('click', (e) => {
           e.stopPropagation();
-          let nextIndex = (currentImgIndex + 1) % images.length;
-          updateCarousel(nextIndex);
+          updateCarousel((currentImgIndex + 1) % images.length);
         });
 
         detailsContainer.querySelector('.prev-btn').addEventListener('click', (e) => {
           e.stopPropagation();
-          let prevIndex = (currentImgIndex - 1 + images.length) % images.length;
-          updateCarousel(prevIndex);
+          updateCarousel((currentImgIndex - 1 + images.length) % images.length);
         });
 
         dots.forEach(dot => {
           dot.addEventListener('click', (e) => {
-            const targetIdx = parseInt(e.target.getAttribute('data-index'));
-            updateCarousel(targetIdx);
+            updateCarousel(parseInt(e.target.getAttribute('data-index')));
           });
         });
 
+        // Ouverture de la Lightbox au clic sur l'image
         carouselImg.addEventListener('click', () => {
           openLightbox(images, currentImgIndex);
         });
 
+        // Bouton En Savoir Plus alternatif
         if (project.moreInfoImage) {
           detailsContainer.querySelector('#btn-more-info').addEventListener('click', () => {
             openLightbox([project.moreInfoImage], 0);
@@ -126,7 +128,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }, 400);
     };
 
-    // Génération automatique des boutons d'onglets
+    // Injection dynamique des onglets de sélection
     dataList.forEach(proj => {
       const btn = document.createElement('button');
       btn.className = 'tab-btn';
@@ -136,19 +138,17 @@ document.addEventListener('DOMContentLoaded', async () => {
       tabsContainer.appendChild(btn);
     });
 
-    // Gestion du ciblage par Hash URL ou Premier projet par défaut
+    // Lecture du Hash URL éventuel pour l'accès direct
     const currentHash = window.location.hash.replace('#', '');
     const requestedProject = dataList.find(p => p.id === currentHash) || dataList[0];
-    if (requestedProject) {
-      showProject(requestedProject);
-    }
+    if (requestedProject) showProject(requestedProject);
   };
 
-  // Lancement du moteur pour les deux catégories distinctes
+  // Lancement des moteurs d'affichage
   initProjectEngine(projectsData, 'project-tabs', 'project-details');
   initProjectEngine(futureProjectsData, 'future-project-tabs', 'future-project-details');
 
-  // 4. Fonction Lightbox (Zoom Moderne)
+  // 4. Moteur Lightbox Ultra-Moderne (Plein Écran Zoom)
   const openLightbox = (imagesList, startIndex) => {
     let lightbox = document.getElementById('lightbox-modal');
     if (!lightbox) {
@@ -165,13 +165,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       `;
       document.body.appendChild(lightbox);
 
-      lightbox.querySelector('.lightbox-close').addEventListener('click', () => {
-        lightbox.classList.remove('active');
-      });
-      lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) lightbox.classList.remove('active');
-      });
+      lightbox.querySelector('.lightbox-close').addEventListener('click', () => lightbox.classList.remove('active'));
+      lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('active'); });
 
+      // Contrôles au clavier (Échap / Flèches)
       document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('active')) return;
         if (e.key === 'Escape') lightbox.classList.remove('active');
@@ -202,23 +199,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       nextBtn.style.display = 'flex';
     }
 
-    prevBtn.onclick = (e) => {
-      e.stopPropagation();
-      const prevIdx = (currentIndex - 1 + imagesList.length) % imagesList.length;
-      updateLightboxImg(prevIdx);
-    };
-
-    nextBtn.onclick = (e) => {
-      e.stopPropagation();
-      const nextIdx = (currentIndex + 1) % imagesList.length;
-      updateLightboxImg(nextIdx);
-    };
+    prevBtn.onclick = (e) => { e.stopPropagation(); updateLightboxImg((currentIndex - 1 + imagesList.length) % imagesList.length); };
+    nextBtn.onclick = (e) => { e.stopPropagation(); updateLightboxImg((currentIndex + 1) % imagesList.length); };
 
     updateLightboxImg(startIndex);
     lightbox.classList.add('active');
   };
 
-  // 5. Effet 3D Tilt sur la Carte
+  // 5. Effet Effet 3D Tilt sur les conteneurs
   const tiltCards = document.querySelectorAll('.tilt-card-3d');
   tiltCards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
@@ -234,9 +222,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // 6. Effet Magnétique sur les Boutons
+  // 6. Effet Magnétique Avancé pour les boutons Premium
   const magneticBtns = document.querySelectorAll('.magnetic-btn');
   magneticBtns.forEach(btn => {
+    card.style.transition = 'transform 0.1s ease'; // Fluidité accrue
     btn.addEventListener('mousemove', (e) => {
       const rect = btn.getBoundingClientRect();
       const x = e.clientX - rect.left - (rect.width / 2);
@@ -248,7 +237,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // 7. Scroll Reveal
+  // 7. Moteur d'apparition Progressive au Défilement (Scroll Reveal)
   const reveals = document.querySelectorAll('.scroll-reveal');
   const revealOnScroll = () => {
     reveals.forEach(el => {
@@ -262,7 +251,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   window.addEventListener('scroll', revealOnScroll);
   revealOnScroll();
 
-  // 8. Menu Hamburger Mobile Propre
+  // 8. Menu Hamburger Mobile Ergonomique
   const hamburgerBtn = document.querySelector('.hamburger-btn');
   const navElement = document.querySelector('header.glassmorphism nav');
   const navLinks = document.querySelectorAll('header.glassmorphism nav a');
@@ -283,7 +272,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // 9. Formulaire de Contact API (Web3Forms)
+  // 9. Traitement Formulaire via API Web3Forms externe
   const contactForm = document.querySelector('.contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
@@ -298,23 +287,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       const formData = new FormData(contactForm);
       try {
-        const response = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: formData
-        });
+        const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
         const result = await response.json();
+
         if (result.success) {
           contactForm.reset();
           const successMessage = document.createElement('div');
           successMessage.className = 'form-success-box';
           successMessage.innerHTML = `<h4>Message envoyé avec succès !</h4><p>Nous reviendrons vers vous rapidement.</p>`;
           contactForm.prepend(successMessage);
+
           setTimeout(() => {
             successMessage.style.opacity = '0';
             setTimeout(() => successMessage.remove(), 500);
           }, 8000);
         } else {
-          alert("Une erreur est survenue.");
+          alert("Une erreur est survenue lors de l'envoi.");
         }
       } catch (error) {
         console.error("Erreur formulaire:", error);

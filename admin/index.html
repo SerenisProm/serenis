@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sérénis Développement — Administration</title>
-  
-  <!-- Police Montserrat du site -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  
-  <!-- Le widget Identity pour la connexion -->
+  <title>Sérénis Développement | Administration</title>
+
+  <!-- Police Montserrat -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
   <style>
-    /* Style général épuré */
     body {
       font-family: 'Montserrat', sans-serif !important;
-      background: #f8fafc !important; /* Fond gris très clair ultra propre */
+      background: #f8fafc !important;
     }
 
-    /* 🚫 SUPPRESSION DE L'APERÇU VISUEL À DROITE */
-    div[class^="Pane2"], 
+    /* Masquage de l'aperçu visuel à droite (inutile pour le JSON) */
+    div[class="Pane2"],
     .nc-entryEditor-previewPaneContainer,
     [class*="previewPaneContainer"] {
       display: none !important;
     }
 
-    /* 📐 LE FORMULAIRE PREND TOUTE LA LARGEUR ET SE CENTRE */
+    /* Le formulaire prend toute la largeur disponible */
     div[class^="Pane1"],
     .nc-entryEditor-controlPaneContainer,
     [class*="controlPaneContainer"] {
       width: 100% !important;
-      max-width: 850px !important;
+      max-width: 900px !important;
       margin: 0 auto !important;
       padding: 30px 10px !important;
     }
 
-    /* 🫧 DESIGN DES CHAMPS EN "BULLES" / BLOCS BLANCS ÉPURÉS */
-    div[class^="ControlContainer"], 
+    /* Design épuré pour les blocs de saisie */
+    div[class^="ControlContainer"],
     [class*="ControlContainer"] {
       background: #ffffff !important;
       border: 1px solid #e2e8f0 !important;
@@ -46,7 +46,7 @@
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
     }
 
-    /* Bouton de connexion style Sérénis */
+    /* Bouton de connexion aux couleurs de la charte */
     .nc-githubAuthenticationButton-button {
       background-color: #0f172a !important;
       border-radius: 30px !important;
@@ -55,8 +55,10 @@
     }
   </style>
 </head>
+
 <body>
-  <!-- Chargement du CMS une fois le body prêt -->
+  <!-- Script du CMS Decap -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js" defer></script>
 </body>
+
 </html>

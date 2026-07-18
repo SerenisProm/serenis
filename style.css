@@ -1,3 +1,4 @@
+/* Variables Globales Système */
 :root {
   --bg-color: #fcfcfd;
   --text-color: #1a202c;
@@ -7,7 +8,7 @@
   --border-color: rgba(15, 23, 42, 0.08);
   --font-main: 'Montserrat', sans-serif;
   --glass-blur: blur(12px);
-  --btn-radius: 30px; /* Boutons plus épurés et arrondis */
+  --btn-radius: 30px;
 }
 
 [data-theme="dark"] {
@@ -34,7 +35,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Page Morphing Transition Overlay */
+/* Page Morphing Overlay Animation */
 .page-transition-overlay {
   position: fixed;
   top: 0;
@@ -48,12 +49,17 @@ body {
   animation: pageMorph 0.8s cubic-bezier(0.85, 0, 0.15, 1) forwards;
 }
 
-@keyframes pageMorph {  
-  0% { transform: scaleY(1); }
-  100% { transform: scaleY(0); }
+@keyframes pageMorph {
+  0% {
+    transform: scaleY(1);
+  }
+
+  100% {
+    transform: scaleY(0);
+  }
 }
 
-/* Header Glassmorphism */
+/* Barre de Navigation Épurée */
 header.glassmorphism {
   position: fixed;
   top: 0;
@@ -78,67 +84,34 @@ header.glassmorphism {
   letter-spacing: 1px;
 }
 
-nav ul { 
-  list-style: none; 
-  display: flex; 
-  gap: 2rem; 
-  align-items: center; 
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
 }
 
-nav a.nav-link { 
-  text-decoration: none; 
-  color: var(--text-color); 
-  font-weight: 400; 
-  font-size: 0.9rem; 
-  transition: color 0.3s; 
+nav a.nav-link {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 400;
+  font-size: 0.9rem;
+  transition: color 0.3s;
 }
 
-nav a.nav-link:hover { 
-  color: var(--accent-color); 
+nav a.nav-link:hover,
+nav a.nav-link.active {
+  color: var(--accent-color);
 }
 
-/* Menu Déroulant Épuré */
-.dropdown { 
-  position: relative; 
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background: var(--bg-color);
-  backdrop-filter: var(--glass-blur);
-  min-width: 250px;
-  box-shadow: 0px 10px 30px rgba(0,0,0,0.05);
-  z-index: 1;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  overflow: hidden;
-}
-
-.dropdown-content a { 
-  padding: 14px 20px; 
-  display: block; 
-  text-decoration: none; 
-  color: var(--text-color); 
-  font-size: 0.85rem;
-} 
-
-.dropdown-content a:hover { 
-  background: var(--secondary-bg); 
-  color: var(--accent-color); 
-}
-
-.dropdown:hover .dropdown-content { 
-  display: block; 
-}
-
-/* Boutons Épurés (Moins bruts) */
-.btn-contact { 
-  border: 1.5px solid var(--primary-color); 
-  padding: 0.5rem 1.5rem; 
-  border-radius: var(--btn-radius); 
+/* Boutons */
+.btn-contact {
+  border: 1.5px solid var(--primary-color);
+  padding: 0.5rem 1.5rem;
+  border-radius: var(--btn-radius);
   text-decoration: none;
   font-size: 0.85rem;
+  color: var(--text-color);
   transition: all 0.3s ease;
 }
 
@@ -157,38 +130,23 @@ nav a.nav-link:hover {
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
   display: inline-block;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-primary:hover {
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
-/* Click Ripple Effect styling */
-.ripple {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple-anim 0.6s linear;
-  pointer-events: none;
+#theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 
-@keyframes ripple-anim {
-  to { transform: scale(4); opacity: 0; }
-} 
-
-#theme-toggle, #theme-toggle-page { 
-  background: none; 
-  border: none; 
-  font-size: 1.2rem; 
-  cursor: pointer; 
-}
-
-/* Animated Mesh Gradient background section */
+/* Hero & Mesh Gradient */
 .hero-mesh {
   position: relative;
   min-height: 100vh;
@@ -207,17 +165,24 @@ nav a.nav-link:hover {
 }
 
 @keyframes meshMovement {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.hero-content { 
-  max-width: 800px; 
-  z-index: 10; 
+.hero-content {
+  max-width: 800px;
+  z-index: 10;
 }
 
-/* Kinetic Typography */
 .kinetic-text span {
   display: block;
   font-size: 4.5rem;
@@ -233,12 +198,20 @@ nav a.nav-link:hover {
   animation: kineticReveal 0.8s cubic-bezier(0.85, 0, 0.15, 1) forwards;
 }
 
-.kinetic-text span:nth-child(2) { animation-delay: 0.2s; }
-.kinetic-text span:nth-child(3) { animation-delay: 0.4s; }
+.kinetic-text span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.kinetic-text span:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
 @keyframes kineticReveal {
-  to { opacity: 1; transform: translateY(0); }
-} 
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 .hero-content p {
   margin: 2rem 0 4rem 0;
@@ -246,14 +219,14 @@ nav a.nav-link:hover {
   opacity: 0.8;
 }
 
-/* Infinite Marquee */
+/* Marquee / Bandeau Défilant */
 .marquee-container {
   overflow: hidden;
   white-space: nowrap;
   display: flex;
   background: var(--primary-color);
   color: var(--bg-color);
-  padding: 1rem 0;
+  padding: 1.2rem 0;
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 2px;
@@ -262,24 +235,31 @@ nav a.nav-link:hover {
 .marquee-content {
   display: flex;
   flex-shrink: 0;
+  gap: 3rem;
+  padding-right: 3rem;
   animation: marquee 25s linear infinite;
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
-/* Bento Grid Highlight */
-.about-section { 
-  padding: 8rem 5%; 
+/* Bento Grid System */
+.about-section {
+  padding: 8rem 5%;
 }
 
-.section-title { 
-  font-size: 2.25rem; 
-  text-align: center; 
-  margin-bottom: 4rem; 
-  font-weight: 600; 
+.section-title {
+  font-size: 2.25rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  font-weight: 600;
 }
 
 .bento-grid {
@@ -298,8 +278,6 @@ nav a.nav-link:hover {
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s;
-  position: relative;
-  overflow: hidden;
 }
 
 .bento-item:hover {
@@ -307,22 +285,31 @@ nav a.nav-link:hover {
   border-color: var(--accent-color);
 }
 
-.bento-large { grid-column: span 2; }
-.bento-medium { grid-column: span 2; }
-
-.bento-highlight {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, var(--secondary-bg) 100%);
+.bento-large,
+.bento-medium {
+  grid-column: span 2;
 }
 
-.bento-item h3 { margin-bottom: 1rem; font-size: 1.4rem; font-weight: 600; }
-.bento-item p { opacity: 0.8; font-size: 0.95rem; }
+.bento-highlight {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, var(--secondary-bg) 100%);
+}
 
-/* Section Portrait du Père (Thierry Dumas) */
+.bento-item h3 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.bento-item p {
+  opacity: 0.8;
+  font-size: 0.95rem;
+}
+
+/* Portrait Dirigeant */
 .founder-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   margin-top: 6rem;
   text-align: center;
 }
@@ -333,13 +320,13 @@ nav a.nav-link:hover {
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid var(--accent-color);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   margin-bottom: 1.5rem;
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.4s ease;
 }
 
 .founder-portrait-container:hover {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
 .founder-portrait {
@@ -351,20 +338,18 @@ nav a.nav-link:hover {
 .founder-name {
   font-size: 1.6rem;
   font-weight: 600;
-  color: var(--primary-color);
   margin-bottom: 0.2rem;
 }
 
 .founder-title {
   font-size: 0.95rem;
   opacity: 0.7;
-  font-weight: 400;
-} 
+}
 
-/* Sticky Stacking Cards */
-.stacking-section { 
-  padding: 6rem 5%; 
-  background: var(--secondary-bg); 
+/* Stacking Cards Section */
+.stacking-section {
+  padding: 6rem 5%;
+  background: var(--secondary-bg);
 }
 
 .stacking-container {
@@ -377,37 +362,48 @@ nav a.nav-link:hover {
 
 .stack-card {
   position: sticky;
-  top: 120px; /* Colle en descendant */
+  top: 120px;
   background: var(--bg-color);
   border: 1px solid var(--border-color);
   padding: 3rem;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.01);
 }
 
-.card-1 { transform: scale(0.98); }
-.card-2 { transform: scale(0.99); }
-.card-3 { transform: scale(1); }
+.card-1 {
+  transform: scale(0.96);
+}
 
-/* Page Réalisations */
-.projects-page { padding: 8rem 5% 4rem 5%; }
-.projects-page h1 { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; }
+.card-2 {
+  transform: scale(0.98);
+}
 
-/* Panel d'onglets au centre et déroulable horizontalement sur mobile */
-.tabs { 
-  display: flex; 
-  gap: 1rem; 
-  justify-content: flex-start; /* Aligné au début pour le scroll mobile */
-  margin-bottom: 3rem; 
+.card-3 {
+  transform: scale(1);
+}
+
+/* Pages Réalisations / Onglets */
+.projects-page {
+  padding: 8rem 5% 4rem 5%;
+}
+
+.projects-page h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  margin-bottom: 3rem;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   width: 100%;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
 }
 
 .tabs::-webkit-scrollbar {
@@ -417,11 +413,11 @@ nav a.nav-link:hover {
 .tabs::-webkit-scrollbar-thumb {
   background: var(--border-color);
   border-radius: 10px;
-} 
+}
 
 @media (min-width: 768px) {
   .tabs {
-    justify-content: center; /* Centré sur PC */
+    justify-content: center;
   }
 }
 
@@ -439,25 +435,14 @@ nav a.nav-link:hover {
   flex-shrink: 0;
 }
 
-.tab-btn:hover, .tab-btn.active {
+.tab-btn:hover,
+.tab-btn.active {
   background: var(--primary-color);
   color: var(--bg-color);
   border-color: var(--primary-color);
 }
 
-/* Skeleton Loading (pendant le chargement) */
-.skeleton {
-  background: linear-gradient(90deg, var(--secondary-bg) 25%, var(--border-color) 50%, var(--secondary-bg) 75%);
-  background-size: 200% 100%;
-  animation: loadingSkeleton 1.5s infinite;
-}
-
-@keyframes loadingSkeleton {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-/* Glassmorphism & 3D Tilt Card */
+/* Conteneur de détails des projets */
 .project-details-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -467,11 +452,9 @@ nav a.nav-link:hover {
   border: 1px solid var(--border-color);
   padding: 3rem;
   border-radius: 24px;
-  transform-style: preserve-3d;
-  position: relative; /* Pour positionner le bouton En savoir plus absolute */
-} 
+  position: relative;
+}
 
-/* Bouton En Savoir Plus en bas à droite */
 .btn-more-info {
   position: absolute;
   bottom: 3rem;
@@ -484,31 +467,78 @@ nav a.nav-link:hover {
   color: var(--accent-color);
   text-decoration: underline;
   cursor: pointer;
-  transition: color 0.3s ease, transform 0.2s ease;
 }
 
-.btn-more-info:hover {
-  color: var(--primary-color);
-  transform: translateY(-2px);
+/* Carrousel Visuel */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 16px;
+  margin-bottom: 2rem;
 }
 
-@media (max-width: 768px) {
-  .btn-more-info {
-    position: relative;
-    bottom: 0;
-    right: 0;
-    margin-top: 1.5rem;
-    display: inline-block;
-  }
+#carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.2s ease;
 }
 
-/* Contact Form & Section */
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.prev-btn {
+  left: 20px;
+}
+
+.next-btn {
+  right: 20px;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #fff;
+  transform: scale(1.2);
+}
+
+/* Structure Formulaire & Cartes Coordonnées */
 .contact-section {
   padding: 8rem 5%;
-  text-align: center;
 }
 
-/* Cartes d'informations de contact Thierry Dumas */
 .contact-cards-container {
   display: flex;
   justify-content: center;
@@ -520,32 +550,32 @@ nav a.nav-link:hover {
 .contact-info-card {
   background: var(--secondary-bg);
   border: 1px solid var(--border-color);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
   padding: 1.5rem 2rem;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 250px;
-  transition: transform 0.3s ease;
-}
-
-.contact-info-card:hover {
-  transform: translateY(-5px);
+  min-width: 260px;
 }
 
 .contact-icon {
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.contact-icon-img {
+  width: 35px;
+  height: auto;
+  object-fit: contain;
 }
 
 .contact-info-card h4 {
   font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
   opacity: 0.5;
   margin-bottom: 0.4rem;
+  text-transform: uppercase;
 }
 
 .contact-info-card a {
@@ -553,14 +583,12 @@ nav a.nav-link:hover {
   font-weight: 600;
   color: var(--text-color);
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
 .contact-info-card a:hover {
   color: var(--accent-color);
 }
 
-/* Le formulaire */
 .contact-form {
   max-width: 650px;
   margin: 0 auto;
@@ -573,158 +601,50 @@ nav a.nav-link:hover {
   border: 1px solid var(--border-color);
 }
 
-.contact-form input {
-  width: 100%;
-  padding: 1rem 1.5rem;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);  
-  background: var(--bg-color);
-  color: var(--text-color);
-  font-family: var(--font-main);
-  font-size: 0.95rem;
-  outline: none;
-}
-
-.contact-form input:focus, .contact-form textarea:focus {
-  border-color: var(--accent-color);
-}
-
-/* Règle demandée: Taille réglable en hauteur/longueur mais pas en largeur */
+.contact-form input,
 .contact-form textarea {
-  width: 100%; /* Reste de la même largeur que les inputs au-dessus */
-  resize: vertical; /* Seule la hauteur est réglable par l'utilisateur */
-  min-height: 120px;
-  max-height: 400px;
+  width: 100%;
   padding: 1rem 1.5rem;
   border-radius: 12px;
   border: 1px solid var(--border-color);
   background: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-main);
-  font-size: 0.95rem;
   outline: none;
 }
 
-/* Footer épuré */
-footer {
-  text-align: center;
-  padding: 4rem 5%;
-  border-top: 1px solid var(--border-color);
-  margin-top: 6rem;
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--accent-color);
 }
 
-.footer-links { 
-  display: flex; 
-  justify-content: center; 
-  gap: 3rem; 
-  margin-bottom: 2rem; 
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
 }
 
-.footer-links a { 
-  color: var(--text-color); 
-  text-decoration: none; 
-  font-size: 0.85rem; 
-  font-weight: 600; 
-  opacity: 0.7; 
+/* Succès Formulaire */
+.form-success-box {
+  background: rgba(37, 99, 235, 0.1);
+  border: 1px solid var(--accent-color);
+  padding: 1.5rem;
+  border-radius: 12px;
+  animation: fadeIn 0.4s ease forwards;
 }
 
-.footer-links a:hover { 
-  opacity: 1; 
-  color: var(--accent-color); 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-footer p { 
-  font-size: 0.8rem; 
-  opacity: 0.5; 
-}
-
-/* Scroll Reveal Animations */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.scroll-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-} 
-
-/* Conteneur global du carrousel */
-.carousel-container {
-  position: relative;
-  width: 100%;
-  height: 500px;
-  overflow: hidden;
-  border-radius: 16px;
-  margin-bottom: 2rem;
-  transform: translateZ(20px);
-}
-
-/* L'image en affichage */
-#carousel-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity 0.2s ease-in-out;
-}
-
-/* Flèches de navigation directionnelle */
-.carousel-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  font-size: 1.25rem;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 15;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.carousel-nav:hover {
-  background: rgba(15, 23, 42, 0.85);
-  transform: translateY(-50%) scale(1.08);
-}
-
-.prev-btn { left: 20px; }
-.next-btn { right: 20px; }
-
-/* Indicateurs de progression (Points / Dots) */
-.carousel-dots {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 15;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.45);
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.dot.active {
-  background: #ffffff;
-  transform: scale(1.3);
-}
-
-/* Système Lightbox (Fenêtre modale de zoom) */
+/* Lightbox Modal */
 .lightbox {
   display: none;
   position: fixed;
@@ -732,36 +652,21 @@ footer p {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(3, 7, 18, 0.92);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  z-index: 99999;
+  background: rgba(3, 7, 18, 0.95);
+  z-index: 10000;
   justify-content: center;
   align-items: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
 }
 
 .lightbox.active {
   display: flex;
-  opacity: 1;
-}
-
-.lightbox-content {
-  max-width: 85%;
-  max-height: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .lightbox-content img {
-  max-width: 100%;
-  max-height: 100%; 
+  max-width: 85vw;
+  max-height: 80vh;
   object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  transition: opacity 0.2s ease-in-out;
+  border-radius: 8px;
 }
 
 .lightbox-close {
@@ -770,263 +675,223 @@ footer p {
   right: 40px;
   color: #fff;
   font-size: 2.5rem;
-  font-weight: 300;
   cursor: pointer;
-  transition: color 0.3s, transform 0.2s;
-  user-select: none;
-}
-
-.lightbox-close:hover {
-  color: var(--accent-color);
-  transform: scale(1.1);
 }
 
 .lightbox-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: none;
+  border: none;
   color: #fff;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  font-size: 1.5rem;
+  font-size: 2rem;
   cursor: pointer;
+}
+
+.lightbox-prev {
+  left: 40px;
+}
+
+.lightbox-next {
+  right: 40px;
+}
+
+/* Scroll Reveal Classe Initiale */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 4rem 5%;
+  border-top: 1px solid var(--border-color);
+  margin-top: 6rem;
+}
+
+.footer-links {
   display: flex;
-  align-items: center;
   justify-content: center;
-  transition: background 0.3s, transform 0.2s;
-  z-index: 100000;
+  gap: 3rem;
+  margin-bottom: 2rem;
 }
 
-.lightbox-nav:hover {
-  background: var(--accent-color);
-  transform: translateY(-50%) scale(1.08);
+.footer-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  font-weight: 600;
 }
 
-.lightbox-prev { left: 40px; }
-.lightbox-next { right: 40px; }
-
-/* Ajustements mobiles */
-@media (max-width: 768px) {
-  .carousel-container { height: 320px; }
-  .carousel-nav { width: 38px; height: 38px; font-size: 1rem; }
-  .prev-btn { left: 10px; }
-  .next-btn { right: 10px; }
-  .about-section { padding: 4rem 5%; }
-  .bento-grid { grid-template-columns: 1fr; }
-  .bento-large, .bento-medium { grid-column: span 1; }
-  .lightbox-nav { width: 44px; height: 44px; font-size: 1rem; }
-  .lightbox-prev { left: 15px; }
-  .lightbox-next { right: 15px; }
+.footer-links a:hover {
+  opacity: 1;
+  color: var(--accent-color);
 }
 
-/* ==========================================================================
-   DESIGN RESPONSIVE (POUR SMARTPHONES ET TABLETTES)
-   ========================================================================== */
-/* --- Règle pour masquer le bouton burger sur Ordinateur --- */
-.hamburger-btn {
-  display: none;
+footer p {
+  font-size: 0.8rem;
+  opacity: 0.5;
 }
 
 /* ==========================================================================
    DESIGN RESPONSIVE ENGINE (MOBILE & TABLETTES)
    ========================================================================== */
-@media (max-width: 768px) {
 
-  /* 1. FIX DE L'OVERFLOW (Supprime le décalage à gauche du site) */
+.hamburger-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
   .kinetic-text span {
-    font-size: 2.2rem !important; /* Réduit le titre pour qu'il tienne dans l'écran */
+    font-size: 2.2rem !important;
     letter-spacing: -1px;
   }
-  
+
   .hero-mesh {
-    padding: 8rem 5% 4rem 5%; /* Ajuste l'espace du haut */
+    padding: 8rem 5% 4rem 5%;
   }
 
-  /* 2. ALIGNEMENT DU HEADER MOBILE */
+  .carousel-container {
+    height: 320px;
+  }
+
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bento-large,
+  .bento-medium {
+    grid-column: span 1;
+  }
+
+  .project-details-container {
+    padding: 1.5rem;
+  }
+
+  .btn-more-info {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    margin-top: 1.5rem;
+    display: inline-block;
+  }
+
+  .contact-form {
+    padding: 1.5rem;
+  }
+
+  .lightbox-nav {
+    display: none !important;
+  }
+
+  /* Masquage des flèches complexes sur mobile */
+
+  /* Menu Hamburger & Navigation Mobile */
   header.glassmorphism {
     padding: 1rem 5% !important;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row !important; /* Force le logo à gauche et les boutons à droite */
   }
 
   .header-controls {
     display: flex;
     align-items: center;
-    gap: 20px; /* Espace entre la lune/soleil et le bouton burger */
+    gap: 20px;
   }
 
-  /* 3. STYLE DU BOUTON HAMBURGER (Le carré à 3 lignes) */
   .hamburger-btn {
     display: flex !important;
     flex-direction: column;
     justify-content: space-between;
-    width: 26px;
-    height: 18px;
+    width: 24px;
+    height: 16px;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
     z-index: 1010;
   }
 
   .hamburger-btn span {
     width: 100%;
-    height: 2.5px;
+    height: 2px;
     background-color: var(--text-color);
     border-radius: 2px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: all 0.3s ease;
   }
 
-  /* Animation des 3 lignes en "X" quand le menu est ouvert */
   .hamburger-btn.open span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+    transform: translateY(7px) rotate(45deg);
   }
+
   .hamburger-btn.open span:nth-child(2) {
     opacity: 0;
   }
+
   .hamburger-btn.open span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-7px) rotate(-45deg);
   }
 
-  /* 4. LE MENU VERTICAL CACHÉ (Qui descend au clic) */
   header.glassmorphism nav {
     position: fixed;
-    top: 65px; /* Se positionne pile sous la barre de navigation */
+    top: 60px;
     left: 0;
     width: 100%;
     background: var(--bg-color);
     border-bottom: 1px solid var(--border-color);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
     padding: 2rem 0;
-    display: none; /* Caché par défaut */
-    box-sizing: border-box;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    display: none;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
   }
 
-  /* Classe activée en JS pour afficher le menu */
   header.glassmorphism nav.open {
     display: block;
-    animation: slideDown 0.3s ease forward;
+    animation: slideDown 0.3s ease forwards;
   }
 
   header.glassmorphism nav ul {
-    flex-direction: column; /* Aligne les boutons à la verticale */
+    flex-direction: column;
     gap: 1.5rem !important;
-    width: 100%;
-    align-items: center;
   }
 
   header.glassmorphism nav a.nav-link {
     font-size: 1.1rem;
-    font-weight: 500;
   }
 
-  /* Ajustement du bouton contact dans le menu mobile */
-  header.glassmorphism .btn-contact {
-    display: inline-block;
-    width: auto;
-    padding: 0.6rem 2.5rem;
-    margin-top: 0.5rem;
-  }
-
-  /* Ajustement du sous-menu réalisations sur mobile */
-  .dropdown-content {
-    position: static;
-    min-width: 100%;
-    box-shadow: none;
-    border: none;
-    background: rgba(0, 0, 0, 0.02);
-    border-radius: 0;
-  }
-  
-  .dropdown-content a {
-    text-align: center;
-    padding: 10px 20px;
-  }
-}
-
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-
-/* Ajustement de la taille des icônes de contact */
-.contact-icon-img {
-  width: 35px;        /* Modifie cette valeur (ex: 30px ou 40px) pour ajuster à ton goût */
-  height: auto;       /* Conserve les proportions parfaites du SVG */
-  object-fit: contain;
-}
-
-/* Optionnel : Aligner et espacer proprement le bloc de l'icône */
-.contact-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 15px; /* Crée un petit espace sous l'icône avant le texte "Téléphone" ou "Email" */
-}
-
-
-/* Style du message de succès du formulaire */
-.form-success-box {
-  background: rgba(37, 99, 235, 0.1); /* Léger fond bleu transparent */
-  border: 1px solid var(--accent-color);
-  padding: 1.5rem;
-  border-radius: 12px;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  animation: fadeIn 0.4s ease forwards;
-  transition: opacity 0.5s ease;
-}
-
-.form-success-box h4 {
-  color: var(--accent-color);
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-
-.form-success-box p {
-  font-size: 0.95rem;
-  opacity: 0.9;
-  line-height: 1.4;
-  margin: 0;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Ajustements spécifiques pour les écrans de téléphones */
-@media (max-width: 768px) {
+  /* Égalisation des bulles d'infos de contact sur mobile */
   .contact-cards-container {
-    display: flex;
     flex-direction: column;
-    gap: 1.5rem;
     width: 100%;
+    gap: 1rem;
   }
 
   .contact-info-card {
     width: 100% !important;
-    min-height: 160px; /* Force une hauteur identique pour les deux bulles */
-    display: flex;
-    flex-direction: column;
+    min-height: 160px;
     justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
     padding: 1.5rem !important;
   }
-  
-  /* Permet au texte de l'adresse email de ne pas déborder si l'écran est très petit */
+
   .contact-info-card a {
-    word-break: break-all; 
+    word-break: break-all;
     font-size: 0.95rem;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sérénis Développement — Réalisations</title>
-  
-  <!-- Liaison avec les polices et la feuille de style générale (CORRIGÉ !) -->
+  <title>Sérénis Développement | Réalisations</title>
   <link href="https://fonts.googleapis.com/css?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
+
 <body>
+
   <div class="page-transition-overlay"></div>
 
-  <!-- MENU UNIQUE ET ÉPURÉ (SANS APERÇU DÉROULANT) -->
   <header class="glassmorphism">
     <a href="index.html" class="logo">Sérénis Développement</a>
     <div class="header-controls">
-      <button id="theme-toggle">🌓</button>
+      <button id="theme-toggle" aria-label="Changer de thème">🌓</button>
       <button class="hamburger-btn" aria-label="Ouvrir le menu">
         <span></span>
         <span></span>
@@ -36,14 +34,14 @@
   </header>
 
   <main class="projects-page">
-    <!-- SECTION 1 : LES RÉALISATIONS TERMINÉES -->
+    <!-- Section 1 : Réalisations Clôturées -->
     <section style="margin-bottom: 5rem;">
       <h1 class="scroll-reveal">Nos Réalisations Immobilières</h1>
       <div class="tabs" id="project-tabs"></div>
       <div id="project-details" class="project-details-container glassmorphism tilt-card-3d"></div>
     </section>
 
-    <!-- SECTION 2 : LES PROJETS EN COURS -->
+    <!-- Section 2 : Programmes Neufs en cours -->
     <section style="margin-bottom: 3rem;">
       <h1 class="scroll-reveal">Nos Projets en Cours</h1>
       <div class="tabs" id="future-project-tabs"></div>
@@ -62,4 +60,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
