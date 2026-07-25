@@ -45,8 +45,12 @@ collections:
               - {label: "Nom du projet", name: "title", widget: "string"}
               - {label: "Ville", name: "location", widget: "string"}
               - {label: "Description commerciale", name: "description", widget: "text"}
-              - label: "Points clés (Features)", name: "features", widget: "list"
+              - label: "Points clés (Features)"
+                name: "features"
+                widget: "list"
                 field: {label: "Élément", name: "item", widget: "string"}
-              - label: "Photos en tête (À glisser)", name: "images", widget: "list"
+              - label: "Photos en tête (À glisser)"
+                name: "images"
+                widget: "list"
                 field: {label: "Image", name: "url", widget: "image"}
               - {label: "En savoir plus (Une photo)", name: "moreInfoImage", widget: "image", required: false}
