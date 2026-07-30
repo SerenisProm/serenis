@@ -896,3 +896,17 @@ footer p {
   }
 }
 
+/* Alignement du logo et du texte */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espace entre le logo et le texte */
+  text-decoration: none;
+}
+
+/* Redimensionnement du logo */
+.logo-img {
+  height: 35px; /* Ajuste la hauteur selon tes préférences (ex: entre 30px et 40px) */
+  width: auto;  /* Conserve le ratio de l'image */
+  display: block;
+}
