@@ -406,21 +406,6 @@ nav a.nav-link.active {
   margin-right: auto;
 }
 
-.tabs::-webkit-scrollbar {
-  height: 4px;
-}
-
-.tabs::-webkit-scrollbar-thumb {
-  background: var(--border-color);
-  border-radius: 10px;
-}
-
-@media (min-width: 768px) {
-  .tabs {
-    justify-content: center;
-  }
-}
-
 .tab-btn {
   padding: 0.6rem 1.8rem;
   background: var(--secondary-bg);

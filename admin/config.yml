@@ -15,6 +15,7 @@ collections:
         label: "Programmes Immobiliers"
         name: "projects"
         fields:
+          # --- SECTION 1 : RÉALISATIONS TERMINÉES ---
           - name: "projectsList"
             label: "Nos Réalisations (Terminées)"
             label_singular: "une réalisation"
@@ -28,13 +29,14 @@ collections:
               - label: "Points clés (Features)"
                 name: "features"
                 widget: "list"
-                field: {label: "Élément", name: "item", widget: "string"}
+                field: {label: "Élément", widget: "string"}
               - label: "Photos en tête (À glisser)"
                 name: "images"
                 widget: "list"
-                field: {label: "Image", name: "url", widget: "image"}
+                field: {label: "Image", widget: "image"}
               - {label: "En savoir plus (Une photo)", name: "moreInfoImage", widget: "image", required: false}
 
+          # --- SECTION 2 : PROJETS EN COURS ---
           - name: "futureProjectsList"
             label: "Nos Projets en Cours (Futurs)"
             label_singular: "un projet en cours"
@@ -48,9 +50,9 @@ collections:
               - label: "Points clés (Features)"
                 name: "features"
                 widget: "list"
-                field: {label: "Élément", name: "item", widget: "string"}
+                field: {label: "Élément", widget: "string"}
               - label: "Photos en tête (À glisser)"
                 name: "images"
                 widget: "list"
-                field: {label: "Image", name: "url", widget: "image"}
+                field: {label: "Image", widget: "image"}
               - {label: "En savoir plus (Une photo)", name: "moreInfoImage", widget: "image", required: false}
