@@ -940,37 +940,47 @@ footer p {
   gap: 0.5rem;
 }
 
+/* --- BOUTONS VILLES (CHIPS) --- */
 .city-chip {
+  font-family: var(--font-main, 'Montserrat', sans-serif) !important; /* Force la police globale */
   background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 6px 16px;
   border-radius: 20px;
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.city-chip:hover, .city-chip.active {
+.city-chip:hover, 
+.city-chip.active {
   background: var(--accent-color, #C5A059);
   color: #ffffff;
   border-color: var(--accent-color, #C5A059);
 }
 
-/* Menu déroulant de sélection directe */
+/* --- MENU DÉROULANT CENTRAL (TEXTE NOIR PERMANENT) --- */
 .project-select-dropdown {
+  font-family: var(--font-main, 'Montserrat', sans-serif) !important; /* Force la police globale */
   padding: 10px 18px;
   border-radius: 25px;
-  border: 1px solid rgba(197, 160, 89, 0.4);
-  background: var(--bg-card, #ffffff);
-  color: var(--text-color, #333333);
-  font-family: inherit;
-  font-size: 0.95rem;
+  border: 1px solid rgba(197, 160, 89, 0.5);
+  background-color: #ffffff !important;
+  color: #000000 !important; /* Force le texte en noir (clair et sombre) */
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   outline: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   max-width: 100%;
+}
+
+/* Options à l'intérieur de la liste déroulante */
+.project-select-dropdown option {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  font-family: var(--font-main, 'Montserrat', sans-serif) !important;
 }
 
 .filtered-tabs-wrapper {
