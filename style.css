@@ -895,3 +895,102 @@ footer p {
   width: auto;  /* Conserve le ratio de l'image */
   display: block;
 }
+
+/* --- APERÇU FIXE DE LA PHOTO (VISION ENTIÈRE EN RETAIN) --- */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 460px; /* Hauteur fixe pour l'aperçu */
+  background: rgba(11, 29, 58, 0.04);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-img-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+#carousel-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* L'IMAGE EST VISIBLE EN ENTIER SANS ROGNAGE */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.3s ease;
+}
+
+#carousel-img:hover {
+  transform: scale(1.01);
+}
+
+/* --- BARRE DE FILTRES ET MENU DÉROULANT --- */
+.projects-control-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Puces des villes */
+.city-filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.city-chip {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.city-chip:hover, .city-chip.active {
+  background: var(--accent-color, #C5A059);
+  color: #ffffff;
+  border-color: var(--accent-color, #C5A059);
+}
+
+/* Menu déroulant de sélection directe */
+.project-select-dropdown {
+  padding: 10px 18px;
+  border-radius: 25px;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  background: var(--bg-card, #ffffff);
+  color: var(--text-color, #333333);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 100%;
+}
+
+.filtered-tabs-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
