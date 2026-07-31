@@ -393,19 +393,6 @@ nav a.nav-link.active {
   margin-bottom: 3rem;
 }
 
-.tabs {
-  display: flex;
-  flex-wrap: wrap; 
-  justify-content: center; 
-  gap: 0.75rem;
-  margin-bottom: 3rem;
-  padding: 0.5rem;
-  width: 100%;
-  max-width: 1000px; 
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .tab-btn {
   padding: 0.6rem 1.8rem;
   background: var(--secondary-bg);
@@ -417,14 +404,13 @@ nav a.nav-link.active {
   font-weight: 600;
   font-size: 0.85rem;
   transition: all 0.3s ease;
-  flex-shrink: 0;
 }
 
 .tab-btn:hover,
 .tab-btn.active {
-  background: var(--primary-color);
-  color: var(--bg-color);
-  border-color: var(--primary-color);
+  background: var(--accent-color, #C5A059);
+  color: #ffffff;
+  border-color: var(--accent-color, #C5A059);
 }
 
 /* Conteneur de détails des projets */
@@ -993,4 +979,105 @@ footer p {
   justify-content: center;
   gap: 0.5rem;
   margin-bottom: 2rem;
+}
+
+/* --- MODALE ZOOM (LIGHTBOX PLEIN ÉCRAN) --- */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(5, 12, 24, 0.94); /* Fond très sombre et élégant */
+  backdrop-filter: blur(8px);       /* Flou d'arrière-plan */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-content {
+  width: 95vw;
+  height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#lightbox-img {
+  max-width: 95vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* Garde les proportions exactes sans rognage */
+  border-radius: 8px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  transition: opacity 0.15s ease;
+}
+
+/* Bouton de fermeture (Croix) */
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: 300;
+  cursor: pointer;
+  z-index: 10001;
+  line-height: 1;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.lightbox-close:hover {
+  color: var(--accent-color, #C5A059);
+  transform: scale(1.1);
+}
+
+/* Boutons de navigation (Flèches) */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 1.8rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10001;
+  transition: all 0.2s ease;
+}
+
+.lightbox-nav:hover {
+  background: var(--accent-color, #C5A059);
+  border-color: var(--accent-color, #C5A059);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.lightbox-prev { left: 25px; }
+.lightbox-next { right: 25px; }
+
+/* Adaptation mobile pour conserver de l'espace autour des flèches */
+@media (max-width: 768px) {
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
+  .lightbox-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+  }
 }
