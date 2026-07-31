@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       listToDisplay.forEach(proj => {
         const opt = document.createElement('option');
         opt.value = proj.id;
-        opt.textContent = `${proj.title} (${proj.location})`;
+        opt.textContent = proj.title;
         selectEl.appendChild(opt);
       });
     };
