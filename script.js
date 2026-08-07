@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // --- ⚡ FONCTION DE PRÉCHARGEMENT INSTANTANÉ DES IMAGES ---
+  // --- ⚡ PRÉCHARGEMENT DES IMAGES ---
   const preloadAllImages = (datalist) => {
     const preload = () => {
       datalist.forEach(proj => {
@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       });
     };
-    // Exécution en tâche de fond quand le navigateur est libre
     if ('requestIdleCallback' in window) {
       requestIdleCallback(preload);
     } else {
@@ -68,18 +67,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     tabsContainer.innerHTML = '';
 
-    // Barre de contrôles (Filtres Villes + Menu Déroulant)
     const controlWrapper = document.createElement('div');
     controlWrapper.className = 'projects-control-bar';
 
-    // Extraction automatique des villes uniques
     const rawCities = dataList.map(p => {
       const match = p.location.match(/^(.*?)\s*\(/);
       return match ? match[1].trim() : p.location;
     });
     const uniqueCities = ['Toutes les villes', ...new Set(rawCities)];
 
- // 1. Menu Déroulant des Villes (Bouton sélecteur de lieu)
+    // 1. Sélecteur de lieu
     const citySelectEl = document.createElement('select');
     citySelectEl.className = 'city-select-dropdown';
     citySelectEl.ariaLabel = 'Sélectionner un lieu';
@@ -95,7 +92,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       filterProjects(e.target.value);
     });
 
-    // 2. Menu Déroulant Select (Accès rapide)
+    // 2. Sélecteur de programme
     const selectEl = document.createElement('select');
     selectEl.className = 'project-select-dropdown';
     selectEl.ariaLabel = 'Sélectionner un programme';
@@ -116,12 +113,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     controlWrapper.appendChild(selectEl);
     tabsContainer.appendChild(controlWrapper);
 
-    // Zone des onglets filtrés
     const buttonsListWrapper = document.createElement('div');
     buttonsListWrapper.className = 'filtered-tabs-wrapper';
     tabsContainer.appendChild(buttonsListWrapper);
 
-    // Affichage d'un projet
     const showProject = (project) => {
       selectEl.value = project.id;
       buttonsListWrapper.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -162,6 +157,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const carouselImg = detailsContainer.querySelector('#carousel-img');
         const dots = detailsContainer.querySelectorAll('.dot');
+        const nextBtn = detailsContainer.querySelector('.next-btn');
+        const prevBtn = detailsContainer.querySelector('.prev-btn');
 
         const updateCarousel = (index) => {
           currentImgIndex = index;
@@ -172,9 +169,6 @@ document.addEventListener('DOMContentLoaded', async () => {
           }, 150);
           dots.forEach((dot, dIdx) => dot.classList.toggle('active', dIdx === currentImgIndex));
         };
-
-        const nextBtn = detailsContainer.querySelector('.next-btn');
-        const prevBtn = detailsContainer.querySelector('.prev-btn');
 
         if (nextBtn) {
           nextBtn.addEventListener('click', (e) => {
@@ -246,7 +240,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const requestedProject = dataList.find(p => p.id === currentHash) || dataList[0];
     if (requestedProject) showProject(requestedProject);
 
-    // Lancement du préchargement des images de cette liste
     preloadAllImages(dataList);
   };
 

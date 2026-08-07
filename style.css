@@ -50,16 +50,11 @@ body {
 }
 
 @keyframes pageMorph {
-  0% {
-    transform: scaleY(1);
-  }
-
-  100% {
-    transform: scaleY(0);
-  }
+  0% { transform: scaleY(1); }
+  100% { transform: scaleY(0); }
 }
 
-/* Barre de Navigation Épurée */
+/* Barre de Navigation */
 header.glassmorphism {
   position: fixed;
   top: 0;
@@ -82,6 +77,15 @@ header.glassmorphism {
   color: var(--primary-color);
   text-decoration: none;
   letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  height: 35px;
+  width: auto;
+  display: block;
 }
 
 nav ul {
@@ -165,17 +169,9 @@ nav a.nav-link.active {
 }
 
 @keyframes meshMovement {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .hero-content {
@@ -198,13 +194,8 @@ nav a.nav-link.active {
   animation: kineticReveal 0.8s cubic-bezier(0.85, 0, 0.15, 1) forwards;
 }
 
-.kinetic-text span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.kinetic-text span:nth-child(3) {
-  animation-delay: 0.4s;
-}
+.kinetic-text span:nth-child(2) { animation-delay: 0.2s; }
+.kinetic-text span:nth-child(3) { animation-delay: 0.4s; }
 
 @keyframes kineticReveal {
   to {
@@ -241,13 +232,8 @@ nav a.nav-link.active {
 }
 
 @keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-
-  100% {
-    transform: translateX(-100%);
-  }
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
 }
 
 /* Bento Grid System */
@@ -277,7 +263,7 @@ nav a.nav-link.active {
   border-radius: 24px;
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
 }
 
 .bento-item:hover {
@@ -376,19 +362,11 @@ nav a.nav-link.active {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.01);
 }
 
-.card-1 {
-  transform: scale(0.96);
-}
+.card-1 { transform: scale(0.96); }
+.card-2 { transform: scale(0.98); }
+.card-3 { transform: scale(1); }
 
-.card-2 {
-  transform: scale(0.98);
-}
-
-.card-3 {
-  transform: scale(1);
-}
-
-/* Pages Réalisations / Onglets */
+/* Pages Réalisations */
 .projects-page {
   padding: 8rem 5% 4rem 5%;
 }
@@ -397,6 +375,68 @@ nav a.nav-link.active {
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: 3rem;
+}
+
+.projects-control-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.city-select-dropdown {
+  font-family: var(--font-main, 'Montserrat', sans-serif) !important;
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  max-width: 100%;
+}
+
+.city-select-dropdown option {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  font-family: var(--font-main, 'Montserrat', sans-serif) !important;
+}
+
+.project-select-dropdown {
+  font-family: var(--font-main, 'Montserrat', sans-serif) !important;
+  padding: 10px 18px;
+  border-radius: 25px;
+  border: 1px solid rgba(197, 160, 89, 0.5);
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 100%;
+}
+
+.project-select-dropdown option {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  font-family: var(--font-main, 'Montserrat', sans-serif) !important;
+}
+
+.filtered-tabs-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .tab-btn {
@@ -419,7 +459,6 @@ nav a.nav-link.active {
   border-color: var(--accent-color, #C5A059);
 }
 
-/* Conteneur de détails des projets */
 .project-details-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -446,21 +485,42 @@ nav a.nav-link.active {
   cursor: pointer;
 }
 
-/* Carrousel Visuel */
+/* Aperçu Fixe de la Photo */
 .carousel-container {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 460px;
+  background: rgba(11, 29, 58, 0.04);
+  border-radius: 14px;
   overflow: hidden;
-  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 2rem;
 }
 
-#carousel-img {
+.carousel-img-wrapper {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+#carousel-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.3s ease;
+}
+
+#carousel-img:hover {
+  transform: scale(1.01);
 }
 
 .carousel-nav {
@@ -481,13 +541,8 @@ nav a.nav-link.active {
   z-index: 10;
 }
 
-.prev-btn {
-  left: 20px;
-}
-
-.next-btn {
-  right: 20px;
-}
+.prev-btn { left: 20px; }
+.next-btn { right: 20px; }
 
 .carousel-dots {
   position: absolute;
@@ -511,7 +566,95 @@ nav a.nav-link.active {
   transform: scale(1.2);
 }
 
-/* Structure Formulaire & Cartes Coordonnées */
+/* Lightbox Modal Plein Écran */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(5, 12, 24, 0.94);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-content {
+  width: 95vw;
+  height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#lightbox-img {
+  max-width: 95vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  transition: opacity 0.15s ease;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: 300;
+  cursor: pointer;
+  z-index: 10001;
+  line-height: 1;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.lightbox-close:hover {
+  color: var(--accent-color, #C5A059);
+  transform: scale(1.1);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 1.8rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10001;
+  transition: all 0.2s ease;
+}
+
+.lightbox-nav:hover {
+  background: var(--accent-color, #C5A059);
+  border-color: var(--accent-color, #C5A059);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.lightbox-prev { left: 25px; }
+.lightbox-next { right: 25px; }
+
+/* Section Contact */
 .contact-section {
   padding: 8rem 5%;
 }
@@ -600,7 +743,6 @@ nav a.nav-link.active {
   min-height: 120px;
 }
 
-/* Succès Formulaire */
 .form-success-box {
   background: rgba(37, 99, 235, 0.1);
   border: 1px solid var(--accent-color);
@@ -610,71 +752,10 @@ nav a.nav-link.active {
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Lightbox Modal */
-.lightbox {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(3, 7, 18, 0.95);
-  z-index: 10000;
-  justify-content: center;
-  align-items: center;
-}
-
-.lightbox.active {
-  display: flex;
-}
-
-.lightbox-content img {
-  max-width: 85vw;
-  max-height: 80vh;
-  object-fit: contain;
-  border-radius: 8px;
-}
-
-.lightbox-close {
-  position: absolute;
-  top: 30px;
-  right: 40px;
-  color: #fff;
-  font-size: 2.5rem;
-  cursor: pointer;
-}
-
-.lightbox-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
-}
-
-.lightbox-prev {
-  left: 40px;
-}
-
-.lightbox-next {
-  right: 40px;
-}
-
-/* Scroll Reveal Classe Initiale */
 .scroll-reveal {
   opacity: 1;
   transform: translateY(20px);
@@ -686,7 +767,6 @@ nav a.nav-link.active {
   transform: translateY(0);
 }
 
-/* Footer */
 footer {
   text-align: center;
   padding: 4rem 5%;
@@ -719,41 +799,19 @@ footer p {
   opacity: 0.5;
 }
 
-/* ==========================================================================
-   DESIGN RESPONSIVE ENGINE (MOBILE & TABLETTES)
-   ========================================================================== */
-
-.hamburger-btn {
-  display: none;
-}
+/* Responsive */
+.hamburger-btn { display: none; }
 
 @media (max-width: 768px) {
   .kinetic-text span {
     font-size: 2.2rem !important;
     letter-spacing: -1px;
   }
-
-  .hero-mesh {
-    padding: 8rem 5% 4rem 5%;
-  }
-
-  .carousel-container {
-    height: 320px;
-  }
-
-  .bento-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .bento-large,
-  .bento-medium {
-    grid-column: span 1;
-  }
-
-  .project-details-container {
-    padding: 1.5rem;
-  }
-
+  .hero-mesh { padding: 8rem 5% 4rem 5%; }
+  .carousel-container { height: 320px; }
+  .bento-grid { grid-template-columns: 1fr; }
+  .bento-large, .bento-medium { grid-column: span 1; }
+  .project-details-container { padding: 1.5rem; }
   .btn-more-info {
     position: relative;
     bottom: 0;
@@ -761,28 +819,20 @@ footer p {
     margin-top: 1.5rem;
     display: inline-block;
   }
-
-  .contact-form {
-    padding: 1.5rem;
-  }
-
+  .contact-form { padding: 1.5rem; }
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
   .lightbox-nav {
-    display: none !important;
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
   }
-
-  /* Masquage des flèches complexes sur mobile */
-
-  /* Menu Hamburger & Navigation Mobile */
-  header.glassmorphism {
-    padding: 1rem 5% !important;
-  }
-
+  header.glassmorphism { padding: 1rem 5% !important; }
   .header-controls {
     display: flex;
     align-items: center;
     gap: 20px;
   }
-
   .hamburger-btn {
     display: flex !important;
     flex-direction: column;
@@ -794,7 +844,6 @@ footer p {
     cursor: pointer;
     z-index: 1010;
   }
-
   .hamburger-btn span {
     width: 100%;
     height: 2px;
@@ -802,19 +851,9 @@ footer p {
     border-radius: 2px;
     transition: all 0.3s ease;
   }
-
-  .hamburger-btn.open span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-
-  .hamburger-btn.open span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .hamburger-btn.open span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
-
+  .hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger-btn.open span:nth-child(2) { opacity: 0; }
+  .hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   header.glassmorphism nav {
     position: fixed;
     top: 60px;
@@ -826,35 +865,26 @@ footer p {
     display: none;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
   }
-
   header.glassmorphism nav.open {
     display: block;
     animation: slideDown 0.3s ease forwards;
   }
-
   header.glassmorphism nav ul {
     flex-direction: column;
     gap: 1.5rem !important;
   }
-
-  header.glassmorphism nav a.nav-link {
-    font-size: 1.1rem;
-  }
-
-  /* Égalisation des bulles d'infos de contact sur mobile */
+  header.glassmorphism nav a.nav-link { font-size: 1.1rem; }
   .contact-cards-container {
     flex-direction: column;
     width: 100%;
     gap: 1rem;
   }
-
   .contact-info-card {
     width: 100% !important;
     min-height: 160px;
     justify-content: center;
     padding: 1.5rem !important;
   }
-
   .contact-info-card a {
     word-break: break-all;
     font-size: 0.95rem;
@@ -862,232 +892,6 @@ footer p {
 }
 
 @keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Alignement du logo et du texte */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Espace entre le logo et le texte */
-  text-decoration: none;
-}
-
-/* Redimensionnement du logo */
-.logo-img {
-  height: 35px; /* Ajuste la hauteur selon tes préférences (ex: entre 30px et 40px) */
-  width: auto;  /* Conserve le ratio de l'image */
-  display: block;
-}
-
-/* --- APERÇU FIXE DE LA PHOTO (VISION ENTIÈRE EN RETAIN) --- */
-.carousel-container {
-  position: relative;
-  width: 100%;
-  height: 460px; /* Hauteur fixe pour l'aperçu */
-  background: rgba(11, 29, 58, 0.04);
-  border-radius: 14px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.carousel-img-wrapper {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-}
-
-#carousel-img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain; /* L'IMAGE EST VISIBLE EN ENTIER SANS ROGNAGE */
-  border-radius: 8px;
-  cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.3s ease;
-}
-
-#carousel-img:hover {
-  transform: scale(1.01);
-}
-
-/* --- BARRE DE FILTRES ET MENU DÉROULANT --- */
-.projects-control-bar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  width: 100%;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* --- MENU DÉROULANT DES VILLES (SÉLECTEUR DE LIEU) --- */
-.city-select-dropdown {
-  font-family: var(--font-main, 'Montserrat', sans-serif) !important;
-  padding: 7px 16px;
-  border-radius: 20px;
-  border: 1px solid rgba(197, 160, 89, 0.4);
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  font-size: 0.82rem; /* Légèrement plus petit que le bouton du projet */
-  font-weight: 600;
-  cursor: pointer;
-  outline: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  max-width: 100%;
-}
-
-.city-select-dropdown option {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  font-family: var(--font-main, 'Montserrat', sans-serif) !important;
-}
-
-/* --- MENU DÉROULANT CENTRAL (TEXTE NOIR PERMANENT) --- */
-.project-select-dropdown {
-  font-family: var(--font-main, 'Montserrat', sans-serif) !important; /* Force la police globale */
-  padding: 10px 18px;
-  border-radius: 25px;
-  border: 1px solid rgba(197, 160, 89, 0.5);
-  background-color: #ffffff !important;
-  color: #000000 !important; /* Force le texte en noir (clair et sombre) */
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  outline: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  max-width: 100%;
-}
-
-/* Options à l'intérieur de la liste déroulante */
-.project-select-dropdown option {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  font-family: var(--font-main, 'Montserrat', sans-serif) !important;
-}
-
-.filtered-tabs-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-/* --- MODALE ZOOM (LIGHTBOX PLEIN ÉCRAN) --- */
-.lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(5, 12, 24, 0.94); /* Fond très sombre et élégant */
-  backdrop-filter: blur(8px);       /* Flou d'arrière-plan */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.lightbox.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.lightbox-content {
-  width: 95vw;
-  height: 92vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#lightbox-img {
-  max-width: 95vw;
-  max-height: 90vh;
-  width: auto;
-  height: auto;
-  object-fit: contain; /* Garde les proportions exactes sans rognage */
-  border-radius: 8px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-  transition: opacity 0.15s ease;
-}
-
-/* Bouton de fermeture (Croix) */
-.lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  color: #ffffff;
-  font-size: 3rem;
-  font-weight: 300;
-  cursor: pointer;
-  z-index: 10001;
-  line-height: 1;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.lightbox-close:hover {
-  color: var(--accent-color, #C5A059);
-  transform: scale(1.1);
-}
-
-/* Boutons de navigation (Flèches) */
-.lightbox-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 1.8rem;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10001;
-  transition: all 0.2s ease;
-}
-
-.lightbox-nav:hover {
-  background: var(--accent-color, #C5A059);
-  border-color: var(--accent-color, #C5A059);
-  transform: translateY(-50%) scale(1.08);
-}
-
-.lightbox-prev { left: 25px; }
-.lightbox-next { right: 25px; }
-
-/* Adaptation mobile pour conserver de l'espace autour des flèches */
-@media (max-width: 768px) {
-  .lightbox-prev { left: 10px; }
-  .lightbox-next { right: 10px; }
-  .lightbox-nav {
-    width: 40px;
-    height: 40px;
-    font-size: 1.4rem;
-  }
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
