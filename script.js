@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // --- ⚡ PRÉCHARGEMENT DES IMAGES ---
+  // --- FONCTION DE PRÉCHARGEMENT INSTANTANÉ DES IMAGES ---
   const preloadAllImages = (datalist) => {
     const preload = () => {
       datalist.forEach(proj => {
@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       });
     };
+
     if ('requestIdleCallback' in window) {
       requestIdleCallback(preload);
     } else {
@@ -67,16 +68,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     tabsContainer.innerHTML = '';
 
+    // Barre de contrôles
     const controlWrapper = document.createElement('div');
     controlWrapper.className = 'projects-control-bar';
 
+    // Extraction des villes uniques
     const rawCities = dataList.map(p => {
       const match = p.location.match(/^(.*?)\s*\(/);
       return match ? match[1].trim() : p.location;
     });
     const uniqueCities = ['Toutes les villes', ...new Set(rawCities)];
 
-    // 1. Sélecteur de lieu
+    // 1. Menu Déroulant des Villes
     const citySelectEl = document.createElement('select');
     citySelectEl.className = 'city-select-dropdown';
     citySelectEl.ariaLabel = 'Sélectionner un lieu';
@@ -92,7 +95,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       filterProjects(e.target.value);
     });
 
-    // 2. Sélecteur de programme
+    // 2. Menu Déroulant des Projets
     const selectEl = document.createElement('select');
     selectEl.className = 'project-select-dropdown';
     selectEl.ariaLabel = 'Sélectionner un programme';
@@ -113,10 +116,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     controlWrapper.appendChild(selectEl);
     tabsContainer.appendChild(controlWrapper);
 
+    // Zone des onglets filtrés
     const buttonsListWrapper = document.createElement('div');
     buttonsListWrapper.className = 'filtered-tabs-wrapper';
     tabsContainer.appendChild(buttonsListWrapper);
 
+    // Affichage d'un projet
     const showProject = (project) => {
       selectEl.value = project.id;
       buttonsListWrapper.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
