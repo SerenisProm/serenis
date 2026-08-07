@@ -312,4 +312,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateLightboxImg(startIndex);
     lightbox.classList.add('active');
   };
+
+  // --- MOTEUR SCROLL REVEAL ---
+  const observerOptions = { threshold: 0.15 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
 });
