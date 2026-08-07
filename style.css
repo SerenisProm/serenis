@@ -938,32 +938,26 @@ footer p {
   margin-right: auto;
 }
 
-/* Puces des villes */
-.city-filters-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-/* --- BOUTONS VILLES (CHIPS) --- */
-.city-chip {
-  font-family: var(--font-main, 'Montserrat', sans-serif) !important; /* Force la police globale */
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 6px 16px;
+/* --- MENU DÉROULANT DES VILLES (SÉLECTEUR DE LIEU) --- */
+.city-select-dropdown {
+  font-family: var(--font-main, 'Montserrat', sans-serif) !important;
+  padding: 7px 16px;
   border-radius: 20px;
-  font-size: 0.85rem;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  font-size: 0.82rem; /* Légèrement plus petit que le bouton du projet */
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  max-width: 100%;
 }
 
-.city-chip:hover, 
-.city-chip.active {
-  background: var(--accent-color, #C5A059);
-  color: #ffffff;
-  border-color: var(--accent-color, #C5A059);
+.city-select-dropdown option {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  font-family: var(--font-main, 'Montserrat', sans-serif) !important;
 }
 
 /* --- MENU DÉROULANT CENTRAL (TEXTE NOIR PERMANENT) --- */

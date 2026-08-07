@@ -79,20 +79,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     const uniqueCities = ['Toutes les villes', ...new Set(rawCities)];
 
-    // 1. Boutons Filtres Villes (Chips)
-    const filterContainer = document.createElement('div');
-    filterContainer.className = 'city-filters-container';
+ // 1. Menu Déroulant des Villes (Bouton sélecteur de lieu)
+    const citySelectEl = document.createElement('select');
+    citySelectEl.className = 'city-select-dropdown';
+    citySelectEl.ariaLabel = 'Sélectionner un lieu';
 
     uniqueCities.forEach(city => {
-      const chip = document.createElement('button');
-      chip.className = `city-chip ${city === 'Toutes les villes' ? 'active' : ''}`;
-      chip.textContent = city;
-      chip.addEventListener('click', () => {
-        filterContainer.querySelectorAll('.city-chip').forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-        filterProjects(city);
-      });
-      filterContainer.appendChild(chip);
+      const opt = document.createElement('option');
+      opt.value = city;
+      opt.textContent = city;
+      citySelectEl.appendChild(opt);
+    });
+
+    citySelectEl.addEventListener('change', (e) => {
+      filterProjects(e.target.value);
     });
 
     // 2. Menu Déroulant Select (Accès rapide)
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     populateSelect(dataList);
 
-    controlWrapper.appendChild(filterContainer);
+    controlWrapper.appendChild(citySelectEl);
     controlWrapper.appendChild(selectEl);
     tabsContainer.appendChild(controlWrapper);
 
