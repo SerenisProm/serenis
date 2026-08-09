@@ -324,4 +324,23 @@ document.addEventListener('DOMContentLoaded', async () => {
   }, observerOptions);
 
   document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+  // --- GESTION DU MENU HAMBURGER MOBILE ---
+  const hamburgerBtn = document.querySelector('.hamburger-btn');
+  const navMenu = document.querySelector('header.glassmorphism nav');
+
+  if (hamburgerBtn && navMenu) {
+    hamburgerBtn.addEventListener('click', () => {
+      hamburgerBtn.classList.toggle('open');
+      navMenu.classList.toggle('open');
+    });
+
+    // Fermer automatiquement le menu quand l'utilisateur clique sur un lien
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburgerBtn.classList.remove('open');
+        navMenu.classList.remove('open');
+      });
+    });
+  }
 });
