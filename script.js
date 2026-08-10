@@ -287,30 +287,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   initProjectEngine(projectsData, 'project-tabs', 'project-details');
   initProjectEngine(futureProjectsData, 'future-project-tabs', 'future-project-details');
 
-  // --- LIGHTBOX (MODALE ZOOM) ---
+// --- LIGHTBOX (MODALE ZOOM PLEIN ÉCRAN) ---
   const openLightbox = (imagesList, startIndex) => {
-
-    // --- SWIPE TACTILE SUR LA LIGHTBOX ---
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  lightbox.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
-
-  lightbox.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    const swipeDistance = touchStartX - touchEndX;
-
-    if (swipeDistance > 40 && imagesList.length > 1) {
-      // Glissement vers la gauche -> Image suivante
-      updateLightboxImg((currentIndex + 1) % imagesList.length);
-    } else if (swipeDistance < -40 && imagesList.length > 1) {
-      // Glissement vers la droite -> Image précédente
-      updateLightboxImg((currentIndex - 1 + imagesList.length) % imagesList.length);
-    }
-  }, { passive: true });
-  
     let lightbox = document.getElementById('lightbox-modal');
     if (!lightbox) {
       lightbox = document.createElement('div');
@@ -318,9 +296,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       lightbox.className = 'lightbox';
       lightbox.innerHTML = `
         <span class="lightbox-close">&times;</span>
-        <button class="lightbox-nav lightbox-prev">&lt;</button>
-        <div class="lightbox-content"><img id="lightbox-img" src="" alt="Zoom"></div>
-        <button class="lightbox-nav lightbox-next">&gt;</button>
+        <button class="lightbox-nav lightbox-prev" aria-label="Précédente">&lt;</button>
+        <div class="lightbox-content">
+          <div class="spinner"></div>
+          <img id="lightbox-img" src="" alt="Zoom">
+        </div>
+        <button class="lightbox-nav lightbox-next" aria-label="Suivante">&gt;</button>
       `;
       document.body.appendChild(lightbox);
 
@@ -333,20 +314,48 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (e.key === 'ArrowRight' && imagesList.length > 1) lightbox.querySelector('.lightbox-next').click();
         if (e.key === 'ArrowLeft' && imagesList.length > 1) lightbox.querySelector('.lightbox-prev').click();
       });
+
+      // --- SWIPE TACTILE SUR LA LIGHTBOX ---
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      lightbox.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      lightbox.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const swipeDistance = touchStartX - touchEndX;
+
+        if (swipeDistance > 40 && imagesList.length > 1) {
+          lightbox.querySelector('.lightbox-next').click();
+        } else if (swipeDistance < -40 && imagesList.length > 1) {
+          lightbox.querySelector('.lightbox-prev').click();
+        }
+      }, { passive: true });
     }
 
     let currentIndex = startIndex;
+    const lightboxContent = lightbox.querySelector('.lightbox-content');
     const imgElement = lightbox.querySelector('#lightbox-img');
     const prevBtn = lightbox.querySelector('.lightbox-prev');
     const nextBtn = lightbox.querySelector('.lightbox-next');
 
+    // --- CHARGEMENT & ANIMATION HAUT EN BAS ---
     const updateLightboxImg = (idx) => {
       currentIndex = idx;
-      imgElement.style.opacity = '0';
-      setTimeout(() => {
-        imgElement.src = imagesList[currentIndex];
-        imgElement.style.opacity = '1';
-      }, 150);
+      const newSrc = imagesList[currentIndex];
+
+      lightboxContent.classList.add('is-loading');
+      imgElement.classList.remove('loaded');
+
+      const tempImg = new Image();
+      tempImg.src = newSrc;
+      tempImg.onload = () => {
+        imgElement.src = newSrc;
+        lightboxContent.classList.remove('is-loading');
+        imgElement.classList.add('loaded');
+      };
 
       if (imagesList.length <= 1) {
         prevBtn.style.display = 'none';

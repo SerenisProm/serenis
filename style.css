@@ -680,7 +680,9 @@ nav a.nav-link.active {
   pointer-events: auto;
 }
 
+/* Modifié : position relative ajoutée pour centrer la roue de chargement */
 .lightbox-content {
+  position: relative;
   width: 95vw;
   height: 92vh;
   display: flex;
@@ -688,6 +690,11 @@ nav a.nav-link.active {
   justify-content: center;
 }
 
+.lightbox-content.is-loading .spinner {
+  display: block;
+}
+
+/* Modifié : transition remplacée par l'effet d'apparition de haut en bas (clip-path) */
 #lightbox-img {
   max-width: 95vw;
   max-height: 90vh;
@@ -696,7 +703,14 @@ nav a.nav-link.active {
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-  transition: opacity 0.15s ease;
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.5s ease-out, opacity 0.3s ease;
+}
+
+#lightbox-img.loaded {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
 }
 
 .lightbox-close {
