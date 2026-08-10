@@ -289,6 +289,28 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // --- LIGHTBOX (MODALE ZOOM) ---
   const openLightbox = (imagesList, startIndex) => {
+
+    // --- SWIPE TACTILE SUR LA LIGHTBOX ---
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  lightbox.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  lightbox.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const swipeDistance = touchStartX - touchEndX;
+
+    if (swipeDistance > 40 && imagesList.length > 1) {
+      // Glissement vers la gauche -> Image suivante
+      updateLightboxImg((currentIndex + 1) % imagesList.length);
+    } else if (swipeDistance < -40 && imagesList.length > 1) {
+      // Glissement vers la droite -> Image précédente
+      updateLightboxImg((currentIndex - 1 + imagesList.length) % imagesList.length);
+    }
+  }, { passive: true });
+  
     let lightbox = document.getElementById('lightbox-modal');
     if (!lightbox) {
       lightbox = document.createElement('div');
