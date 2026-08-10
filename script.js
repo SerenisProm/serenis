@@ -139,9 +139,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         detailsContainer.innerHTML = `
           <div class="carousel-container">
+            <div class="spinner"></div>
             <button class="carousel-nav prev-btn" aria-label="Précédente">&lt;</button>
             <div class="carousel-img-wrapper">
-              <img id="carousel-img" src="${images[0]}" alt="Photo de ${project.title}">
+              <img id="carousel-img" src="" alt="Photo de ${project.title}">
             </div>
             <button class="carousel-nav next-btn" aria-label="Suivante">&gt;</button>
             <div class="carousel-dots">
@@ -160,21 +161,53 @@ document.addEventListener('DOMContentLoaded', async () => {
           </div>
         `;
 
+        const carouselContainer = detailsContainer.querySelector('.carousel-container');
         const carouselImg = detailsContainer.querySelector('#carousel-img');
         const dots = detailsContainer.querySelectorAll('.dot');
         const nextBtn = detailsContainer.querySelector('.next-btn');
         const prevBtn = detailsContainer.querySelector('.prev-btn');
 
+        // --- GESTION DU CHARGEMENT & APPARITION DE HAUT EN BAS ---
         const updateCarousel = (index) => {
           currentImgIndex = index;
-          carouselImg.style.opacity = '0';
-          setTimeout(() => {
-            carouselImg.src = images[currentImgIndex];
-            carouselImg.style.opacity = '1';
-          }, 150);
+          const newSrc = images[currentImgIndex];
+
+          // Affiche le spinner et masque l'image actuelle
+          carouselContainer.classList.add('is-loading');
+          carouselImg.classList.remove('loaded');
+
+          // Préchargement de la nouvelle image
+          const tempImg = new Image();
+          tempImg.src = newSrc;
+          tempImg.onload = () => {
+            carouselImg.src = newSrc;
+            carouselContainer.classList.remove('is-loading');
+            carouselImg.classList.add('loaded'); // Déclenche l'animation de haut en bas
+          };
+
           dots.forEach((dot, dIdx) => dot.classList.toggle('active', dIdx === currentImgIndex));
         };
 
+        // --- GESTION DU SWIPE SUR ÉCRAN TACTILE ---
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carouselContainer.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        carouselContainer.addEventListener('touchend', (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          const swipeDistance = touchStartX - touchEndX;
+
+          if (swipeDistance > 40) { // Swipe vers la gauche -> image suivante
+            updateCarousel((currentImgIndex + 1) % images.length);
+          } else if (swipeDistance < -40) { // Swipe vers la droite -> image précédente
+            updateCarousel((currentImgIndex - 1 + images.length) % images.length);
+          }
+        }, { passive: true });
+
+        // Événements boutons & dots
         if (nextBtn) {
           nextBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -206,6 +239,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
           }
         }
+
+        // Chargement initial de la première image
+        updateCarousel(0);
       }, 250);
     };
 

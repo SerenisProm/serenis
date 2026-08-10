@@ -939,3 +939,41 @@ footer p {
     transform: translateY(0);
   }
 }
+
+
+/* --- ROUE DE CHARGEMENT (SPINNER) --- */
+.spinner {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(197, 160, 89, 0.2);
+  border-top-color: var(--accent-color);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  z-index: 5;
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* État pendant le chargement */
+.carousel-container.is-loading .spinner {
+  display: block;
+}
+
+/* --- ANIMATION D'APPARITION DE HAUT EN BAS --- */
+#carousel-img {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0); /* Image masquée vers le bas */
+  transition: clip-path 0.5s ease-out, opacity 0.3s ease;
+}
+
+#carousel-img.loaded {
+  opacity: 1;
+  clip-path: inset(0 0 0 0); /* Dévoilement complet de haut en bas */
+}
