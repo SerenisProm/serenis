@@ -69,15 +69,14 @@
         "https://github.com/user-attachments/assets/7f84ba19-e767-4c59-99da-4b241a5353e1",
         "https://github.com/user-attachments/assets/811f57c0-17b3-42ac-9321-1bca157e4a8c",
         "https://github.com/user-attachments/assets/d64fe4ab-2836-415b-8e6b-5a0211ee4c73",
-        "https://github.com/user-attachments/assets/1ae38296-6b49-4899-be86-3d7fb13f27b1",
+        "https://github.com/user-attachments/assets/bf696d74-2927-4780-b364-60a75dc094a5",
         "https://github.com/user-attachments/assets/a92e35b1-e677-43af-b79b-4be3e05e7ed6",
         "https://github.com/user-attachments/assets/f1972d0a-7ddd-409a-bf7a-6d0ce4714b83",
         "https://github.com/user-attachments/assets/10fe1196-c987-42ce-acec-4a533930c363",
         "https://github.com/user-attachments/assets/3890d9d5-a426-45e2-990e-93a39b9dff93",
         "https://github.com/user-attachments/assets/0b631b26-0ff6-44e1-8fcb-7bfc137ce836",
         "https://github.com/user-attachments/assets/2a8f4083-2837-4494-bd48-b71416873870",
-        "https://github.com/user-attachments/assets/7016f090-c62c-4e66-9e6f-8d3a7e9c5119",
-        "https://github.com/user-attachments/assets/bf696d74-2927-4780-b364-60a75dc094a5"
+        "https://github.com/user-attachments/assets/7016f090-c62c-4e66-9e6f-8d3a7e9c5119"
       ],
       "moreInfoImage": ""
     },
@@ -112,6 +111,7 @@
       ],
       "images": [
         "https://github.com/user-attachments/assets/8b84bcd8-681a-4968-baee-db7ec1b7f86e",
+        "https://github.com/user-attachments/assets/1ae38296-6b49-4899-be86-3d7fb13f27b1",
         "https://github.com/user-attachments/assets/e1cefa49-8b98-4ebb-b735-67b8733f2a2f"
       ],
       "moreInfoImage": ""
@@ -394,21 +394,6 @@
       ],
       "images": [
         "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
-      ],
-      "moreInfoImage": ""
-    },
-    {
-      "id": "parc-7000",
-      "title": "Résidence Parc 7000",
-      "location": "Montpellier (34)",
-      "description": "Un pôle tertiaire contemporain offrant des espaces de travail lumineux et performants pour les entreprises.",
-      "features": [
-        "3 lots de bureaux de standing",
-        "675m² de surface de bureaux au total",
-        "Parkings et accès sécurisés"
-      ],
-      "images": [
-        "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
       ],
       "moreInfoImage": ""
     },
