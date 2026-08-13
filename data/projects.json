@@ -72,6 +72,7 @@
         "https://github.com/user-attachments/assets/bf696d74-2927-4780-b364-60a75dc094a5",
         "https://github.com/user-attachments/assets/a92e35b1-e677-43af-b79b-4be3e05e7ed6",
         "https://github.com/user-attachments/assets/f1972d0a-7ddd-409a-bf7a-6d0ce4714b83",
+        "https://github.com/user-attachments/assets/bc4318eb-1d33-45dc-8cdc-c3b5beebce07",
         "https://github.com/user-attachments/assets/10fe1196-c987-42ce-acec-4a533930c363",
         "https://github.com/user-attachments/assets/3890d9d5-a426-45e2-990e-93a39b9dff93",
         "https://github.com/user-attachments/assets/0b631b26-0ff6-44e1-8fcb-7bfc137ce836",
@@ -166,7 +167,7 @@
         "Emplacement stratégique et forte valeur patrimoniale"
       ],
       "images": [
-        
+
       ],
       "moreInfoImage": ""
     },
@@ -250,6 +251,7 @@
         "Espaces intérieurs chaleureux et optimisés"
       ],
       "images": [
+        "https://github.com/user-attachments/assets/0f1e9135-2137-4025-ae46-052d11c04e3f",
         "https://github.com/user-attachments/assets/042dd1af-d911-496c-a58f-e109fbb1b97b",
         "https://github.com/user-attachments/assets/5226d472-06c4-4fc9-8590-f242e34c3b6d",
         "https://github.com/user-attachments/assets/52fc5891-71e3-4652-8fc3-4a15257083ae",
@@ -309,7 +311,7 @@
     },
     {
       "id": "val-d-or-le-lavandou",
-      "title": "Les Terrasses du Val d'Or le Lavandou",
+      "title": "Les Terrasses du Val d'Or",
       "location": "Le Lavandou (83)",
       "description": "Une adresse résidentielle de prestige au cœur du Lavandou, conçue pour maximiser l'ensoleillement et le confort au quotidien.",
       "features": [
