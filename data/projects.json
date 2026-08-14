@@ -272,13 +272,13 @@
         "Prestations et finitions intérieures de grand standing"
       ],
       "images": [
-        "https://github.com/user-attachments/assets/e22c39f7-3a5c-4102-9f24-53230b3f02ea",
+        "https://github.com/user-attachments/assets/5db6b4d4-8418-4b31-b1f2-d0a116e8fa97",
+        "https://github.com/user-attachments/assets/f2845d8b-ba62-424c-b52d-9ac9d072ca90",
         "https://github.com/user-attachments/assets/085fa09e-a833-492c-8267-6ffaf363b5fa",
         "https://github.com/user-attachments/assets/8e171e45-e1af-4090-b117-0814e7200d47",
         "https://github.com/user-attachments/assets/b05d42b7-8150-4a41-be64-6383fba7e994",
         "https://github.com/user-attachments/assets/32892683-3ce1-4ddf-bdc6-234d62eb3508",
-        "https://github.com/user-attachments/assets/f2845d8b-ba62-424c-b52d-9ac9d072ca90",
-        "https://github.com/user-attachments/assets/5db6b4d4-8418-4b31-b1f2-d0a116e8fa97"
+        "https://github.com/user-attachments/assets/e22c39f7-3a5c-4102-9f24-53230b3f02ea"
       ],
       "moreInfoImage": ""
     },
@@ -361,7 +361,7 @@
     },
     {
       "id": "residence-le-mer",
-      "title": "Résidence Le Mer",
+      "title": "Le Mer",
       "location": "Villeneuve-lès-Maguelone (34)",
       "description": "Un ensemble résidentiel idéalement situé entre étangs et mer, combinant un cadre de vie paisible et l'accès direct aux commerces.",
       "features": [
@@ -376,7 +376,7 @@
     },
     {
       "id": "residence-le-parc",
-      "title": "Résidence Le Parc",
+      "title": "Le Parc",
       "location": "Saint-Georges-d'Orques (34)",
       "description": "Une charmante copropriété à taille humaine implantée dans un environnement verdoyant et calme, aux portes de Montpellier.",
       "features": [
@@ -391,7 +391,7 @@
     },
     {
       "id": "parc-2000",
-      "title": "Résidence Parc 2000",
+      "title": "Parc 2000",
       "location": "Montpellier (34)",
       "description": "Un ensemble immobilier d'affaires fonctionnel et stratégique, dédié aux activités professionnelles et tertiaires à Montpellier.",
       "features": [
@@ -406,7 +406,7 @@
     },
     {
       "id": "les-micocouliers",
-      "title": "Résidence Les Micocouliers",
+      "title": "Les Micocouliers",
       "location": "Montpellier (34)",
       "description": "Un lotissement exclusif de villas haut de gamme offrant un aménagement extérieur d'une rareté absolue en milieu urbain.",
       "features": [
